@@ -29,27 +29,14 @@ public class PostController {
     
     @GetMapping
     public String getAll(Model model) {
-        model.addAttribute("posts", postService.getAll());
-        return "post";
+        model.addAttribute("posts", postService.getAll());//ambil dari model posts
+        return "post";//return ke html
     }
     
     @GetMapping("/{id}")
     public String getById(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("post", postService.getById(id));
-        return "post-form";
-    }
-    
-    @GetMapping("/add")
-    public String addForm(Model model) {
-        Post post = new Post();
-        model.addAttribute("post", post);
-        return "post-form";
-    }
-    
-    @PostMapping("/add")
-    public String create(@ModelAttribute("post") Post post) {
-        postService.create(post);
-        return "redirect:/post";
+        return "post-edit-form";
     }
     
     @PostMapping("/update/{id}")

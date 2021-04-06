@@ -9,8 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import mii.co.id.clientappmcc.models.AuthRequest;
 import mii.co.id.clientappmcc.models.AuthResponse;
-import mii.co.id.clientappmcc.models.ResponseData;
+//import mii.co.id.clientappmcc.models.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -25,7 +26,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  *
- * @author WAHYUK
+ * @author User
  */
 @Service
 public class AuthService {
@@ -33,42 +34,41 @@ public class AuthService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private final String URL = "http://localhost:8089/api/login";
+    @Value("${api.url}/login")
+    private String url;
 
     public boolean loginProcess(AuthRequest request) {
         boolean isLoginSuccess = false;
-        /* use try catch for error handling */
         try {
             HttpEntity entity = new HttpEntity(request);
-            ResponseEntity<ResponseData<AuthResponse>> response = restTemplate
-                    .exchange(URL, HttpMethod.POST, entity,
-                            new ParameterizedTypeReference<ResponseData<AuthResponse>>() {
-                    });
-            
-            /* call method for set session */
-            setAuthorization(request.getUsername(), request.getPassword(), 
-                    response.getBody().getData().getAuthorities());
-            
+            ResponseEntity<AuthResponse> response = restTemplate.exchange(url, HttpMethod.POST, entity,
+                    new ParameterizedTypeReference<AuthResponse>() {
+            });
+
+            /*call method that set spring security session*/
+            setAuthorization(request.getUserName(), request.getUserPassword(), response.getBody().getAuthorities());
+
             isLoginSuccess = true;
+
         } catch (RestClientException e) {
             e.printStackTrace();
         }
-        
+
         return isLoginSuccess;
     }
-    
-    /* Set spring security session */
-    private void setAuthorization(String username, String password, List<String> authorities) {
-        UsernamePasswordAuthenticationToken authToken = 
-                new UsernamePasswordAuthenticationToken(username, password, getListAthorities(authorities));
-        
+
+    /*Method to set spring security session*/
+    private void setAuthorization(String userName, String userPassword, List<String> authorities) {
+        UsernamePasswordAuthenticationToken authToken
+                = new UsernamePasswordAuthenticationToken(userName, userPassword, getListAuthorities(authorities));
+
         SecurityContextHolder.getContext().setAuthentication(authToken);
     }
-    
-    /* Set list of authothorities */
-    private List<GrantedAuthority> getListAthorities(List<String> authorities) {
+
+    /*List of authorities*/
+    private List<GrantedAuthority> getListAuthorities(List<String> authorities) {
         return authorities.stream()
                 .map(auth -> new SimpleGrantedAuthority(auth))
                 .collect(Collectors.toList());
-    }
-}
+    
+}}

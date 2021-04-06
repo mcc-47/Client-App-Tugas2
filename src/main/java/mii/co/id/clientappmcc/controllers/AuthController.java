@@ -16,13 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
- * @author WAHYUK
+ * @author User
  */
 @Controller
 public class AuthController {
-    
     @Autowired
-    private AuthService authService;
+    AuthService authService;
     
     @GetMapping("/login")
     public String loginPage(Model model) {
@@ -30,22 +29,24 @@ public class AuthController {
         model.addAttribute("auth", auth);
         return "login";
     }
+   
     
     @PostMapping("/login")
     public String loginProcess(@ModelAttribute("auth") AuthRequest auth) {
         String redirectUrl = "";
-        
+
         if (authService.loginProcess(auth)) {
             redirectUrl = "redirect:/dashboard";
         } else {
             redirectUrl = "redirect:/login?error";
         }
-        
+
         return redirectUrl;
     }
-    
+
     @GetMapping("/dashboard")
     public String dashborad() {
         return "dashboard";
     }
 }
+

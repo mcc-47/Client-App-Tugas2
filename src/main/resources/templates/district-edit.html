@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Post Edit Form</h1>
+ 
+        <form th:action="@{/district/update/{id} (id = ${district.districtId})}" method="post" th:object="${district}">
+            <label>Id District</label>
+            <input type="number" th:field="*{districtId}" th:readonly="readonly"><br>
+            <label>District Name</label>
+            <input type="text" th:field="*{districtName}"><br>            
+             <label>Kab</label>
+            <input type="text" th:field="*{kab}"><br>
+            
+             <label>Province Id</label>
+            <input type="number" th:field="*{provinceId}"><br>
+            
+           
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

@@ -9,18 +9,19 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
     </head>
     <body>
         <h1>Login Form</h1>
-        
+
         <p th:text="${param.error} ? 'Username or password incorrect' : ''"></p>
         <p th:text="${param.logout} ? 'You have been logged out' : ''"></p>
         <form th:action="@{/login}" method="post" th:object="${auth}">
             <label>Username</label>
-            <input type="text" th:field="*{username}"/><br>
-            
+            <input type="text" th:field="*{userName}"/><br>
+
             <label>Password</label>
-            <input type="password" th:field="*{password}"/><br>
+            <input type="password" th:field="*{userPassword}"/><br>
             <button type="submit">Login</button>
         </form>
     </body>

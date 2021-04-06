@@ -9,19 +9,26 @@ import lombok.Data;
 
 /**
  *
- * @author WAHYUK
+ * @author User
  */
 @Data
 public class AuthRequest {
-    
-    private String username;
-    private String password;
-
-    public AuthRequest(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+    private String userName;
+    private String userPassword;
 
     public AuthRequest() {
     }
+
+    public AuthRequest(String userName, String userPassword) {
+        this.userName = userName;
+        this.userPassword = userPassword;
+    }
+
+//    public AuthRequest(String username, String password) {
+//        this.username = username;
+//        this.password = password;
+//    }
+
+    
+    
 }

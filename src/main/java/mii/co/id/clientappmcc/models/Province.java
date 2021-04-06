@@ -5,7 +5,6 @@
  */
 package mii.co.id.clientappmcc.models;
 
-import java.util.List;
 import lombok.Data;
 
 /**
@@ -13,19 +12,17 @@ import lombok.Data;
  * @author User
  */
 @Data
-public class AuthResponse {
-    private String userName;
-    private List<String> authorities;
+public class Province {
+    private Integer provinceId;
+    private String provinceName;
 
-    public AuthResponse(String userName, List<String> authorities) {
-        this.userName = userName;
-        this.authorities = authorities;
+    public Province(Integer provinceId, String provinceName) {
+        this.provinceId = provinceId;
+        this.provinceName = provinceName;
     }
 
-  
-    public AuthResponse() {
+    public Province() {
     }
     
     
-   
 }

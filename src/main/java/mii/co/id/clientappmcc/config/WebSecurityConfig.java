@@ -12,22 +12,31 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 /**
  *
- * @author WAHYUK
+ * @author User
  */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+    
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception{
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/dashboard","/district").authenticated()//izinkan ini setelah login sukses
+//                .antMatchers("/login").not().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").loginProcessingUrl("/login")
-                .failureForwardUrl("/login?error")
-                .successForwardUrl("/dashboard")
-                .permitAll();
+                .loginPage("/login").loginProcessingUrl("/login")//login page ke /login, post ke /login
+                .failureForwardUrl("/login?error")//kalau eror redirect ke /login eror
+                .successForwardUrl("/dashboard")// kalau berhasil redirect ke dashba
+                .permitAll()
+                
+            
+               
+                ;
+                
+                
     }
+    
 }

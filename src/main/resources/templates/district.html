@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>District </h1>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <td><b>District Id</b></td>
+                    <td><b>Kab</b></td>
+                    <td><b>District Name</b></td>
+<!--                    <td>Province Name </td>-->
+<td><b>Action</b></td>
+                    
+ 
+                </tr>
+            </thead>
+             <a th:href="@{/district/add}">Add Data</a>
+            <tbody>
+                <tr th:each="district : ${district}">
+                    <td th:text="${district.districtId}"></td>
+                    <td th:text="${district.kab}"></td>
+                    <td th:text="${district.districtName}"></td>
+<!--                    <td th:text="${district.provinceId}"></td>-->
+<!--                    <td th:text="${province.districtList}"></td> key provinceId = value Banten-->
+                    <td>
+                        <a th:href="@{district/{id} (id = ${district.districtId})}">Edit</a>
+                        <a th:href="@{district/delete/{id} (id = ${district.districtId})}">Delete</a>
+                   </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

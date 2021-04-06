@@ -6,34 +6,32 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Post - Page</title>
+        <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Data Post</h1>
+        <h1>Province Test</h1>
         
         <table border="1">
             <thead>
                 <tr>
-                    <td>User Id</td>
-                    <td>Id</td>
-                    <td>Title</td>
-                    <td>Body</td>
-                    <td>Action</td>
+                    <td>Province Id</td>
+                        <td>Province Name</td>
+                
+ 
                 </tr>
             </thead>
             
             <tbody>
-                <tr th:each="post : ${posts}">
-                    <td th:text="${post.userId}"></td>
-                    <td th:text="${post.id}"></td>
-                    <td th:text="${post.title}"></td>
-                    <td th:text="${post.body}"></td>
-                    <td>
+                <tr th:each="province : ${province}">
+                    <td th:text="${province.provinceId}"></td>
+                    <td th:text="${province.provinceName}"></td>
+<!--                    <td th:text="${province.districtList}"></td> key provinceId = value Banten-->
+<!--                    <td>
                         <a th:href="@{/post/{id} (id = ${post.id})}">Edit</a>
                         <a th:href="@{/post/delete/{id} (id = ${post.id})}">Delete</a>
-                    </td>
+                    </td>-->
                 </tr>
             </tbody>
         </table>

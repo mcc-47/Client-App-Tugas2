@@ -11,14 +11,15 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1 th:text="${id} ? 'Post Edit Form' : 'Post Add Form'"></h1>
+        <h1>Post Edit Form</h1>
         
-        <form th:action="${id} ? @{/post/update/{id} (id = ${id})} : @{/post/add}" method="post" th:object="${post}">
+        <form th:action="@{/post/update/{id} (id = ${post.id})}" method="post" th:object="${post}">
             <label>User Id</label>
             <input type="number" th:field="*{userId}"><br>
-            <input type="hidden" th:field="*{id}"><br>
+            <label>Id</label>
+            <input type="number" th:field="*{id}"><br>
             <label>Title</label>
-            <input type="text" th:field="*{title}"><br>
+            <input type="number" th:field="*{title}"><br>
             <label>Body</label>
             <textarea rows="9" th:field="*{body}"></textarea>
             <button type="submit">Submit</button>
