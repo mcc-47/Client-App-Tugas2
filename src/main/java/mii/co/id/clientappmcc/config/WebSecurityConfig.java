@@ -12,11 +12,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 /**
  *
- * @author WAHYUK
+ * @author ROG
  */
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -29,5 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureForwardUrl("/login?error")
                 .successForwardUrl("/dashboard")
                 .permitAll();
+
+
     }
+    
 }

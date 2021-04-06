@@ -9,20 +9,21 @@ import lombok.Data;
 
 /**
  *
- * @author ROG
+ * @author ACER
  */
 @Data
-public class AuthRequest {
+public class Province {
     
-    private String userName;
-    private String password;
+    private Integer provinceId;
+    private String provinceName;
 
-    public AuthRequest(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
+    public Province() {
     }
 
-    public AuthRequest() { 
+    public Province(Province p) {
+        this.provinceId = p.getProvinceId();
+        this.provinceName = p.getProvinceName();
     }
+    
     
 }

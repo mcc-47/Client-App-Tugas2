@@ -12,17 +12,14 @@ import lombok.Data;
  * @author ROG
  */
 @Data
-public class AuthRequest {
-    
-    private String userName;
-    private String password;
+public class Authority {
+    private String authority;
 
-    public AuthRequest(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
+    public Authority() {
     }
 
-    public AuthRequest() { 
+    public Authority(Authority authority) {
+        this.authority = authority.getAuthority();
     }
     
 }

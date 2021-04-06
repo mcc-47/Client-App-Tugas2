@@ -25,29 +25,26 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  *
- * @author WAHYUK
+ * @author ROG
  */
 @Service
 public class AuthService {
-
+    
     @Autowired
-    private RestTemplate restTemplate;
-
-    private final String URL = "http://localhost:8089/api/login";
-
-    public boolean loginProcess(AuthRequest request) {
+    RestTemplate restTemplate;
+    
+    private final String URL = "http://localhost:8082/management/login"; 
+    
+    public boolean loginProcess(AuthRequest req) {
         boolean isLoginSuccess = false;
-        /* use try catch for error handling */
-        try {
-            HttpEntity entity = new HttpEntity(request);
-            ResponseEntity<ResponseData<AuthResponse>> response = restTemplate
-                    .exchange(URL, HttpMethod.POST, entity,
-                            new ParameterizedTypeReference<ResponseData<AuthResponse>>() {
-                    });
             
-            /* call method for set session */
-            setAuthorization(request.getUsername(), request.getPassword(), 
-                    response.getBody().getData().getAuthorities());
+        try {
+            HttpEntity entity = new HttpEntity(req);
+            ResponseEntity<AuthResponse> res = restTemplate
+                    .exchange(URL, HttpMethod.POST, entity,
+                            new ParameterizedTypeReference<AuthResponse>(){
+                            });
+            setAuthorization(req.getUsername(), req.getPassword(), res.getBody().getAuthorities());
             
             isLoginSuccess = true;
         } catch (RestClientException e) {
@@ -57,18 +54,16 @@ public class AuthService {
         return isLoginSuccess;
     }
     
-    /* Set spring security session */
-    private void setAuthorization(String username, String password, List<String> authorities) {
-        UsernamePasswordAuthenticationToken authToken = 
-                new UsernamePasswordAuthenticationToken(username, password, getListAthorities(authorities));
+    private void setAuthorization(String username, String password, List<GrantedAuthority> authorities) {
+        UsernamePasswordAuthenticationToken authToken =
+                new UsernamePasswordAuthenticationToken(username, password, authorities);
         
         SecurityContextHolder.getContext().setAuthentication(authToken);
     }
     
-    /* Set list of authothorities */
-    private List<GrantedAuthority> getListAthorities(List<String> authorities) {
-        return authorities.stream()
-                .map(auth -> new SimpleGrantedAuthority(auth))
-                .collect(Collectors.toList());
-    }
+//    private List<GrantedAuthority> getListAuthorities(List<String> authorities) {
+//        return authorities.stream()
+//                .map(auth -> new SimpleGrantedAuthority(auth))
+//                .collect(Collectors.toList());
+//    }
 }

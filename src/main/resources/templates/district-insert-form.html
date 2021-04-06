@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>District Insert Form</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            
+            <h1 class="text-center mt-5 mb-5">District Insert Form</h1>
+
+            <form th:action=" @{/district/insert}" method="post" th:object="${district}">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">ID District</label>
+                    <input type="number" class="form-control" id="exampleFormControlInput1" th:field="*{districtId}">
+                    <small class="text-warning">hanya diisi oleh angka</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Kota/Kab</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan kota / kabupaten" th:field="*{kab}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Nama Distrik</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="cth : Bandung" th:field="*{districtName}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">ID Provinsi</label>
+                    <input type="number" class="form-control" id="exampleFormControlInput1" th:field="*{provinceId.provinceId}">
+                    <small class="text-warning">hanya diisi oleh angka</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Nama Provinsi</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Jawa Barat" th:field="*{provinceId.provinceName}">
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>

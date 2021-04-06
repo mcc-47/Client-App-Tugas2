@@ -9,8 +9,7 @@ import lombok.Data;
 
 /**
  *
- * @author WAHYUK
- * @param <R> Response object type
+ * @author ROG
  */
 @Data
 public class ResponseData <R> {
@@ -25,4 +24,5 @@ public class ResponseData <R> {
 
     public ResponseData() {
     }
+    
 }

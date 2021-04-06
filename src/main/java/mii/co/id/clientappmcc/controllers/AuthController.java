@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
- * @author WAHYUK
+ * @author ROG
  */
 @Controller
 public class AuthController {
     
     @Autowired
-    private AuthService authService;
+    AuthService authService;
     
     @GetMapping("/login")
     public String loginPage(Model model) {
@@ -45,7 +45,7 @@ public class AuthController {
     }
     
     @GetMapping("/dashboard")
-    public String dashborad() {
+    public String dashboard() {
         return "dashboard";
     }
 }
