@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+         <h1>Data Province</h1>
+        <a th:href="@{/province/add}">Add</a>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>Province Id</td>
+                    <td>Province Name</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr th:each="province : ${provinces}">
+                    <td th:text="${province.provinceId}"></td>
+                    <td th:text="${province.provinceName}"></td>
+                    <td>
+                        <a th:href="@{/province/{id} (id = ${province.provinceId})}">Edit</a>
+                        <a th:href="@{/province/delete/{id} (id = ${province.provinceId})}">Delete</a>
+      
+
+                    </td>
+                </tr>
+    </body>
+</html>
