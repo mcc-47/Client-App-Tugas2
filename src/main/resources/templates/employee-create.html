@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>New Employee</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div align="center">
+            <h1>Form New Employee</h1>
+            <form th:action="@{/employee/create}" method="post" th:object="${employees}"> 
+            <!--<form action="#">--> 
+            <!--<form>-->
+            <table border="0" cellpadding="10">
+                <tr>
+                    <td><label>Employee Id</label></td>
+                    <td><input type="number" name="employeeId"><br></td>
+                </tr>
+                <tr>
+                    <td><label>Employee Name</label></td>
+                    <td><input type="text" name="employeeName"><br></td>
+                </tr>
+                <tr>
+                    <td><label>Birth Date</label></td>
+                    <td><input type="date" class="form-control" id="birthDate" placeholder="Project start" name="birthDate"><br></td>
+<!--                <label>Gender</label>
+                <input type="text" th:field="*{gender}"><br>-->
+                </tr>
+                <tr>
+                    <td><label>Gender</label></td>
+                    <td><input type="radio" id="laki-laki" name="gender" value="laki-laki">
+                    <label for="laki-laki">Laki-laki</label>
+                    <input type="radio" id="perempuan" name="gender" value="perempuan">
+                    <label for="perempuan">Perempuan</label><br></td>
+                </tr>
+                <tr>
+                    <td><label>Email</label></td>
+                    <td><input type="text" name="email"><br></td>
+                </tr>
+                <td><button type="submit">Submit</button></td>
+                <td><button type="reset">Reset</button></td>
+            </table>
+            </form>
+        </div>
+    </body>
+</html>

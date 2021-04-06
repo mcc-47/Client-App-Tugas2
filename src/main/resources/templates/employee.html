@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>List of Employee</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div align="center">
+        <h1>Employee Data</h1>
+        
+        <div>
+            <a href="/employee/new">Add Employee</a>
+        </div>
+        
+        <table border="1" cellpadding="10">
+            <thead>
+                <tr style="text-align: center">
+                    <td>ID</td>
+                    <td>Employee Name</td>
+                    <td>Birth Date</td>
+                    <td>Gender</td>
+                    <td>Email</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr th:each="emp : ${employees}"> <!--emp is Objct, employees is source-->
+                    <td style="text-align: center" th:text="${emp.employeeId}"></td>
+                    <td th:text="${emp.employeeName}"></td>
+                    <td style="text-align: center" th:text="${emp.birthDate}"></td>
+                    <td style="text-align: center" th:text="${emp.gender}"></td>
+                    <td th:text="${emp.email}"></td>
+                    <td>
+                        <a th:href="@{/employee/{id} (id = ${emp.employeeId})}">Edit</a>
+                        <a th:href="@{/employee/delete/{id} (id = ${emp.employeeId})}">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        </div>
+    </body>
+</html>
