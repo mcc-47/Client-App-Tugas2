@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Post Edit Form</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Post Edit Form</h1>
+        
+        <form th:action="@{/post/update/{id} (id = ${post.id})}" method="post" th:object="${post}">
+            <label>User Id</label>
+            <input type="number" th:field="*{userId}"><br>
+            <label>Id</label>
+            <input type="number" th:field="*{id}"><br>
+            <label>Title</label>
+            <input type="number" th:field="*{title}"><br>
+            <label>Body</label>
+            <textarea rows="9" th:field="*{body}"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
