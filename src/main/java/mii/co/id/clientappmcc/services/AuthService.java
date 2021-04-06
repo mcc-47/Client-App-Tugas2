@@ -37,14 +37,14 @@ public class AuthService {
     
     public boolean loginProcess(AuthRequest req) {
         boolean isLoginSuccess = false;
-            
+        
         try {
             HttpEntity entity = new HttpEntity(req);
             ResponseEntity<AuthResponse> res = restTemplate
                     .exchange(URL, HttpMethod.POST, entity,
                             new ParameterizedTypeReference<AuthResponse>(){
                             });
-            setAuthorization(req.getUsername(), req.getPassword(), res.getBody().getAuthorities());
+            setAuthorization(req.getUserName(), req.getPassword(), res.getBody().getAuthorities());
             
             isLoginSuccess = true;
         } catch (RestClientException e) {
@@ -54,16 +54,16 @@ public class AuthService {
         return isLoginSuccess;
     }
     
-    private void setAuthorization(String username, String password, List<GrantedAuthority> authorities) {
+    private void setAuthorization(String username, String password, List<String> authorities) {
         UsernamePasswordAuthenticationToken authToken =
-                new UsernamePasswordAuthenticationToken(username, password, authorities);
+                new UsernamePasswordAuthenticationToken(username, password, getListAuthorities(authorities));
         
         SecurityContextHolder.getContext().setAuthentication(authToken);
     }
     
-//    private List<GrantedAuthority> getListAuthorities(List<String> authorities) {
-//        return authorities.stream()
-//                .map(auth -> new SimpleGrantedAuthority(auth))
-//                .collect(Collectors.toList());
-//    }
+        private List<GrantedAuthority> getListAuthorities(List<String> authorities) {
+            return authorities.stream()
+                    .map(auth -> new SimpleGrantedAuthority(auth))
+                    .collect(Collectors.toList());
+        }
 }

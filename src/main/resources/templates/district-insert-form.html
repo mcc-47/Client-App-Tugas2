@@ -13,15 +13,11 @@ and open the template in the editor.
     </head>
     <body>
         <div class="container">
-            
+
             <h1 class="text-center mt-5 mb-5">District Insert Form</h1>
 
             <form th:action=" @{/district/insert}" method="post" th:object="${district}">
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">ID District</label>
-                    <input type="number" class="form-control" id="exampleFormControlInput1" th:field="*{districtId}">
-                    <small class="text-warning">hanya diisi oleh angka</small>
-                </div>
+                <input type="hidden" class="form-control" id="exampleFormControlInput1" th:field="*{districtId}">
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Kota/Kab</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan kota / kabupaten" th:field="*{kab}">
@@ -39,7 +35,10 @@ and open the template in the editor.
                     <label for="exampleFormControlInput1">Nama Provinsi</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Jawa Barat" th:field="*{provinceId.provinceName}">
                 </div>
-                <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                <div >
+                    <button type="submit" class="btn btn-primary ms-3">Submit</button>
+                    <a class="btn btn-warning" th:href="@{/district}">Back</a>
+                </div>
             </form>
         </div>
     </body>
