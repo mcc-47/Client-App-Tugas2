@@ -6,6 +6,7 @@
 package mii.co.id.clientappmcc.services;
 
 import java.util.List;
+import mii.co.id.clientappmcc.config.RequestFormat;
 import mii.co.id.clientappmcc.models.District;
 import mii.co.id.clientappmcc.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +33,12 @@ public class DistrictService {
     
     public List<District> getAll() {
         ResponseEntity<List<District>> response =  restTemplate
-                .exchange(url, HttpMethod.GET, null, 
+                .exchange(url, HttpMethod.GET, new HttpEntity(RequestFormat.createHeader()), 
                 new ParameterizedTypeReference<List<District>>() {});
         
         return response.getBody();
     }
+    
     
     public District getById(Integer id) {
         return restTemplate.getForEntity(url + "/" + id, District.class).getBody();
@@ -44,14 +46,14 @@ public class DistrictService {
     
     
     public void update(Integer id, District district) {
-        HttpEntity entity = new HttpEntity(district);
+        HttpEntity entity = new HttpEntity(district, RequestFormat.createHeader());
         ResponseEntity<District> response = restTemplate
                 .exchange(url + "/" + id, HttpMethod.PUT, entity, 
                         District.class);
     }
     
     public void insert(District district) {
-        HttpEntity entity = new HttpEntity(district);
+        HttpEntity entity = new HttpEntity(district, RequestFormat.createHeader());
         ResponseEntity<District> response = restTemplate
                 .exchange(url, HttpMethod.POST, entity, 
                         District.class); 
@@ -59,7 +61,7 @@ public class DistrictService {
     
     public void delete(Integer id) {
         ResponseEntity<String> response = restTemplate
-                .exchange(url+"/"+id, HttpMethod.DELETE, null, 
+                .exchange(url+"/"+id, HttpMethod.DELETE, new HttpEntity(RequestFormat.createHeader()), 
                         new ParameterizedTypeReference<String>() {});
     }
 }

@@ -41,7 +41,6 @@ public class AuthController {
             /* The user is logged in :) */
             return "redirect:/dashboard";
         }
-        
         AuthRequest auth = new AuthRequest();
         model.addAttribute("auth", auth);
         return "login";
@@ -56,7 +55,6 @@ public class AuthController {
         } else {
             redirectUrl = "redirect:/login?error";
         }
-        
         return redirectUrl;
     }
     
