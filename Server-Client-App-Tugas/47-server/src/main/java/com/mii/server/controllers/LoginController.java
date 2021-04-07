@@ -10,11 +10,10 @@ import com.mii.server.dtos.UserSessionDTO;
 import com.mii.server.repositories.UserRepository;
 import com.mii.server.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author William Yangjaya
  */
 @RestController
+@RequestMapping("/api")
 public class LoginController {
 
     @Autowired

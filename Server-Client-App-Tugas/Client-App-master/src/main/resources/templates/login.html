@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Login Form</h1>
+        
+        <p th:text="${param.error} ? 'Username or password incorrect' : ''"></p>
+        <p th:text="${param.logout} ? 'You have been logged out' : ''"></p>
+        <form th:action="@{/login}" method="post" th:object="${auth}">
+            <label>Username</label>
+            <input type="text" th:field="*{username}"/><br>
+            
+            <label>Password</label>
+            <input type="password" th:field="*{password}"/><br>
+            <button type="submit">Login</button>
+        </form>
+    </body>
+</html>
