@@ -60,8 +60,8 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/admin").hasRole("ADMIN")
-                .antMatchers("/api/**").authenticated()
-                .anyRequest().permitAll()
+//                .antMatchers("/api/**").permitAll()
+//               .anyRequest().permitAll()
                 .and()
                 .formLogin();
 //                .and()

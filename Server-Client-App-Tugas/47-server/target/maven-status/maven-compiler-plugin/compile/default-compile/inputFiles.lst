@@ -1,33 +1,31 @@
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\District.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Role.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\repositories\ContactRepository.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\configurations\ApplicationSecurityConfiguration.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\repositories\UserRepositoryHelper.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\services\RegistServiceImpl.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Major.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\services\RegistService.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Address.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\dtos\UserLoginDTO.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Education.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\controllers\ContactController.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\services\MyUserDetailsService.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\User.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\dtos\RegistDTO.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Village.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Privilege.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Subdistrict.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\dtos\UserSessionDTO.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\repositories\PrivilegeRepository.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Employee.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\Application.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Province.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\repositories\RoleRepository.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Contact.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\MyUserDetails.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\services\ContactService.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\University.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\controllers\HomeResource.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\repositories\EmployeeRepository.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\dtos\UserDTO.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\repositories\UserRepository.java
-D:\Data\My Documents\Working Directory NetBeans\FrontEnd-MasWahyu\StarterByKelompok3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\controllers\RegistrationController.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Province.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\controllers\LoginController.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Contact.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Employee.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\repositories\ContactRepository.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\dtos\RegistDTO.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\repositories\UserRepository.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\services\ContactService.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Education.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\University.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Privilege.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Address.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\services\RegistService.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\repositories\UserRepositoryHelper.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\configurations\ApplicationSecurityConfiguration.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\dtos\UserLoginDTO.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Major.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Village.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\repositories\EmployeeRepository.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\Application.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\repositories\PrivilegeRepository.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\MyUserDetails.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\controllers\RegistrationController.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\repositories\RoleRepository.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\controllers\ContactController.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\services\MyUserDetailsService.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\District.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Subdistrict.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\dtos\UserSessionDTO.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\User.java
+G:\Client-App-Tugas-kelompok-3\Client-App-Tugas-kelompok-3\Server-Client-App-Tugas\47-server\src\main\java\com\mii\server\entities\Role.java
