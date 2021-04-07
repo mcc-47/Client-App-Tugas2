@@ -41,6 +41,7 @@ public class AuthController {
         
         AuthRequest auth = new AuthRequest();
         model.addAttribute("auth", auth);
+        System.out.println("login page");
         return "login";
     }
     
@@ -53,7 +54,7 @@ public class AuthController {
         } else {
             redirectUrl = "redirect:/login?error";
         }
-        
+        System.out.println("hasil login");
         return redirectUrl;
     }
     
@@ -62,21 +63,21 @@ public class AuthController {
         return "dashboard";
     }
     
-    @GetMapping("/logout")
-  public String fetchSignoutSite(HttpServletRequest request, HttpServletResponse response){
-        
-        HttpSession session = request.getSession(false);
-        SecurityContextHolder.clearContext();
-
-          session = request.getSession(false);
-          if(session != null) {
-              session.invalidate();
-          }
-
-          for(Cookie cookie : request.getCookies()) {
-              cookie.setMaxAge(0);
-          }
-
-          return "redirect:/login?logout";
-  }
+//    @GetMapping("/logout")
+//  public String fetchSignoutSite(HttpServletRequest request, HttpServletResponse response){
+//        
+//        HttpSession session = request.getSession(false);
+//        SecurityContextHolder.clearContext();
+//
+//          session = request.getSession(false);
+//          if(session != null) {
+//              session.invalidate();
+//          }
+//
+//          for(Cookie cookie : request.getCookies()) {
+//              cookie.setMaxAge(0);
+//          }
+//
+//          return "redirect:/login?logout";
+//  }
 }
