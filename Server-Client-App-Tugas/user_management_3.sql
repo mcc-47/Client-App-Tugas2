@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2021 at 01:26 AM
+-- Generation Time: Apr 07, 2021 at 04:52 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -389,9 +389,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `password`, `username`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES
-(1, '$2y$10$VFSy/2LU/Lnscx5ZI6Os3.4FPrpxHkM9sefPk/Cg40blkTgb3Co7m', 'ikhsan', b'1', b'1', b'1', b'1'),
+(1, '$2y$10$Cb6PpgF8eou8cpX6nb8m4edYpiLfS67m9tpzWAcFZXvzxZBqKkoxa', 'ikhsan', b'1', b'1', b'1', b'1'),
 (2, '$2a$10$6C9sSWNNx7dbU/X8KvV2S.Zd8tEA1HmGJMisi3qNpUeSzAmrNVUPW', 'panji', b'1', b'1', b'1', b'1'),
-(3, '$2y$10$XgyuAd3dvu3LCR.TibvOh.GWDcA0EmlMYVgakMrqv6eij5sU6eqYq', 'fadel', b'1', b'1', b'1', b'1'),
+(3, '$2y$10$J2GhPqVtBOHd2krGR05qLOwGsH78wv47bIBp.JbzHJP/2f8UiqP8.', 'fadel', b'1', b'1', b'1', b'1'),
 (4, '$2y$10$DiA8rRJAAZMPCBxtmW6AWOLWrr5vpPVllYPQXHYEkOjIldtlhSoFC', 'rafi', b'1', b'1', b'1', b'1'),
 (5, '$2y$10$P1hqIo.qRKQ.5KivueIEo.1tSwe4mWCNytm20gHbG5.z3DDmBFCUC', 'regita', b'1', b'1', b'1', b'1'),
 (6, '$2y$10$nAF/XV6vXayf4Y1NtH97KuODCe1rqggOPf9NdEC87U71Qyzt0hvHO', 'yosie', b'1', b'1', b'1', b'1'),

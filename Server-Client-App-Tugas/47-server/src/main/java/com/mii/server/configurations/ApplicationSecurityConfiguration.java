@@ -29,17 +29,17 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     @Autowired
     MyUserDetailsService myUserDetailsService;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+//    @Autowired
+//    private UserDetailsService userDetailsService;
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return super.userDetailsService();
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        return super.userDetailsService();
+//    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.parentAuthenticationManager(authenticationManagerBean());
+//        auth.parentAuthenticationManager(authenticationManagerBean());
         auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
@@ -50,7 +50,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
 
     @Override
     @Bean
-    public AuthenticationManager authenticationManager() throws Exception {
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 
@@ -59,12 +59,14 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin**", "/user**").permitAll()
-//                .antMatchers("/admin**").hasRole("ADMIN")
+                .antMatchers("/api/admin").hasRole("ADMIN")
+                .antMatchers("/api/**").authenticated()
+                .anyRequest().permitAll()
                 .and()
-                .formLogin().disable()
-                .logout().disable()
-                .httpBasic();
+                .formLogin();
+//                .and()
+//                .logout().disable()
+//                .httpBasic();
 //                .antMatchers("/", "/login", "/load", "/registration").permitAll()
         //                .anyRequest().authenticated()
         //                .and().httpBasic();

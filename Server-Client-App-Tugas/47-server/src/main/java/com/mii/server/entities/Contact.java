@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "contact")
 @XmlRootElement
-//@XmlAccessorType(value = XmlAccessType.FIELD)
+@XmlAccessorType(value = XmlAccessType.FIELD)
 @NamedQueries({
     @NamedQuery(name = "Contact.findAll", query = "SELECT c FROM Contact c")})
 public class Contact implements Serializable {
@@ -51,7 +51,7 @@ public class Contact implements Serializable {
     private String linkedin;
     @JoinColumn(name = "contact_id", referencedColumnName = "employee_id", insertable = false, updatable = false)
     @OneToOne(optional = true, fetch = FetchType.LAZY)
-//    @XmlTransient 
+    @XmlTransient
     private Employee employee;
 
     public Contact() {

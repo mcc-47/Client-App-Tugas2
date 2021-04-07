@@ -35,7 +35,7 @@ public class LoginController {
         return myUserDetailsService.login(userLoginDTO);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public String home() {
         return ("<h1>Welcome</h1>");
     }

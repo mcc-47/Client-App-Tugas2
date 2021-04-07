@@ -43,7 +43,7 @@ public class Role implements Serializable {
     private String name;
     @ManyToMany(mappedBy = "roleList", fetch = FetchType.LAZY)
     private List<User> userList;
-    @ManyToMany(mappedBy = "roleList", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roleList", fetch = FetchType.EAGER)
     private List<Privilege> privilegeList;
 
     public Role() {
