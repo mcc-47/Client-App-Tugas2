@@ -58,17 +58,16 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .httpBasic()
-                .and()
                 .authorizeRequests()
-                .antMatchers("/user").hasRole("USER")
-                .antMatchers("/admin").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/admin**", "/user**").permitAll()
+//                .antMatchers("/admin**").hasRole("ADMIN")
                 .and()
                 .formLogin().disable()
-                .logout().disable();
+                .logout().disable()
+                .httpBasic();
 //                .antMatchers("/", "/login", "/load", "/registration").permitAll()
-//                .anyRequest().authenticated()
-//                .and().httpBasic();
+        //                .anyRequest().authenticated()
+        //                .and().httpBasic();
     }
 }
 
