@@ -28,7 +28,7 @@ and open the template in the editor.
                             <input type="password" class="form-control" id="exampleInputPassword1" th:field="*{password}">
                         </div>
                         <button type="submit" class="btn btn-primary">Login</button>
-                        <p th:text="${param.error} ? 'Username or password incorrect' : ''" class="text-danger mt-3 text-center"></p>
+                            <p th:text="${param.error} ? 'Username or password incorrect' : ''" class="text-danger mt-3 text-center"></p>
                         <p th:text="${param.logout} ? 'You have been logged out' : ''"></p>
                     </form>
                 </div>
@@ -41,15 +41,15 @@ and open the template in the editor.
 
 
 
-<!--        <p th:text="${param.error} ? 'Username or password incorrect' : ''"></p>
-        <p th:text="${param.logout} ? 'You have been logged out' : ''"></p>
-        <form th:action="@{/login}" method="post" th:object="${auth}">
-            <label>Username</label>
-            <input type="text" th:field="*{userName}"/><br>
-
-            <label>Password</label>
-            <input type="password" th:field="*{password}"/><br>
-            <button type="submit">Login</button>
-        </form>-->
+        <!--        <p th:text="${param.error} ? 'Username or password incorrect' : ''"></p>
+                <p th:text="${param.logout} ? 'You have been logged out' : ''"></p>
+                <form th:action="@{/login}" method="post" th:object="${auth}">
+                    <label>Username</label>
+                    <input type="text" th:field="*{userName}"/><br>
+        
+                    <label>Password</label>
+                    <input type="password" th:field="*{password}"/><br>
+                    <button type="submit">Login</button>
+                </form>-->
     </body>
 </html>

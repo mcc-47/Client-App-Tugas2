@@ -13,7 +13,8 @@ and open the template in the editor.
     </head>
     <body>
         
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="#">User Management</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +32,9 @@ and open the template in the editor.
 
         
         <div class="container">
-            <h1 class="text-center mt-5 mb-5">Data District</h1>
+            
+            <h1 class="text-center mt-5 mb-5 pt-5">Data District</h1>
+            <a th:href="@{/district/insert-form}" class="btn btn-primary mb-2">Insert New District</a>
             <table class="table table-bordered text-center">
                 <thead class="bg-dark text-white">
                     <tr>
@@ -55,7 +58,6 @@ and open the template in the editor.
                     </tr>
                 </tbody>
             </table>
-            <a th:href="@{/district/insert-form}" class="btn btn-primary mb-5">Insert New District</a>
         </div>
     </body>
 </html>

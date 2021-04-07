@@ -28,5 +28,4 @@ public class District {
         this.districtName = d.getDistrictName();
         this.provinceId = d.getProvinceId();
     }
-
 }
