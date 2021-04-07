@@ -16,30 +16,37 @@ and open the template in the editor.
 
             <h1 class="text-center mt-5 mb-5">District Insert Form</h1>
 
-            <form th:action=" @{/district/insert}" method="post" th:object="${district}">
-                <input type="hidden" class="form-control" id="exampleFormControlInput1" th:field="*{districtId}">
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Kota/Kab</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan kota / kabupaten" th:field="*{kab}">
+            <div class="card">
+                <div class="card-header">
+                    Insert District Form
                 </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Nama Distrik</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="cth : Bandung" th:field="*{districtName}">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">ID Provinsi</label>
-                    <input type="number" class="form-control" id="exampleFormControlInput1" th:field="*{provinceId.provinceId}">
-                    <small class="text-warning">hanya diisi oleh angka</small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Nama Provinsi</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Jawa Barat" th:field="*{provinceId.provinceName}">
-                </div>
-                <div >
-                    <button type="submit" class="btn btn-primary ms-3">Submit</button>
-                    <a class="btn btn-warning" th:href="@{/district}">Back</a>
-                </div>
-            </form>
+                <form th:action=" @{/district/insert}" method="post" th:object="${district}" class="m-4">
+                    <input type="hidden" class="form-control" id="exampleFormControlInput1" th:field="*{districtId}">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Kota/Kab</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan kota / kabupaten" th:field="*{kab}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Nama Distrik</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="cth : Bandung" th:field="*{districtName}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">ID Provinsi</label>
+                        <input type="number" class="form-control" id="exampleFormControlInput1" th:field="*{provinceId.provinceId}">
+                        <small class="text-warning">hanya diisi oleh angka</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Nama Provinsi</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Jawa Barat" th:field="*{provinceId.provinceName}">
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary ms-3">Submit</button>
+                        <a class="btn btn-warning" th:href="@{/district}">Back</a>
+                    </div>
+                </form>
+
+            </div>
+
         </div>
     </body>
 </html>
