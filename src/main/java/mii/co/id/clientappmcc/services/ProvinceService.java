@@ -10,6 +10,7 @@ import mii.co.id.clientappmcc.models.Province;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,27 @@ public class ProvinceService {
                 });
 
         return response.getBody();
+    }
+    
+    public void create(Province province) {
+        HttpEntity entity = new HttpEntity(province);
+        ResponseEntity<String> res = restTemplate.exchange(url+ "/insert", HttpMethod.POST, entity,
+                new ParameterizedTypeReference<String>(){});
+    }
+    
+    public void delete(Integer id) {
+//        ResponseEntity<District> res = restTemplate.exchange(url + "/delete/" + id, HttpMethod.DELETE, null, District.class);
+        restTemplate.delete(url+"/delete/"+id,Province.class);
+    }
+    
+     public Province getById(Integer id) {
+        return restTemplate.getForEntity(url + "/" + id, Province.class).getBody();
+    }
+     
+       public void update(Integer id, Province province) {
+        HttpEntity entity = new HttpEntity(province);
+        ResponseEntity<String> res = restTemplate.exchange(url + "/update/" +id, HttpMethod.PUT,
+                entity,new ParameterizedTypeReference<String>() {
+});
     }
 }

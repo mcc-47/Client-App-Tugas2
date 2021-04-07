@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container"><br><br>
+            <h1>Province Insert Form</h1>
+            <form class="needs-validation " novalidate th:action="@{/province/add}" method="post" th:object="${province}">
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        <label for="validationCustom05">District ID</label>
+                        <input  class="form-control" id="validationCustom05" placeholder="Province ID" type="number" th:field="*{provinceId}" >
+                        <div class="invalid-feedback">
+                            Please provide a valid zip.
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom02">District Name</label>
+                        <input type="text" class="form-control" id="validationCustom02" placeholder="Province Name"  th:field="*{provinceName}">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+
+                </div>
+                
+
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <a class="btn btn-warning" th:href="@{/province}" >Back</a>
+
+            </form>
+        </div>
+    </body>
+</html>

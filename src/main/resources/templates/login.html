@@ -9,20 +9,41 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         
     </head>
     <body>
-        <h1>Login Form</h1>
+        <div class="container">
+            <br>
+              <h1>Login Form</h1>
+              <small id="emailHelp" class="form-text text-muted">MCC-47</small>
+            <form th:action="@{/login}" method="post" th:object="${auth}">
+                <div class="form-group">
+                    <p th:text="${param.error} ? 'Username or password incorrect !' : '' " class="text-danger" role="alert"></p>
+                    <p th:text="${param.logout} ? 'You have been logged out' : ''" class="text-warning" role="alert"></p>
+                    <label for="exampleInputEmail1">Username</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  th:field="*{userName}" >
+              
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" th:field="*{userPassword}">
+                </div>
+                
+                <button type="submit" class="btn btn-info">Submit</button>
+            </form>
+        </div>
+<!--        <h1>Login Form</h1>-->
 
-        <p th:text="${param.error} ? 'Username or password incorrect' : ''"></p>
-        <p th:text="${param.logout} ? 'You have been logged out' : ''"></p>
-        <form th:action="@{/login}" method="post" th:object="${auth}">
-            <label>Username</label>
-            <input type="text" th:field="*{userName}"/><br>
+        <!--        <p th:text="${param.error} ? 'Username or password incorrect' : ''"></p>
+                <p th:text="${param.logout} ? 'You have been logged out' : ''"></p>
+                <form th:action="@{/login}" method="post" th:object="${auth}">
+                    <label>Username</label>
+                    <input type="text" th:field="*{userName}"/><br>
 
-            <label>Password</label>
-            <input type="password" th:field="*{userPassword}"/><br>
-            <button type="submit">Login</button>
-        </form>
+                    <label>Password</label>
+                    <input type="password" th:field="*{userPassword}"/><br>
+                    <button type="submit">Login</button>
+                </form>-->
     </body>
 </html>

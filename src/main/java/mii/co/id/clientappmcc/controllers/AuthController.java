@@ -8,6 +8,9 @@ package mii.co.id.clientappmcc.controllers;
 import mii.co.id.clientappmcc.models.AuthRequest;
 import mii.co.id.clientappmcc.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +28,12 @@ public class AuthController {
     
     @GetMapping("/login")
     public String loginPage(Model model) {
+        Authentication authenticated = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authenticated instanceof AnonymousAuthenticationToken)) {
+            /* The user is logged in :) */
+            return "redirect:/dashboard";
+        }
+        
         AuthRequest auth = new AuthRequest();
         model.addAttribute("auth", auth);
         return "login";

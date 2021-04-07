@@ -39,6 +39,8 @@ public class PostController {
         return "post-edit-form";
     }
     
+    
+    
     @PostMapping("/update/{id}")
     public String update(@PathVariable("id") Integer id, @ModelAttribute("post") Post post) {
         postService.update(id, post);
