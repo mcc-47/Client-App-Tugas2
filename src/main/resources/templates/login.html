@@ -28,8 +28,8 @@ and open the template in the editor.
                             <input type="password" class="form-control" id="exampleInputPassword1" th:field="*{password}">
                         </div>
                         <button type="submit" class="btn btn-primary">Login</button>
-                            <p th:text="${param.error} ? 'Username or password incorrect' : ''" class="text-danger mt-3 text-center"></p>
-                        <p th:text="${param.logout} ? 'You have been logged out' : ''"></p>
+                        <p th:text="${param.error} ? 'Username or password incorrect' : ''" class="text-danger mt-3 text-center font-weight-bold"></p>
+                        <p th:text="${param.logout} ? 'You have been logged out' : ''" class="text-danger mt-3 text-center font-weight-bold"></p>
                     </form>
                 </div>
             </div>
