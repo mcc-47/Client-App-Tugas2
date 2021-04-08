@@ -6,6 +6,7 @@
 package mii.co.id.clientappmcc.services;
 
 import java.util.List;
+import mii.co.id.clientappmcc.config.RequestFormat;
 import mii.co.id.clientappmcc.models.Province;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,9 +31,18 @@ public class ProvinceService {
     private String url;
     
     
-    public List<Province> getAll() {
+//    public List<Province> getAll() {
+//        ResponseEntity<List<Province>> response = restTemplate
+//                .exchange(url, HttpMethod.GET, null,
+//                        new ParameterizedTypeReference<List<Province>>() {
+//                });
+//
+//        return response.getBody();
+//    }
+    
+   public List<Province> getAll() {
         ResponseEntity<List<Province>> response = restTemplate
-                .exchange(url, HttpMethod.GET, null,
+                .exchange(url, HttpMethod.GET, new HttpEntity(RequestFormat.createHeaders()),
                         new ParameterizedTypeReference<List<Province>>() {
                 });
 
