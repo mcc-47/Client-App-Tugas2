@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Client-App District</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container my-2">
+            <h1>Data District</h1>
+            <form th:action="@{/district/add}" method="post" th:object="${districts}">
+                <form>
+                    <div class="form-group">
+                        <label>District Id</label>
+                        <input type="number" th:field="*{districtId}" class="form-control mb-4 col-4"><br>   
+                        <label>District Name</label>
+                        <input type="text" th:field="*{districtName}" class="form-control mb-4 col-4"><br>            
+                        <label>Kab</label>
+                        <input type="text" th:field="*{kab}" class="form-control mb-4 col-4"> <br>
+
+                        <label>Province Id</label>
+                        <input type="number" th:field="*{provinceId.provinceId}" class="form-control mb-4 col-4"><br>
+
+
+                        <button type="submit" class="btn btn-info col-2">Submit</button>
+                    </div>
+                </form>
+                <hr>
+                <a th:href="@{/district}"> Kembali ke Data District</a>
+        </div>
+    </body>
+</html>

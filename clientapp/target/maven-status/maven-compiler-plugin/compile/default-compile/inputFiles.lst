@@ -1,0 +1,11 @@
+D:\clientapp\src\main\java\client\kelompok4\clientapp\services\DistrictService.java
+D:\clientapp\src\main\java\client\kelompok4\clientapp\controllers\DistrictController.java
+D:\clientapp\src\main\java\client\kelompok4\clientapp\controllers\ProvinceController.java
+D:\clientapp\src\main\java\client\kelompok4\clientapp\models\AuthRequest.java
+D:\clientapp\src\main\java\client\kelompok4\clientapp\services\AuthService.java
+D:\clientapp\src\main\java\client\kelompok4\clientapp\services\ProvinceService.java
+D:\clientapp\src\main\java\client\kelompok4\clientapp\models\AuthResponse.java
+D:\clientapp\src\main\java\client\kelompok4\clientapp\config\RestTemplateConfig.java
+D:\clientapp\src\main\java\client\kelompok4\clientapp\models\Province.java
+D:\clientapp\src\main\java\client\kelompok4\clientapp\ClientappApplication.java
+D:\clientapp\src\main\java\client\kelompok4\clientapp\models\District.java

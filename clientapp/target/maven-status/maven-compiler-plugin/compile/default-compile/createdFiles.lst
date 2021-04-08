@@ -1,0 +1,15 @@
+client\kelompok4\clientapp\services\AuthService$1.class
+client\kelompok4\clientapp\config\RestTemplateConfig.class
+client\kelompok4\clientapp\services\ProvinceService$1.class
+client\kelompok4\clientapp\ClientappApplication.class
+client\kelompok4\clientapp\services\DistrictService.class
+client\kelompok4\clientapp\controllers\DistrictController.class
+client\kelompok4\clientapp\services\AuthService.class
+client\kelompok4\clientapp\models\Province.class
+client\kelompok4\clientapp\services\DistrictService$2.class
+client\kelompok4\clientapp\models\AuthResponse.class
+client\kelompok4\clientapp\models\District.class
+client\kelompok4\clientapp\services\ProvinceService.class
+client\kelompok4\clientapp\controllers\ProvinceController.class
+client\kelompok4\clientapp\models\AuthRequest.class
+client\kelompok4\clientapp\services\DistrictService$1.class
