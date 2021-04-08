@@ -37,7 +37,7 @@ public class MyUserDetails implements UserDetails {
             authorities.add(new SimpleGrantedAuthority("ROLE_" + r.getName().toUpperCase()));
             Collection<Privilege> privileges = r.getPrivilegeList();
             for (Privilege p : privileges) {
-                authorities.add(new SimpleGrantedAuthority("PRIVILEGE_" + p.getName().toUpperCase()));
+                authorities.add(new SimpleGrantedAuthority(p.getName().toUpperCase()));
             }
         }
         return authorities;

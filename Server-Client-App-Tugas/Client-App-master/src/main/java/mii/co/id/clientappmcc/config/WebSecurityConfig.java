@@ -23,20 +23,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.
                 csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/contacts").hasRole("EMPLOYEE")
-                .antMatchers("/**","logout").authenticated()
-               // .antMatchers("/contacts").hasRole("ADMIN")
-               // .antMatchers("/**").authenticated()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/dashboard","/contacts").authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").loginProcessingUrl("/login")
-                .failureForwardUrl("/login?error")
-                .successForwardUrl("/dashboard")
-                .permitAll();
-//                .and()
-//                .logout().disable()
-//                .exceptionHandling()
-//                .accessDeniedPage("/403");;
+                    .loginPage("/login").loginProcessingUrl("/login")
+                    .failureForwardUrl("/login?error")
+                    .successForwardUrl("/dashboard")
+                    .permitAll();
+        
         //        http
         //                .csrf().disable()
         //                .authorizeRequests()

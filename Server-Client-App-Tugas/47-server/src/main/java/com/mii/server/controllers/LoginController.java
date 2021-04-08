@@ -29,9 +29,9 @@ public class LoginController {
 
     @Autowired
     MyUserDetailsService myUserDetailsService;
-    
+
     @PostMapping("/login")
-    public UserSessionDTO test(@RequestBody UserLoginDTO userLoginDTO) throws Exception{
+    public UserSessionDTO test(@RequestBody UserLoginDTO userLoginDTO) throws Exception {
         return myUserDetailsService.login(userLoginDTO);
     }
 
@@ -48,6 +48,31 @@ public class LoginController {
     @GetMapping("/admin")
     public String admin() {
         return ("<h1>Welcome Admin</h1>");
+    }
+
+    @GetMapping("/get")
+    public String get() {
+        return ("<h1>Ini Get</h1>");
+    }
+
+    @GetMapping("/getall")
+    public String getAll() {
+        return ("<h1>Ini GetAll</h1>");
+    }
+
+    @GetMapping("/post")
+    public String post() {
+        return ("<h1>Ini Post</h1>");
+    }
+
+    @GetMapping("/update")
+    public String update() {
+        return ("<h1>Ini Update</h1>");
+    }
+
+    @GetMapping("/delete")
+    public String delete() {
+        return ("<h1>Ini Delete</h1>");
     }
 
 }

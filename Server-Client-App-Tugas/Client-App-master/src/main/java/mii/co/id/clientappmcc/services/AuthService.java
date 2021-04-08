@@ -62,13 +62,13 @@ public class AuthService {
     /* Set spring security session */
     private void setAuthorization(String username, String password, List<String> authorities) {
         UsernamePasswordAuthenticationToken authToken = 
-                new UsernamePasswordAuthenticationToken(username, password, getListAthorities(authorities));
+                new UsernamePasswordAuthenticationToken(username, password, getListAuthorities(authorities));
         
         SecurityContextHolder.getContext().setAuthentication(authToken);
     }
     
     /* Set list of authothorities */
-    private List<GrantedAuthority> getListAthorities(List<String> authorities) {
+    private List<GrantedAuthority> getListAuthorities(List<String> authorities) {
         return authorities.stream()
                 .map(auth -> new SimpleGrantedAuthority(auth))
                 .collect(Collectors.toList());
