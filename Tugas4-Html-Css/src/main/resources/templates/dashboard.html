@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Dashboard</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="sidebar-container">
+            <div class="sidebar-logo">
+                Client-Apps
+            </div>
+            <ul class="sidebar-navigation">
+                <li class="header">MENU</li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-home" aria-hidden="true"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/province}">
+
+                        <i class="fa fa-tachometer" aria-hidden="true"></i> Data Province
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/district}">
+                        <i class="fa fa-users" aria-hidden="true"></i> Data District
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/logout}" th:onclick="return confirm('Apakah ingin logout?')">
+                        <i class="fa fa-cog" aria-hidden="true"></i> Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="content-container">
+
+            <div class="container-fluid">
+                <div class="jumbotron">
+                    <h1 class="display-4">Welcome to Project Client-Apps</h1>
+                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                    <hr class="my-4">
+                    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                    </p>
+                </div>
+
+                <footer>
+                    <!-- Copyright -->
+                    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                        © 2021 Copyright:
+                        <a class="text-dark" href="https://mdbootstrap.com/">MCC-REG-47</a>
+                    </div>
+                    <!-- Copyright -->
+
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>

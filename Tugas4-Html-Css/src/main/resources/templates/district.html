@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Dashboard</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <!--        sidebar-->
+        <div class="sidebar-container">
+            <div class="sidebar-logo">
+                Client-Apps
+            </div>
+            <ul class="sidebar-navigation">
+                <li class="header">MENU</li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-home" aria-hidden="true"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/province}">
+
+                        <i class="fa fa-tachometer" aria-hidden="true"></i> Data Province
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/district}">
+                        <i class="fa fa-users" aria-hidden="true"></i> Data District
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/logout}" th:onclick="return confirm('Apakah ingin logout?')">
+                        <i class="fa fa-cog" aria-hidden="true"></i> Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <!--end sidebar-->
+
+        <!--    menu province-->
+        <div class="content-container">
+            <h1>Data District</h1>
+            <a th:href="@{/district/add}" class="btn-primary btn-sm mb-3">Add District</a>
+            <table border="1" class="table table-striped table-responsive-col-sm-3">
+                <thead>
+                <table class="table table-bordered table-striped table-hover">
+                    <tr>
+                        <td>District Id</td>
+                        <td>Kota_Kabupaten</td>
+                        <td>District Name</td>
+                        <td>Province Name</td>
+                        <td>Action</td>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="district : ${districts}">
+                            <td th:text="${district.districtId}"></td>
+                            <td th:text="${district.kab}"></td>
+                            <td th:text="${district.districtName}"></td>
+                            <td th:text="${district.provinceId.provinceName}"></td>
+                            <td>   
+                                <a th:href="@{/district/{id} (id = ${district.districtId})}" class="btn btn-primary">Update</a>
+                                <a th:href="@{/district/delete/{id} (id = ${district.districtId})}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <a th:href="@{/dashboard}"> Kembali ke Dashboard</a>
+        </div>
+        <!--end menu province-->
+        <!--                  footer-->
+        <footer>
+
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2021 Copyright:
+                <a class="text-dark" href="https://mdbootstrap.com/">MCC-REG-47</a>
+            </div>
+        </footer>
+        <!--footer-->
+    </div>
+</div>
+</body>
+</html>

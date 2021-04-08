@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Dashboard</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <!--        sidebar-->
+        <div class="sidebar-container">
+            <div class="sidebar-logo">
+                Client-Apps
+            </div>
+            <ul class="sidebar-navigation">
+                <li class="header">MENU</li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-home" aria-hidden="true"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/province}">
+
+                        <i class="fa fa-tachometer" aria-hidden="true"></i> Data Province
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/district}">
+                        <i class="fa fa-users" aria-hidden="true"></i> Data District
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/logout}" th:onclick="return confirm('Apakah ingin logout?')">
+                        <i class="fa fa-cog" aria-hidden="true"></i> Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="content-container">
+            <h1>Data District</h1>
+            <form th:action="@{/district/add}" method="post" th:object="${districts}"class="needs-validation" novalidate>
+                <form>
+                    <div class="form-group">
+                        <label>District Id</label>
+                        <input type="number" th:field="*{districtId}" class="form-control mb-4 col-4"required/><br> 
+                        <div class="invalid-feedback">
+                            Please provide District Id.
+                        </div>
+                        <label>District Name</label>
+                        <input type="text" th:field="*{districtName}" class="form-control mb-4 col-4"required/><br>
+                        <div class="invalid-feedback">
+                            Please provide District Name.
+                        </div>
+                        <label>Kab</label>
+                        <input type="text" th:field="*{kab}" class="form-control mb-4 col-4"required/><br>
+                        <div class="invalid-feedback">
+                            Please provide city.
+                        </div>
+
+                        <label>Province Id</label>
+                        <input type="number" th:field="*{provinceId.provinceId}" class="form-control mb-4 col-4"required/><br>
+                        <div class="invalid-feedback">
+                            Please provide Province Id.
+                        </div>
+
+                        <button type="submit" class="btn btn-info col-2">Submit</button>
+                    </div>
+                </form>
+                <hr>
+                <a th:href="@{/district}"> Kembali ke Data District</a>
+        </div>
+        <script th:src="@{/js/form-validation.js}"></script>
+    </body>
+</html>
