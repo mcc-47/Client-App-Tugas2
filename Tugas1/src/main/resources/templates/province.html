@@ -11,9 +11,8 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-         <h1>Data Province</h1>
+        <h1>Data Province</h1>
         <a th:href="@{/province/add}">Add</a>
-
         <table border="1">
             <thead>
                 <tr>
@@ -23,15 +22,15 @@ and open the template in the editor.
                 </tr>
             </thead>
             <tbody>
-                    <tr th:each="province : ${provinces}">
+                <tr th:each="province : ${provinces}">
                     <td th:text="${province.provinceId}"></td>
                     <td th:text="${province.provinceName}"></td>
                     <td>
                         <a th:href="@{/province/{id} (id = ${province.provinceId})}">Edit</a>
                         <a th:href="@{/province/delete/{id} (id = ${province.provinceId})}">Delete</a>
-      
-
                     </td>
                 </tr>
+            </tbody>
+        </table>
     </body>
 </html>

@@ -6,17 +6,16 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>dashboard</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <h1>Dashboard</h1>
-        <h1>Selamat Pagi</h1>
-        <h1>Jangan Lupa Senyum Hari ini!</h1>
-        <a th:href="@{/logout}">Logout</a>
-<!--        <form name="logoutForm" th:href="@{/logout}" method="post"
-        <input hidden type="submit" value="Logout"/>
-        </form>-->
+        <p th:text="${param.logout} ? 'You have been logout' : ''"></p>
+        <form th:action="@{/logout}" method="get" th:object="${auth}">
+            <button type="submit">Logout</button>
+            <!--<button type="button">Logout</button>-->
+        </form>
     </body>
 </html>

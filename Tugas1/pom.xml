@@ -8,11 +8,11 @@
 		<version>2.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>client.kelompok4</groupId>
-	<artifactId>clientapp</artifactId>
+	<groupId>mii.district</groupId>
+	<artifactId>kelompok4</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>clientapp</name>
-	<description>Demo project for Spring Boot</description>
+	<name>kelompok4</name>
+	<description>coba Client-App</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -21,10 +21,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-                <dependency>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter-security</artifactId>
-                </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -46,6 +42,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+                <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-security</artifactId>
+                </dependency>
 	</dependencies>
 
 	<build>
