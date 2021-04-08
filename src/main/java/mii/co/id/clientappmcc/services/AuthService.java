@@ -29,41 +29,41 @@ import org.springframework.web.client.RestTemplate;
  */
 @Service
 public class AuthService {
-    
+
     @Autowired
     RestTemplate restTemplate;
-    
-    private final String URL = "http://localhost:8082/management/login"; 
-    
+
+    private final String URL = "http://localhost:8082/management/login";
+
     public boolean loginProcess(AuthRequest req) {
         boolean isLoginSuccess = false;
-        
+
         try {
             HttpEntity entity = new HttpEntity(req);
             ResponseEntity<AuthResponse> res = restTemplate
                     .exchange(URL, HttpMethod.POST, entity,
-                            new ParameterizedTypeReference<AuthResponse>(){
-                            });
+                            new ParameterizedTypeReference<AuthResponse>() {
+                    });
             setAuthorization(req.getUserName(), req.getPassword(), res.getBody().getAuthorities());
-            
+
             isLoginSuccess = true;
         } catch (RestClientException e) {
             e.printStackTrace();
         }
-        
+
         return isLoginSuccess;
     }
-    
+
     private void setAuthorization(String username, String password, List<String> authorities) {
-        UsernamePasswordAuthenticationToken authToken =
-                new UsernamePasswordAuthenticationToken(username, password, getListAuthorities(authorities));
-        
+        UsernamePasswordAuthenticationToken authToken
+                = new UsernamePasswordAuthenticationToken(username, password, getListAuthorities(authorities));
+
         SecurityContextHolder.getContext().setAuthentication(authToken);
     }
-    
-        private List<GrantedAuthority> getListAuthorities(List<String> authorities) {
-            return authorities.stream()
-                    .map(auth -> new SimpleGrantedAuthority(auth))
-                    .collect(Collectors.toList());
-        }
+
+    private List<GrantedAuthority> getListAuthorities(List<String> authorities) {
+        return authorities.stream()
+                .map(auth -> new SimpleGrantedAuthority(auth))
+                .collect(Collectors.toList());
+    }
 }

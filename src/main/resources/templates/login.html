@@ -17,15 +17,21 @@ and open the template in the editor.
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4">
-                    <form th:action="@{/login}" method="post" th:object="${auth}">
+                    <form class="needs-validation" novalidate th:action="@{/login}" method="post" th:object="${auth}">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Username</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" th:field="*{userName}">
-                            <small id="emailHelp" class="form-text text-muted">input your username correctly.</small>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" th:field="*{userName}" required>
+                            <div class="invalid-feedback">
+                                Please input your username.
+                            </div>
+                            <!--<small id="emailHelp" class="form-text text-muted">input your username correctly.</small>-->
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" th:field="*{password}">
+                            <input type="password" class="form-control" id="exampleInputPassword1" th:field="*{password}" required>
+                            <div class="invalid-feedback">
+                                Please input your password.
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Login</button>
                         <p th:text="${param.error} ? 'Username or password incorrect' : ''" class="text-danger mt-3 text-center font-weight-bold"></p>
@@ -41,15 +47,27 @@ and open the template in the editor.
 
 
 
-        <!--        <p th:text="${param.error} ? 'Username or password incorrect' : ''"></p>
-                <p th:text="${param.logout} ? 'You have been logged out' : ''"></p>
-                <form th:action="@{/login}" method="post" th:object="${auth}">
-                    <label>Username</label>
-                    <input type="text" th:field="*{userName}"/><br>
-        
-                    <label>Password</label>
-                    <input type="password" th:field="*{password}"/><br>
-                    <button type="submit">Login</button>
-                </form>-->
+
+
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+            }, false);
+            });
+            }, false);
+            })();
+        </script>
     </body>
 </html>

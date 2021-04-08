@@ -19,51 +19,118 @@ and open the template in the editor.
                 <div class="card-header">
                     Edit District
                 </div>
-                <form th:action="@{/district/update/{id} (id = ${district.districtId})}" method="post" th:object="${district}" class="m-4">
-                    <input type="hidden" class="form-control" id="disabledTextInput" th:field="*{districtId}">
+
+                <form th:action=" @{/district/insert}" method="post" th:object="${district}" class="needs-validation m-4" novalidate>
+                    <input type="hidden" class="form-control" id="exampleFormControlInput1" th:field="*{districtId}">
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Kota/Kab</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan kota / kabupaten" th:field="*{kab}">
+                        <label for="exampleFormControlInput1">Pilih Kabupaten/Kota : </label>
+
+                        <select class="form-control" id="exampleFormControlInput1" th:field="*{kab}" required>
+                            <option value="Kab">Kabupaten</option>
+                            <option value="Kota">Kota</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Nama Distrik</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="cth : Bandung" th:field="*{districtName}">
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="cth : Bandung"
+                               th:field="*{districtName}" required>
+                        <div class="invalid-feedback">
+                            Mohon Isi Nama Distrik!
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">ID Provinsi</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" th:field="*{provinceId.provinceId}">
+                        <label for="exampleFormControlInput1">Nama Provinsi</label>
+                        <select class="form-control" id="exampleFormControlInput1" th:field="*{provinceId.provinceId}" required>
+                            <option value="1">Banten</option>
+                            <option value="2">DIY</option>
+                            <option value="3">DKI Jakarta</option>
+                            <option value="4">Jawa Barat</option>
+                            <option value="5">Jawa Tengah</option>
+                            <option value="6">Riau</option>
+                            <option value="7">Sumatera Selatan</option>
+                            <option value="8">Sumatera Barat</option>
+                            <option value="9">Sumatera Utara</option>
+                            <option value="10">Nanggroe Aceh Darussalam</option>
+                            <option value="11">Kep. Riau</option>
+                            <option value="12">Jambi</option>
+                            <option value="13">Lampung</option>
+                            <option value="14">Kep. Bangka Belitung</option>
+                            <option value="15">Bengkulu</option>
+                            <option value="16">Jawa Timur</option>
+                            <option value="17">Bali</option>
+                            <option value="18">Nusa Tenggara Barat</option>
+                            <option value="19">Nusa Tenggara Timur</option>
+                            <option value="20">Kalimantan Barat</option>
+                            <option value="21">Kalimantan Tengah</option>
+                            <option value="22">Kalimantan Selatan</option>
+                            <option value="23">Kalimantan Timur</option>
+                            <option value="24">Kalimantan Utara</option>
+                            <option value="25">Sulawesi Utara</option>
+                            <option value="26">Gorontalo</option>
+                            <option value="27">Sulawesi Barat</option>
+                            <option value="28">Sulawesi Tenggara</option>
+                            <option value="29">Maluku</option>
+                            <option value="30">Maluku Utara</option>
+                            <option value="31">Papua Barat</option>
+                            <option value="32">Papua</option>
+                            <option value="33">Sulawesi Tengah</option>
+                            <option value="34">Sulawesi Selatan</option>
+                        </select>
                     </div>
-                    <fieldset disabled>
-                        <div class="form-group">
-                            <label for="disabledTextInput">Nama Provinsi</label>
-                            <input type="text" class="form-control" id="disabledTextInput" placeholder="Jawa Barat" th:field="*{provinceId.provinceName}">
-                        </div>
-                    </fieldset>
                     <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        <button type="submit" class="btn btn-primary ms-3">Submit</button>
                         <a class="btn btn-warning" th:href="@{/district}">Back</a>
                     </div>
-
-                    <!--                <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Example select</label>
-                                        <select class="form-control" id="exampleFormControlSelect1" th:each="prov : ${provinceId}"}>
-                                            <option th:text="${prov.provinceId.provinceName}">asd</option>
-                                            <option th:text="${prov.provinceId.provinceName}">asd</option>
-                                            <option></option>
-                                            <option></option>
-                                            <option></option>
-                                        </select>
-                                    </div>
-                    
-                                    <div class="form-group blu-margin">
-                                        <select class="form-control" th:field="${districts}"  id="dropOperator">
-                                            <option value="0">select operator</option>
-                                            <option th:each="prov : ${provinceId}" th:value="${prov.provinceId.provinceId}" th:text="${prov.provinceId.provinceName}"></option>
-                                        </select>
-                                    </div>-->
                 </form>
+                <!--                <form th:action="@{/district/update/{id} (id = ${district.districtId})}" method="post" th:object="${district}" class="m-4">
+                                    <input type="hidden" class="form-control" id="disabledTextInput" th:field="*{districtId}">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1">Kota/Kab</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan kota / kabupaten" th:field="*{kab}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1">Nama Distrik</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="cth : Bandung" th:field="*{districtName}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1">ID Provinsi</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" th:field="*{provinceId.provinceId}">
+                                    </div>
+                                    <fieldset disabled>
+                                        <div class="form-group">
+                                            <label for="disabledTextInput">Nama Provinsi</label>
+                                            <input type="text" class="form-control" id="disabledTextInput" placeholder="Jawa Barat" th:field="*{provinceId.provinceName}">
+                                        </div>
+                                    </fieldset>
+                                    <div class="d-flex justify-content-between">
+                                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                        <a class="btn btn-warning" th:href="@{/district}">Back</a>
+                                    </div>
+                                </form>-->
             </div>
 
         </div>
+        <script>
+            (function () {
+
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+            }, false)
+            })
+            })()
+        </script>
     </body>
 </html>
