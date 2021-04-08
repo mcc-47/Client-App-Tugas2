@@ -11,7 +11,7 @@
 	<groupId>mii.co.id</groupId>
 	<artifactId>client-app-mcc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>0405 Client-App T2</name>
+	<name>0406 Client-App T2</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>

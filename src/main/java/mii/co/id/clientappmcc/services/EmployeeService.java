@@ -8,6 +8,7 @@ package mii.co.id.clientappmcc.services;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import mii.co.id.clientappmcc.config.RequestFormat;
 import mii.co.id.clientappmcc.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +34,7 @@ public class EmployeeService {
     
     public List<Employee> getAll() {
         ResponseEntity<List<Employee>> response =  restTemplate
-                .exchange(url+"/list-all", HttpMethod.GET, null, 
+                .exchange(url+"/list-all", HttpMethod.GET, new HttpEntity(RequestFormat.createHeader()), 
                 new ParameterizedTypeReference<List<Employee>>(){});
 
         return response.getBody();
