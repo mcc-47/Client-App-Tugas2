@@ -26,6 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/dashboard","/district","/province").authenticated()//izinkan path ini setelah login sukses kepada siapapun
 //                .antMatchers("/login").not().authenticated()
 //                .antMatchers("/province").hasAnyAuthority("TRAINER")//izinkan path ini province hanya bisa diakses oleh ADMIN dan udah terauthenticated
+               
                 .and()
                 .formLogin()
                 .loginPage("/login").loginProcessingUrl("/login")//login page ke /login, post ke /login

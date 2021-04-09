@@ -29,13 +29,13 @@ public class DistrictController {
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("district", districtService.getAll());//list dari getall
-        return "district";//ke html
+        return "districtnew";//ke html
     }
     
     @GetMapping("/{id}")
     public String getById(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("district", districtService.getById(id));
-        return "district-edit";
+        return "district-edit-new";
     }
     
     @PostMapping("/update/{id}")
@@ -55,7 +55,7 @@ public class DistrictController {
     public String addForm(Model model) {
         District district = new District();
         model.addAttribute("district", district);
-        return "district-insert";
+        return "district-insert-new";
     }
     
     @PostMapping("/add")

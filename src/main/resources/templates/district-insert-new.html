@@ -52,10 +52,10 @@ and open the template in the editor.
 
         .main {
             margin-left: 200px; /* Same as the width of the sidenav */
-            font-size: 28px; /* Increased text to enable scrolling */
+            font-size: 20px; /* Increased text to enable scrolling */
             padding: 0px 10px;
-            margin-top: 100px;
-            min-height: 150vh;
+            margin-top: 60px;
+            min-height: 100vh;
         }
 
         .sidenav2 {
@@ -76,7 +76,6 @@ and open the template in the editor.
             .sidenav {padding-top: 15px;}
             .sidenav a {font-size: 18px;}
         }
-        
         .footer{
             width:100%;
             height: 60px;
@@ -87,8 +86,8 @@ and open the template in the editor.
             text-align: center;
             font-size: 15px;
             font-family: monospace;
-            
-            
+
+
         }
 
 
@@ -118,11 +117,9 @@ and open the template in the editor.
                 </div>
                 <div class="collapse navbar-collapse d-flex justify-content-end mr-2" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        <li class="nav-item pt-2 ">
-                            <p  th:text="*{username}"></p>
-                        </li>
+                        
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/logout}" onclick="return confirm('Logout ?');" >  Logout</a>
+                            <a class="nav-link" th:href="@{/logout}" onclick="return confirm('Logout ?');">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -130,30 +127,82 @@ and open the template in the editor.
         </div>
         <!-----------------------------------main-->
         <div class="main">            
-            <div class="jumbotron">
-                <h1 class="display-4">Hello, <span  th:text="*{username}"></span></h1>
-                <h1 ></h1>
-<!--    <input type="text" th:text="*{username}"><br>-->
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                <hr class="my-4">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+           
+            
+            <h1>District Insert Form</h1>
+            <form x  th:action="@{/district/add}" method="post" th:object="${district}"  class="needs-validation" novalidate>
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        <label for="validationCustom05">District ID</label>
+                        <input  class="form-control" id="validationCustom05" placeholder="District ID" type="number" th:field="*{districtId}" required>
+                        <div class="invalid-feedback">
+                           Please insert District ID.
+                        </div>
+                    </div>
 
-                <p class="lead">
-                    <a class="btn btn-info btn-lg" href="#" role="button">Halo</a>
-                </p>
-                
-            </div>
-<!--        <footer style="background-color: red">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom02">District Name</label>
+                        <input type="text" class="form-control" id="validationCustom02" placeholder="District Name"  th:field="*{districtName}" required>
+                        <div class="invalid-feedback">
+                           Please insert District Name.
+                        </div>
+                    </div>
+
+                </div>
+               
+                <div class="form-row">
+                    
+                    <div class="col-md-3 mb-3">
+                        <label for="exampleFormControlSelect1">Example select</label>
+                        <select class="form-control" id="exampleFormControlSelect1" th:field="*{kab}">
+                            <option value="Kota">Kota</option>
+                            <option value="Kab">Kab</option>
+                          
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        <label for="validationCustom01">Province ID</label>
+                        <input type="number" class="form-control" id="validationCustom01" placeholder=" Input Province ID" th:field="*{provinceId}" required>
+                        <div class="invalid-feedback">
+                             Please insert Province ID.
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <a class="btn btn-warning" th:href="@{/district}" >Back</a>
+
+            </form>
+            
         
-            <p>hege@example.com</a></p>
-        </footer>-->
 
         </div>
         <div class="footer sticky-bottom">
             <p>&copy; Copyright created with Love<br>
                 <a href="">dummy@example.com</a></p>
         </div>
-   
+        
+    </div>
     
+    <script>
+        (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+
+        var forms = document.getElementsByClassName('needs-validation');
+
+        var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+        }, false);
+        });
+        }, false);
+        })();
+    </script>
+
 </body>
 </html>

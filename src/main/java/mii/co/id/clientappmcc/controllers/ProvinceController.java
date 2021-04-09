@@ -30,20 +30,20 @@ public class ProvinceController {
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("province", provinceService.getAll());//list dari getall
-        return "province";//ke html
+        return "provincenew";//ke html
     }
     
     @GetMapping("/{id}")
     public String getById(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("province", provinceService.getById(id));
-        return "province-edit";
+        return "province-edit-new";
     }
     
     @GetMapping("/add")
     public String addForm(Model model) {
         Province province = new Province();
         model.addAttribute("province", province);
-        return "province-insert";
+        return "province-insert-new";
     }
     
     @PostMapping("/add")

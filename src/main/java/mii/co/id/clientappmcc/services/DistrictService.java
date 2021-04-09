@@ -29,7 +29,7 @@ public class DistrictService {
 
     @Value("${api.url}/district")
     private String url;
-
+//
 //    public List<District> getAll() {
 //        ResponseEntity<List<District>> response = restTemplate
 //                .exchange(url, HttpMethod.GET, null,
@@ -38,7 +38,7 @@ public class DistrictService {
 //
 //        return response.getBody();
 //    }
-//    
+    
     
     public List<District> getAll() {
                 ResponseEntity<List<District>> response = restTemplate

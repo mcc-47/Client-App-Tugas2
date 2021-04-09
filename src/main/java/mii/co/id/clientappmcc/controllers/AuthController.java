@@ -54,7 +54,9 @@ public class AuthController {
     }
 
     @GetMapping("/dashboard")
-    public String dashborad() {
+    public String dashborad( Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username",authentication.getPrincipal().toString());
         return "dashboard";
     }
 }
