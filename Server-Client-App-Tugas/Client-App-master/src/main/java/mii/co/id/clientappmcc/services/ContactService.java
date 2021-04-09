@@ -63,7 +63,7 @@ public class ContactService {
 //        ResponseEntity<Contact> res = restTemplate.exchange(url + "/" + id, HttpMethod.PUT, entity, Contact.class);
 //    }
     public void create(Contact contact) {
-        HttpEntity entity = new HttpEntity(contact);
+        HttpEntity entity = new HttpEntity(contact,RequestFormat.createHeaders());
         ResponseEntity<Contact> res = restTemplate.exchange(url, HttpMethod.POST, entity, Contact.class);
     }
 }

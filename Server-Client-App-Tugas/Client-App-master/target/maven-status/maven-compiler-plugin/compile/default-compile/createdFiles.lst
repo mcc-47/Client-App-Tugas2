@@ -6,13 +6,14 @@ mii\co\id\clientappmcc\models\Post.class
 mii\co\id\clientappmcc\services\ContactService$1.class
 mii\co\id\clientappmcc\services\PostService.class
 mii\co\id\clientappmcc\services\ContactService.class
-.netbeans_automatic_build
 mii\co\id\clientappmcc\models\AuthResponse.class
 mii\co\id\clientappmcc\services\PostService$1.class
 mii\co\id\clientappmcc\controllers\PostController.class
 mii\co\id\clientappmcc\config\RestTemplateConfig.class
 mii\co\id\clientappmcc\controllers\ContactController.class
+mii\co\id\clientappmcc\config\RequestFormat.class
 mii\co\id\clientappmcc\ClientAppMccApplication.class
 mii\co\id\clientappmcc\models\Contact.class
 mii\co\id\clientappmcc\services\AuthService.class
+mii\co\id\clientappmcc\config\RequestFormat$1.class
 mii\co\id\clientappmcc\services\AuthService$1.class
