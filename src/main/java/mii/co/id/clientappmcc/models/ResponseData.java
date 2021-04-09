@@ -9,8 +9,7 @@ import lombok.Data;
 
 /**
  *
- * @author jakab
- * @param <R> Response object type
+ * @author ASUS
  */
 @Data
 public class ResponseData <R> {

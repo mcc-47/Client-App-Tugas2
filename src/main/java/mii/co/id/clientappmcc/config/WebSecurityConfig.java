@@ -9,12 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.RequestMatcher;
 
 /**
  *
- * @author jakab
+ * @author ASUS
  */
 @Configuration
 @EnableWebSecurity
@@ -25,10 +23,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/employee/new","/employee/delete")
-                .hasAuthority("ADMIN")
-                .antMatchers("/dashboard","/employee/**")
-                .authenticated()
+                .antMatchers("/employee/new").hasAnyRole("ADMIN","TRAINEE")
+                .antMatchers("/employee/{id}").hasAnyRole("ADMIN","TRAINEE")
+                .antMatchers("/employee/update/{id}").hasAnyRole("ADMIN","TRAINEE")
+                .antMatchers("/employee/delete/{id}").hasAnyRole("ADMIN")
+                .antMatchers("/employee/create").hasAnyRole("ADMIN","TRAINER","TRAINEE")
+                .antMatchers("/css/**","/js/**").permitAll()
+                .antMatchers("/dashboard","/employee/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").loginProcessingUrl("/login")
@@ -37,7 +38,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 //                .and()
 //                .logout().disable()
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                .logoutSuccessUrl("/login")
+//                .invalidateHttpSession(true)
+//                .deleteCookies("JSESSIONID")
+//                .and()
 //                .exceptionHandling()
-////                .accessDeniedPage("/403");
+//                .accessDeniedPage("/403");
     }
 }

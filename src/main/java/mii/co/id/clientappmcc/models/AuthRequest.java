@@ -9,7 +9,7 @@ import lombok.Data;
 
 /**
  *
- * @author jakab
+ * @author ASUS
  */
 @Data
 public class AuthRequest {

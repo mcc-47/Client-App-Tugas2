@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import mii.co.id.clientappmcc.models.AuthRequest;
 import mii.co.id.clientappmcc.models.AuthResponse;
-import mii.co.id.clientappmcc.models.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -25,7 +24,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  *
- * @author jakab
+ * @author ASUS
  */
 @Service
 public class AuthService {
@@ -33,7 +32,7 @@ public class AuthService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private final String URL = "http://localhost:8082/api/management/user-token"; //url utk login diserver
+    private final String URL = "http://localhost:8085/loginuser"; //url utk login diserver
 
     public boolean loginProcess(AuthRequest request) { //isinya uname pw
         boolean isLoginSuccess = false; //parameter login
@@ -49,7 +48,7 @@ public class AuthService {
             
             /* call method for set session */
             setAuthorization(request.getUserName(), request.getUserPassword(), 
-                    response.getBody().getGrantedAuthoritys()); //ngeset session di client dan udah dapet otoritas
+                    response.getBody().getAuthorities()); //ngeset session di client dan udah dapet otoritas
             
             isLoginSuccess = true;
         } catch (RestClientException e) {

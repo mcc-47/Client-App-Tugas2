@@ -5,8 +5,6 @@
  */
 package mii.co.id.clientappmcc.services;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import mii.co.id.clientappmcc.config.RequestFormat;
 import mii.co.id.clientappmcc.models.Employee;
@@ -29,6 +27,7 @@ public class EmployeeService {
     @Autowired
     private RestTemplate restTemplate;
     
+    
     @Value("${api.url}/api/employees")
     private String url;
     
@@ -36,7 +35,7 @@ public class EmployeeService {
         ResponseEntity<List<Employee>> response =  restTemplate
                 .exchange(url+"/list-all", HttpMethod.GET, new HttpEntity(RequestFormat.createHeader()), 
                 new ParameterizedTypeReference<List<Employee>>(){});
-
+        
         return response.getBody();
     }
     
@@ -45,7 +44,7 @@ public class EmployeeService {
     }
     
     public void update(Integer id, Employee employee) {
-        HttpEntity entity = new HttpEntity(employee);
+        HttpEntity entity = new HttpEntity(employee, RequestFormat.createHeader());
         ResponseEntity<Employee> res = restTemplate.exchange(
                 url + "/update/" + id, 
                 HttpMethod.PUT, 
@@ -56,11 +55,11 @@ public class EmployeeService {
         ResponseEntity<Employee> res = restTemplate.exchange(
                 url + "/delete/" + id, 
                 HttpMethod.DELETE, 
-                null, Employee.class);
+                new HttpEntity(RequestFormat.createHeader()), Employee.class);
     }
     
     public void create(Employee employee){
-        HttpEntity entity = new HttpEntity(employee);
+        HttpEntity entity = new HttpEntity(employee, RequestFormat.createHeader());
         ResponseEntity<Employee> res = restTemplate.exchange(
                 url + "/create", 
                 HttpMethod.POST, 

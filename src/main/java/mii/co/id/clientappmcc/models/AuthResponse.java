@@ -10,19 +10,20 @@ import lombok.Data;
 
 /**
  *
- * @author jakab
+ * @author ASUS
  */
 @Data
 public class AuthResponse {
     
     private String userName;
-    private List<String> grantedAuthoritys;
+    private Integer userId;
+    private List<String> authorities;
 
-    public AuthResponse(String userName, List<String> grantedAuthoritys) {
+    public AuthResponse(String userName, Integer userId, List<String> authorities) {
         this.userName = userName;
-        this.grantedAuthoritys = grantedAuthoritys;
+        this.userId = userId;
+        this.authorities = authorities;
     }
-
     public AuthResponse() {
     }
 }

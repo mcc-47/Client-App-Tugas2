@@ -5,6 +5,7 @@
  */
 package mii.co.id.clientappmcc.config;
 
+import static com.sun.scenario.Settings.set;
 import java.nio.charset.Charset;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.http.HttpHeaders;
@@ -13,7 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  *
- * @author jakab
+ * @author ASUS
  */
 public class RequestFormat {
     
