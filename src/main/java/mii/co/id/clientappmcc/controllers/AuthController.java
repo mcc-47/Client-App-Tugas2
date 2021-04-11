@@ -22,18 +22,17 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author ROG
  */
 @Controller
-public class AuthController { 
-    
+public class AuthController {
+
     @Autowired
     AuthService authService;
-    
+
 //    @GetMapping("/login")
 //    public String loginPage(Model model) {
 //        AuthRequest auth = new AuthRequest();
 //        model.addAttribute("auth", auth);
 //        return "login";
 //    }
-    
     @GetMapping("/login")
     public String loginPage(Model model) {
         Authentication authenticated = SecurityContextHolder.getContext().getAuthentication();
@@ -45,22 +44,25 @@ public class AuthController {
         model.addAttribute("auth", auth);
         return "login";
     }
-    
+
     @PostMapping("/login")
-    public String loginProcess(@ModelAttribute("auth") AuthRequest auth) {
+    public String loginProcess(@ModelAttribute("auth") AuthRequest auth, Model model) {
         String redirectUrl = "";
-        
+
         if (authService.loginProcess(auth)) {
             redirectUrl = "redirect:/dashboard";
+            model.addAttribute("empName", authService.empName);
         } else {
             redirectUrl = "redirect:/login?error";
         }
         return redirectUrl;
     }
-    
+
     @GetMapping("/dashboard")
-    public String dashboard() {
+    public String dashboard(Model model) {
+        Authentication authenticated = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", authenticated.getPrincipal().toString());
         return "dashboard";
     }
-    
+
 }

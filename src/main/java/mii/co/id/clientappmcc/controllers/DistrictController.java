@@ -8,6 +8,8 @@ package mii.co.id.clientappmcc.controllers;
 import mii.co.id.clientappmcc.models.District;
 import mii.co.id.clientappmcc.services.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +32,8 @@ public class DistrictController {
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("districts", districtService.getAll());
+        Authentication authenticated = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", authenticated.getPrincipal());
         return "district";
     }
     

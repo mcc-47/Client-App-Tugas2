@@ -1,0 +1,19 @@
+<div class="sidenav" th:fragment="sidebar-app">
+    <div class="user mt-5">
+        <div class="gambar d-flex justify-content-center">
+            <img class="img-thumbnail rounded-circle mt-4 mb-3" src="https://atfp.org/assets/terrorist_pictures/kim-jong-un.jpg" alt="" />
+        </div>
+        <h4 class="text-white text-center" th:text="${username}"></h4>
+        <hr />
+    </div>
+    <div class="menu">
+        <div th:class="${#strings.contains(#httpServletRequest.requestURI, '/dashboard')} ? 'active' : ''">
+            <a class="text-decoration-none d-flex justify-content-center" aria-current="page" th:href="@{/dashboard}">Dashboard</a>
+            <hr />
+        </div>
+        <div sec:authorize="hasAnyRole('TRAINEE','TRAINER')" th:class="${#strings.contains(#httpServletRequest.requestURI, '/district')} ? 'active' : ''" >
+            <a class="text-decoration-none d-flex justify-content-center" th:href="@{/district}">Tabel Distict</a>
+            <hr />
+        </div>
+    </div>
+</div>

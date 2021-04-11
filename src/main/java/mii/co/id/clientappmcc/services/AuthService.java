@@ -32,9 +32,11 @@ public class AuthService {
 
     @Autowired
     RestTemplate restTemplate;
+    
+    public String empName;
 
     private final String URL = "http://localhost:8082/management/login";
-
+    
     public boolean loginProcess(AuthRequest req) {
         boolean isLoginSuccess = false;
 
@@ -45,11 +47,12 @@ public class AuthService {
                             new ParameterizedTypeReference<AuthResponse>() {
                     });
             setAuthorization(req.getUserName(), req.getPassword(), res.getBody().getAuthorities());
-
+            this.empName = res.getBody().getEmployeeName();
             isLoginSuccess = true;
         } catch (RestClientException e) {
             e.printStackTrace();
         }
+        
 
         return isLoginSuccess;
     }
