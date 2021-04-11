@@ -1,0 +1,21 @@
+<div th:fragment="sidebar-app">
+    <div class="d-flex flex-column sidebarcont" style="position: fixed; background-color: #b5c99a;">
+        <ul class="nav nav-pills flex-column mb-auto" id="menu">
+          <li th:class="${#strings.contains(#httpServletRequest.requestURI, '/employee')} ? 'nav-link active' : 'nav-link'" sec:authorize="hasAuthority('READ')">
+            <a href="/employee" class="nav-link link-dark">
+              <i class="fa fa-users" style="color: #3f4238;"></i> Employees
+            </a>
+          </li>
+          <li th:class="${#strings.contains(#httpServletRequest.requestURI, '/percobaan1')} ? 'nav-link active' : 'nav-link'" >
+              <a href="/percobaan1" class="nav-link link-dark" >
+              <i class="fa fa-map" style="color: #3f4238;"></i> Provinces
+            </a>
+          </li>
+          <li th:class="${#strings.contains(#httpServletRequest.requestURI, '/percobaan2')} ? 'nav-link active' : 'nav-link'">
+            <a href="/percobaan2" class="nav-link link-dark">
+              <i class="fa fa-map-marker" style="color: #3f4238;"></i> Districts
+            </a>
+          </li>
+        </ul>
+    </div>
+</div>

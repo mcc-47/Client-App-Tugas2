@@ -11,7 +11,7 @@ and open the template in the editor.
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300);
  
 body {
-	background: #eee;
+	background: #e9f5db;
 	margin:0;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -20,9 +20,63 @@ hr {
 	border:0;
 	background:#dedede;
 	height:1px;
-}		
- 
-header{
+}
+.content{
+    float: next; 
+    padding-top: 5rem; 
+    padding-left: 280px;  
+    padding-bottom: 1rem;
+    background-color: #e9f5db;
+}
+
+.sidebarcont{
+    width: 280px; 
+    padding-top: 5rem; 
+    padding-left: 1rem; 
+    padding-right: 1rem; 
+    padding-bottom: 1rem; 
+    float: left;
+    height:100%;
+}
+.footpad{
+    left: 300px;
+    right: 20px;
+}
+li:hover {
+	text-decoration: underline;
+	background:#718355;
+        }
+ul li a:active {
+background: red;
+color: white;
+}
+nav-link:active{
+    background: red;
+}
+img {
+	min-width: 500px;
+	margin:10px 0 0 300px; 
+	max-width: 500px;
+}
+
+.active{
+    background: white;
+}
+        /*code to change background color*/
+.navbar-nav>.active>a {
+    background-color: #C0C0C0;
+    color: green;
+}
+
+#menu li.active {
+  color: white;
+  background: #718355;
+}
+#menu li:hover {
+  color: white;
+  background: #97a97c ;
+}
+/*header{
 	text-align: center;
 	color: #232323;
 }
@@ -33,14 +87,35 @@ header .judul{
  
 header .deskripsi{
 	font-size: 11pt;
-}
+}*/
  
 .wrap {
 	width: 1300px;
 	margin:25px auto;
 }
+
+input[type=text], input[type=number], input[type=date] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: right;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 100%;
+  border: 2px solid black;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
  
-footer{
+/*footer{
     overflow:hidden;
     color:#fff;
     float:left;
@@ -51,7 +126,7 @@ footer{
     -webkit-box-shadow: 1px 1px 1px 0px rgba(204,204,204,0.55);
     -moz-box-shadow: 1px 1px 1px 0px rgba(204,204,204,0.55);
     box-shadow: 1px 1px 1px 0px rgba(204,204,204,0.55);
-}
+}*/
 nav.menu ul {
 	overflow:hidden;
 	color:#fff;

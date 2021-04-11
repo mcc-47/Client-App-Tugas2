@@ -79,4 +79,13 @@ public class AuthController {
 
           return "redirect:/login?logout";
   }
+  
+  @GetMapping("/percobaan1")
+  public String percobaan(){
+      return "percobaan1";
+  }
+  @GetMapping("/percobaan2")
+  public String percobaan2(){
+      return "percobaan2";
+  }
 }

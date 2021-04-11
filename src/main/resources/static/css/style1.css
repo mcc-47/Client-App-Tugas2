@@ -90,6 +90,14 @@ h2 {
   min-height: 100%;
   padding: 20px;
 }
+.content{
+    float: next; 
+    padding-top: 5rem; 
+    padding-left: 280px;  
+    padding-bottom: 1rem;
+}
+
+
 
 #formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
