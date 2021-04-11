@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Dashboard</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div th:replace="layout/sidebar :: sidebar"></div>
+        <!--    menu district-->
+        <div class="content-container" sec:authorize="hasAuthority('CREATE')">
+            <div th:replace="layout/header :: header"></div>
+            <div class="container my-2" >
+                <h1>Tambah Data District</h1>
+                <form th:action="@{/district/add}" method="post" th:object="${districts}"
+                      class="needs-validation" novalidate>
+                    <form>
+                        <div class="form-group">
+                            <label>District Id</label>
+                            <input type="number" th:field="*{districtId}" class="form-control mb-4 col-4" required>  
+                            <div class="invalid-feedback">
+                                Please enter your district id.
+                            </div><br>
+
+                            <label>District Name</label>
+                            <input type="text" th:field="*{districtName}" class="form-control mb-4 col-4" required>
+                            <div class="invalid-feedback">
+                                Please enter your district name.
+                            </div><br>
+
+                            <label>Kab / Kota</label>
+                            <input type="text" th:field="*{kab}" class="form-control mb-4 col-4" required> 
+                            <div class="invalid-feedback">
+                                Please enter your kota/kab.
+                            </div><br>
+
+<!--                            <label>Province Id</label>
+                            <input type="number" th:field="*{provinceId.provinceId}" class="form-control mb-4 col-4" required>-->
+                            <label for="exampleFormControlInput1">Province Name</label>
+                    <select class="form-control" id="exampleFormControlInput1" th:field="*{provinceId.provinceId}"  required>
+                        <option value="" selected>--Pilih Provinsi--</option>
+                        <option value="1" >Banten</option>
+                        <option value="2">DIY</option>
+                        <option value="3">DKI Jakarta</option>
+                        <option value="4">Jawa Barat</option>
+                        <option value="5">Jawa Tengah</option>
+                        <option value="6">Riau</option>
+                        <option value="7">Sumatera Selatan</option>
+                        <option value="8">Sumatera Barat</option>
+                        <option value="9">Sumatera Utara</option>
+                        <option value="10">Nanggroe Aceh Darussalam</option>
+                        <option value="11">Kep. Riau</option>
+                        <option value="12">Jambi</option>
+                    </select>
+                            <div class="invalid-feedback">
+                                Please select your province name
+                            </div><br>
+                            
+                            <button type="submit" class="btn btn-info col-2">Submit</button>
+                        </div>
+                    </form>
+                    <hr>
+                    <a th:href="@{/district}"> Kembali ke Data District</a>
+            </div>
+            <!--end menu district-->
+
+            <!-- footer-->
+            <footer>
+                <div th:replace="layout/footer :: footer"></div>
+            </footer>
+            <!--footer-->
+
+        </div>
+    </div>
+    <script th:src="@{/js/form-validation.js}"></script>
+</body>
+</html>
