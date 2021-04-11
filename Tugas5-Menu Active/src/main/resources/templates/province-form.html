@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Dashboard</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- sidebar-->
+      <div th:replace="layout/sidebar :: sidebar"></div>
+        <!--    menu district-->
+        <div class="content-container">
+            <div th:replace="layout/header :: header"></div>
+            <div class="container my-2">
+                <h1>Tambah Data Province</h1>
+                <form th:action="@{/province/add}" method="post" th:object="${province}"
+                       class="needs-validation" novalidate>
+                <form>
+                    <div class="form-group">
+                        <label>Province Id</label>
+                        <input type="number" th:field="*{provinceId}" class="form-control mb-4 col-4" required>
+                         <div class="invalid-feedback">
+                                Please enter your province id.
+                            </div>
+                        <br>   
+                        <label>Province Name</label>
+                        <input type="text" th:field="*{provinceName}" class="form-control mb-4 col-4" required>
+                         <div class="invalid-feedback">
+                                Please enter your province name.
+                            </div><br>
+       
+                        <button type="submit" class="btn btn-info col-2">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <!--end menu district-->
+
+            <!-- footer-->
+            <footer>
+                <div th:replace="layout/footer :: footer"></div>
+            </footer>
+            <!--footer-->
+
+        </div>
+    </div>
+    <script th:src="@{/js/form-validation.js}"></script>
+</body>
+</html>

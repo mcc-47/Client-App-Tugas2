@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Dashboard</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+       <div th:replace="layout/sidebar :: sidebar"></div>
+
+        <!--    menu province-->
+        <div class="content-container">
+            <div th:replace="layout/header :: header"></div>
+            <div class="container md">
+
+                <h1>Data District</h1>
+                <a th:href="@{/district/add}" class="btn-primary btn-sm mb-3">Add District</a>
+                <table border="1" class="table table-striped table-responsive-col-sm-3">
+                    <thead>
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr>
+                            <td>District Id</td>
+                            <td>Kota-Kabupaten</td>
+                            <td>District Name</td>
+                            <td>Province Id </td>
+                            <td>Province Name</td>
+                            <td>Action</td>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                            <!--iterator(satuan) : list<satuan>(tergantung model yg diberikan nama pada controller)-->
+                            <tr th:each="d : ${districts}">
+                                <td th:text="${d.districtId}"></td>
+                                <td th:text="${d.kab}"></td>
+                                <td th:text="${d.districtName}"></td>
+                                <!--sebelah kiri sebagai objek yg mendeklarasikan provinceId--> 
+                                <td th:text="${d.provinceId.provinceId}"></td>
+                                <td th:text="${d.provinceId.provinceName}"></td>
+                                <td>
+                                    <a th:href="@{/district/{id} (id = ${d.districtId})}" class="btn-primary btn-sm mb-3" sec:authorize="hasAnyRole('ADMIN','TRAINER')">Update</a>
+                                    <a th:href="@{/district/delete/{id} (id = ${d.districtId})}" 
+                                       th:onclick="return confirm('Apakah ingin dihapus?')" class="btn-danger btn-sm mb-3" sec:authorize="hasRole('ADMIN')">Delete</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <a th:href="@{/dashboard}"> Kembali ke Dashboard</a>
+            </div>
+            <!--end menu province-->
+            <!--                  footer-->
+            <footer>
+                <div th:replace="layout/footer :: footer"></div>
+            </footer>
+            <!--footer-->
+        </div>
+    </div>
+</body>
+</html>
