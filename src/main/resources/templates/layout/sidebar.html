@@ -13,6 +13,7 @@
             th:href="@{/dashboard}"  
             th:class="${#strings.contains(#httpServletRequest.requestURI, '/dashboard')} ? 'active' : ''">Dashboard</a>
         <hr />
+        
         <a 
             class="text-decoration-none d-flex justify-content-center" 
             th:href="@{/district}" 

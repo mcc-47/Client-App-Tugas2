@@ -6,7 +6,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-                <a class="nav-link btn btn-danger ml-3 mr-4 text-white" th:href="@{/logout}">Logout</a>
+                <a class="nav-link btn btn-danger ml-3 mr-4 text-white" th:href="@{/logout}" onclick="return confirm('Delete ?');">Logout</a>
             </div>
         </div>
     </div>
