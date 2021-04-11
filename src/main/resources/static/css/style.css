@@ -12,7 +12,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #264653;
+    background-color: #006d77;
     overflow-x: hidden;
     padding-top: 20px;
 }
@@ -21,13 +21,14 @@
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 18px;
-    color: #818181;
+    color: #edf6f9;
     display: block;
 }
 
 .sidenav a:hover {
     /*color: #f1f1f1;*/
-    color: #006d77;
+    color: #edf6f9;
+    background-color: #264653;
 }
 
 .main {
@@ -52,7 +53,7 @@
 }
 
 .container {
-    margin-top: 100px;
+    padding-top: 100px;
 }
 
 .jumbotron .container {
@@ -66,7 +67,7 @@
 }
 
 .navbar {
-    background-color: #006d77 !important;
+    background-color: #264653 !important;
 }
 
 footer p {
@@ -95,13 +96,19 @@ hr {
 }
 
 .active {
-    background-color: white;
+    background-color: #edf6f9;
+    color: #2a9d8f !important;
 }
 
 table {
     counter-reset: tableCount;     
+    /*border: 2px solid #264653;*/
 }
 .counterCell::after {              
     content: counter(tableCount); 
     counter-increment: tableCount; 
+}
+
+.main {
+    background-color: #edf6f9;
 }
