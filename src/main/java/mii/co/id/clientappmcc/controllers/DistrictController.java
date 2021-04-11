@@ -8,6 +8,8 @@ package mii.co.id.clientappmcc.controllers;
 import mii.co.id.clientappmcc.models.District;
 import mii.co.id.clientappmcc.services.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,14 +30,19 @@ public class DistrictController {
     
     @GetMapping
     public String getAll(Model model) {
+        
+         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username",authentication.getPrincipal().toString());
         model.addAttribute("district", districtService.getAll());//list dari getall
-        return "districtnew";//ke html
+        return "districtnew2";//ke html
     }
     
     @GetMapping("/{id}")
     public String getById(@PathVariable("id") Integer id, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username",authentication.getPrincipal().toString());
         model.addAttribute("district", districtService.getById(id));
-        return "district-edit-new";
+        return "district-edit-new-2";
     }
     
     @PostMapping("/update/{id}")
@@ -53,9 +60,11 @@ public class DistrictController {
     
     @GetMapping("/add")
     public String addForm(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", authentication.getPrincipal().toString());
         District district = new District();
         model.addAttribute("district", district);
-        return "district-insert-new";
+        return "district-insert-new-2";
     }
     
     @PostMapping("/add")

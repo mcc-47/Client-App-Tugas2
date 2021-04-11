@@ -1,0 +1,14 @@
+ <div class="sidenav  " style="font-family: Grava" th:fragment="sidebar">
+            
+           
+            <div th:class="${#strings.contains(#httpServletRequest.requestURI,'/district')} ? 'active' :''" sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/district}" class="menu-link">District</a>
+            </div>
+             <div  th:class="${#strings.contains(#httpServletRequest.requestURI,'/province')} ? 'active' :''">
+                <a th:href="@{/province}" >Provinces</a>
+            </div>
+            
+            
+           
+
+        </div>

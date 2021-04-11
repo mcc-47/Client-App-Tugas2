@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <link rel="stylesheet" href="/style.css"/>
+        <link href="http://fonts.cdnfonts.com/css/oldenbourg-lesefreude" rel="stylesheet">
+        <link href="http://fonts.cdnfonts.com/css/grava" rel="stylesheet">
+                
+    </head>
+    <body>
+        <div class="content-wrapper">
+            <!-----------------------------------sidebar-->
+             <div th:replace="layout/sidebar" :: sidebar></div>
+            <!-----------------------------------header-->
+            <div th:replace="layout/header" :: header></div>
+        <!-----------------------------------main-->
+        <div class="main ">            
+            
+            <h1>Province Insert Form</h1>
+            <form class="needs-validation " novalidate th:action="@{/province/add}" method="post" th:object="${province}">
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        <label for="validationCustom05">Province ID</label>
+                        <input  class="form-control" id="validationCustom05" placeholder="Province ID" type="number" th:field="*{provinceId}" required>
+                        <div class="invalid-feedback">
+                            Please insert Province ID
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom02">Province Name</label>
+                        <input type="text" class="form-control" id="validationCustom02" placeholder="Province Name"  th:field="*{provinceName}" required>
+                        <div class="invalid-feedback">
+                            Please insert Province Name
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <button class="btn btn-primary" type="submit"><i class="fas fa-plus mr-2"></i>Submit</button>
+                <a class="btn btn-warning" th:href="@{/province}" ><i class="fas fa-chevron-left mr-2"></i>Back</a>
+
+            </form>
+
+
+        </div>
+        <!-----------------------------------footer-->
+            <div th:replace="layout/footer" :: footer></div>
+        <!-----------------------------------wrapper-->
+    </div>
+   
+    
+</body>
+</html>
