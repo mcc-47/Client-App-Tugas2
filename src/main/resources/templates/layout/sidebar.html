@@ -11,14 +11,14 @@
             class="text-decoration-none d-flex justify-content-center" 
             aria-current="page" 
             th:href="@{/dashboard}"  
-            th:class="${#strings.contains(#httpServletRequest.requestURI, '/dashboard')} ? 'active' : ''">Dashboard</a>
+            th:class="${#strings.contains(#httpServletRequest.requestURI, '/dashboard')} ? 'active' : ''"><i class="fas fa-tachometer-alt mr-2"></i>  Dashboard</a>
         <hr />
         
         <a 
             class="text-decoration-none d-flex justify-content-center" 
             th:href="@{/district}" 
             sec:authorize="hasAnyRole('TRAINEE','TRAINER')" 
-            th:class="${#strings.contains(#httpServletRequest.requestURI, '/district')} ? 'active' : ''">Tabel Distict</a>
+            th:class="${#strings.contains(#httpServletRequest.requestURI, '/district')} ? 'active' : ''"><i class="fas fa-table mr-2"></i> Tabel Distict</a>
         <hr />
     </div>
 </div>
