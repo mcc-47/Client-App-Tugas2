@@ -57,6 +57,4 @@ public class PostController {
         postService.update(id, post);
         return "redirect:/post";
     }
-    
-    
 }
