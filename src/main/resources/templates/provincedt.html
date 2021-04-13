@@ -19,14 +19,14 @@ and open the template in the editor.
         <!-----------------------------------main-->
         <div class="main ">            
             
-            <a th:href="@{/province/add}" class="btn btn-outline-primary mt-2" sec:authorize="hasAuthority('CREATE')"><i class="fas fa-plus mr-2"></i> Add Data</a>
-            <table class="table mt-2">
-                <thead class="thead-dark">
+            <a th:href="@{/province/add}" class="btn btn-outline-primary mt-2 mb-5" sec:authorize="hasAuthority('CREATE')"><i class="fas fa-plus mr-2"></i> Add Data</a>
+            <table id="example" class="display mt-2">
+                <thead>
                     <tr>
 
                         <th scope="col">Province ID</th>
                         <th scope="col">Province Name</th>
-                        <th scope="col">Kab</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,7 +48,8 @@ and open the template in the editor.
             <div th:replace="layout/footer" :: footer></div>
         <!-----------------------------------wrapper-->
     </div>
-   
+        
+        <script type="text/javascript" charset="utf8" src="/js/js.js"></script>
     
 </body>
 </html>

@@ -24,9 +24,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/css/**","/js/**","/scss/**","/images/**","/fonts/**","/vendor/**").permitAll()
-                .antMatchers("/dashboard","/district","/province").authenticated()//izinkan path ini setelah login sukses kepada siapapun
+                .antMatchers("/dashboard","/district","/province","/nyobajs").authenticated()//izinkan path ini setelah login sukses kepada siapapun
 //                .antMatchers("/login").not().authenticated()
-//                .antMatchers("/province").hasAnyAuthority("TRAINER")//izinkan path ini province hanya bisa diakses oleh ADMIN dan udah terauthenticated
+                .antMatchers("/district").hasRole("ADMIN")//izinkan path ini province hanya bisa diakses oleh ADMIN dan udah terauthenticated
                
                 .and()
                 .formLogin()

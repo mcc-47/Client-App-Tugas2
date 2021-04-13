@@ -34,7 +34,16 @@ public class DistrictController {
          Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username",authentication.getPrincipal().toString());
         model.addAttribute("district", districtService.getAll());//list dari getall
-        return "districtnew2";//ke html
+        return "districtdt";//ke html
+    }
+    
+    @GetMapping("/nyoba")
+    public String nyobaJs(Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", authentication.getPrincipal().toString());
+
+        return "nyobajs";//ke html
     }
     
     @GetMapping("/{id}")

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Dashboard</title>
+        <div th:replace="layout/linkrel" :: linkrel></div>
+                
+    </head>
+    <body>
+        <div class="content-wrapper">
+            <!-----------------------------------sidebar-->
+<!--             <div th:replace="layout/sidebar" :: sidebar></div>-->
+            <!-----------------------------------header-->
+            <div th:replace="layout/header" :: header></div>
+        <!-----------------------------------main-->
+        <div class="main ">            
+            <div id="_domSample">
+                <input type="text" id="sampleInput">
+            </div>
+
+            <button id="addClassButton">Add Class</button>
+            <button id="removeClass">Remove Class</button>
+
+            <button id="hide">Hide</button>
+            <button id="show">Show</button>
+            
+            <div id="msgid">
+            </div>
+        </div>
+        <!-----------------------------------footer-->
+<!--            <div th:replace="layout/footer" :: footer></div>-->
+        <!-----------------------------------wrapper-->
+    </div>
+        <br>
+    
+       
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    <!-----------------------------------helloword-->
+    console.log("hello world");
+    <!------------------------------alert------->
+    alert("hello world");
+    <!---------------------------------untuk print ke html, tp adanya dibawah pojok kiri ---->
+    document.write('Hello, World!');
+    <!------------------------------------->
+    const num1 = 5;
+    const num2 = 3;
+    
+    const sum = num1+num2;
+    const x = num1*num2;
+    const bagi = num1/num2;
+    
+    console.log('The sum of ' + num1 + 'and '+ num2+ ' is '+ sum);
+    console.log('The x of ' + num1 + 'and '+ num2+ ' is '+ x);
+    console.log('The bagi of ' + num1 + 'and '+ num2+ ' is '+ bagi);
+    <!--------------------------------input ----->
+<!--    Dialog prompt() berfungsi untuk mengambil sebuah inputan dari pengguna-->
+    const num11 = parseInt(prompt('Enter the first number '));
+    const num22 = parseInt(prompt('Enter the second number '));
+    const sum2 = num11 + num22;
+    console.log(`The sums of ${num11} and ${num22} is ${sum2}`);
+    <!----------------------------------menghitung panjang--->
+    var txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var sln = txt.length; 
+    console.log("panjangnya adalah "+sln);
+    <!------------------------------------->
+    var str = "nama saya adalah siapa saya juga gatau";
+    var pos = str.indexOf("siapa");
+    console.log("kata ke "+pos);
+    <!------------------------------contoh objek------->
+     <!------------------------------didalam var manusia terdapat atribut yang dapat dipanggil------->
+     
+
+    var manusia = {tb:"150cm", bentuk:"kurus", warna:"putih"};
+     <!------------------------------(objek.atribut)------->
+    console.log(manusia.tb);
+ 
+    <!------------------------------------->
+    var person = {
+    firstName: "Ristia",
+    lastName : "Panji",
+    id       : 12345,
+    fullName : function() {
+//        method/function menggabungkan nama
+        return this.firstName + " " + this.lastName;
+  }
+};
+console.log(person.fullName());
+    <!----------------------------filter array--------->
+    var words = ["spray", "limit", "elite", "exuberant", "destruction", "present"];
+    <!--terdapat array diatas-->
+    var longWords = words.filter(function(word){
+         return word.length > 6;
+    });
+    console.log(longWords);
+    
+  <!------------------------------------->
+  let users = [
+  { firstName: "Ristia", lastName: "Panji" },
+  { firstName: "Ristia", lastName: "Ayu" },
+  { firstName: "Ristia", lastName: "Hanif" },
+];
+let fullNameUser = users.map(function (e) {
+  return `${e.firstName} ${e.lastName}`;
+});
+console.log(fullNameUser);
+   <!----------------------------------falsy--->
+    <!----------------------------------parameter yang berifat false--->
+   console.log(Boolean(false));
+   console.log(Boolean(0));
+   console.log(Boolean(null));
+   console.log(Boolean(undefined));
+   console.log(Boolean(NaN));
+    <!-------------------------------truthy------>
+    console.log("pembatas truthy falsy");
+    console.log(Boolean(''));
+    console.log(Boolean(' '));
+    console.log(Boolean('asada'));
+    console.log(Boolean(1));
+     <!--------------------------------if truhty false----->
+     var t =1;
+     t && console.log('ini kondisi benar tru');
+     
+     if(t)
+     console.log('ini nilai 1 nya benar');
+     
+     var f = 0;
+     if(f)
+     console.log('ini nilai 0 salah ');
+     else
+     console.log('ini nilai 0 nya benar ');
+     
+      <!------------------------------------->
+      
+      $(document).ready(function(){
+  $("#hide").click(function(){
+    $("p").hide();
+      });
+      $("#show").click(function(){
+    $("p").      show()      ;
+      });
+      });
+     
+      <!------------------------------------->
+      $(document).ready(function(){
+    $("#msgid").html("This is Hello World by JQuery");
+      });
+      <!------------------------------------->
+    const element = document.getElementById("_domSample");
+    const button = document.getElementById("addClassButton");
+    const remove = document.getElementById("removeClass");
+    const input = document.getElementById("sampleInput");
+    
+    button.addEventListener("click", ()=> {
+        element.classList.add("tambahClass");
+        console.log("masuk");
+    });
+    
+    remove.addEventListener("click", ()=> {
+        element.classList.remove("tambahClass");
+        console.log("dihapus");
+    });
+
+    input.addEventListener("keypress", (event)=> {
+        console.log(input.value);
+    });
+    
+    
+</script>
+</html>

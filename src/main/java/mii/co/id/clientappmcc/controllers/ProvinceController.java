@@ -34,7 +34,7 @@ public class ProvinceController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", authentication.getPrincipal().toString());
         model.addAttribute("province", provinceService.getAll());//list dari getall
-        return "provincenew2";//ke html
+        return "provincedt";//ke html
     }
     
     @GetMapping("/{id}")
