@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>District</title>
+        <div th:replace="layout/headerlink :: headerlink"></div>
+</head>
+<body>
+    <div th:replace="layout/sidebar :: sidebar"></div>
+
+    <!--    menu province-->
+    <div class="content-container">
+        <div th:replace="layout/header :: header"></div>
+        
+        <div class="container md">
+   
+            <h1>Data District</h1>
+            <br>
+            <a th:href="@{/district/add}" class="btn-primary btn-sm mb-3">Add District</a>
+            <br>
+            <br>
+           
+             <table id="districtTable" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <td>District Id</td>
+                        <td>Kota-Kabupaten</td>
+                        <td>District Name</td>
+                        <td>Province Id </td>
+                        <td>Province Name</td>
+                        <td>Action</td>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                        <!--iterator(satuan) : list<satuan>(tergantung model yg diberikan nama pada controller)-->
+                        <tr th:each="d : ${districts}">
+                            <td th:text="${d.districtId}"></td>
+                            <td th:text="${d.kab}"></td>
+                            <td th:text="${d.districtName}"></td>
+                            <!--sebelah kiri sebagai objek yg mendeklarasikan provinceId--> 
+                            <td th:text="${d.provinceId.provinceId}"></td>
+                            <td th:text="${d.provinceId.provinceName}"></td>
+                            <td>
+                                <a th:href="@{/district/{id} (id = ${d.districtId})}" class="btn-primary btn-sm mb-3" sec:authorize="hasAuthority('UPDATE')">Update</a>
+                                <a th:href="@{/district/delete/{id} (id = ${d.districtId})}" 
+                                   th:onclick="return confirm('Apakah ingin dihapus?')" class="btn-danger btn-sm mb-3" sec:authorize="hasAuthority('DELETE')">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <a th:href="@{/dashboard}"> Kembali ke Dashboard</a>
+        </div>
+        <!--end menu province-->
+        <!--                  footer-->
+            <div th:replace="layout/footer :: footer"></div>
+       
+        <!--footer-->
+    </div>
+    <script>
+        $(document).ready(function () {
+            var table = $('#districtTable').DataTable();
+        });
+    </script>
+</body>
+</html>

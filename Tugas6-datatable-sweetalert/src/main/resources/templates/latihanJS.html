@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+         
+        <label>Choose an Chocolate flavor:
+            <select class="choco" name="chocolate">
+                <option value="">Select One …</option>
+                <option value="Dark Chocolate">Dark Chocolate</option>
+                <option value="Semi Sweet Chocolate">Semi Sweet Chocolate</option>
+                <option value="Gianduja chocolate">Gianduja Chocolate</option>
+            </select>
+        </label>
+        <div class="result"></div>
+        
+        <div id="_domSample">
+           <input type="text" id="sampleInput">
+        </div>
+        
+        <button onclick="document.getElementById('demo').innerHTML = Date()">The time is?</button>
+        <button id="addClassButton"> Add Class</button>
+        <button id="removeClass"> Remove Class</button>
+        <p id="test">This is some <b>bold</b> text in a paragraph.</p>
+        <button id="btn1">Show Text</button>
+        <button id="btn2">Show HTML</button>
+        
+        <p><a href="https://localhost:8084/login" id="local">localhost:8084</a></p>
+        <button>Show href</button>
+        
+        
+<!--        <p>This is a paragraph.</p>
+        <p>This is another paragraph.</p>
+
+        <ol>
+          <li>List item 1</li>
+          <li>List item 2</li>
+          <li>List item 3</li>
+        </ol>-->
+
+<button id="btn1">Append text</button>
+<button id="btn2">Append list items</button>
+        <p id="demo"></p>
+        <p id="besar"></p>
+        <p id="kecil"></p>
+        <p id="contoh"></p>
+        <p id="contoh2"></p>
+        <p id="contoh3"></p>
+        <p id="contoh4"></p>
+        <p id="contoh5"></p>
+        <p id="contoh6"></p>
+        <button id="tambah">Add User</button>
+        
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+     
+        <script>
+                const element = document.getElementById("_domSample");
+                const button1 = document.getElementById("addClassButton");
+                const remove = document.getElementById("removeClass");
+                const input = document.getElementById("sampleInput");
+
+                button1.addEventListener("click", ()=>{
+                    element.classList.add("tambahClass");
+               });
+                remove.addEventListener("click", ()=>{
+                    element.classList.remove("tambahClass");
+               });
+//               $('#klikId').on('click', function () {
+//                $(this).toggleClass('classTambahan')
+//            });
+               
+//               function onChangeInput(){
+//                 console.log("Sedang mengetik" + $event);
+//                }
+                 input.addEventListener("keypress", ()=>{
+                    console.log(event.key);
+               });
+                </script>
+                
+                <script>
+                    $("#demo").html("Hello, World!");
+                    $(document).ready(function(){
+                      $("#btn1").click(function(){
+                        alert("Text: " + $("#test").text());
+                      });
+                      $("#btn2").click(function(){
+                        alert("HTML: " + $("#test").html());
+                      });
+                    });
+                    $(document).ready(function(){
+                      $("button").click(function(){
+                        alert($("#local").attr("href"));
+                      });
+                    });
+                    
+//                    $(document).ready(function(){
+//                      $("#btn1").click(function(){
+//                        $("p").append(" <b>Appended text</b>.");
+//                      });
+//
+//                      $("#btn2").click(function(){
+//                        $("ol").append("<li>Appended item</li>");
+//                      });
+//                    });
+                </script>
+                
+                
+                
+        <script>
+
+            console.log("Hi, How are u today?");
+            alert("Anda yakin mengunjungi laman ini?");
+            const element1 = document.getElementsByClassName("row my-5");
+            const button = document.getElementById("tambah");
+            console.log(element1);
+            button.addEventListener("click", () => {
+                console.log("button diklik")
+            })
+
+<!---------------------------------------------------------------------------------->
+            var words = ["spray", "limit", "elite", "exuberant", "destruction", "present"];
+
+            var longWords = words.filter(function (word) {
+                return word.length > 6;
+            });
+            console.log(longWords);
+<!---------------------------------------------------------------------------------->
+
+            function isBigEnough(value) {
+                return value >= 10;
+            }
+            var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);
+            console.log(filtered);
+
+        </script>
+        <script>
+            var kalimat = "Belajar JAVASCRIPT di Metrodata Coding Camp";
+
+            // mengubah ke huruf besar
+            var a = kalimat.toUpperCase();
+
+            // mengubah ke huruf kecil
+            var b = kalimat.toLowerCase();
+
+            document.getElementById("besar").innerHTML = a;
+            document.getElementById("kecil").innerHTML = b;
+            document.getElementById("contoh").innerHTML = kalimat.length;
+
+            var temukan = kalimat.indexOf("Metrodata");
+            document.getElementById("contoh2").innerHTML = temukan;
+
+            var filter = kalimat.slice(22, 43);
+            document.getElementById("contoh3").innerHTML = filter;
+
+            var ubah = kalimat.replace('Metrodata Coding Camp', 'MCC 47');
+            document.getElementById("contoh4").innerHTML = ubah;
+
+            var c = "Nama Lengkap:";
+            var d = "Arnum Sari Khoirunnisa";
+
+            // menggabungkan string
+            var gabung = c.concat(" ", d);
+            document.getElementById("contoh5").innerHTML = gabung;
+
+            //Change Event select
+            const selectElement = document.querySelector('.choco');
+
+            selectElement.addEventListener('change', (event) => {
+                const result = document.querySelector('.result');
+                result.textContent = `You like ${event.target.value}`
+            });
+
+    </script>
+    <script>
+        console.log(Boolean(false));
+        console.log(Boolean(0));
+        console.log(Boolean(''));
+        console.log(Boolean(null));
+        console.log(Boolean(undefined));
+        console.log(Boolean(NaN));
+        console.log(Boolean(' '));
+        console.log(Boolean('adaapa'));
+        console.log(Boolean('\''));
+
+
+        var truthy = 3;
+
+        truthy && console.log('executed 1');
+        if (truthy)
+            console.log('executed 2');
+            
+        var falsy = '';
+        if (falsy)
+            console.log('masuk true');
+        else
+            console.log('masuk else');
+
+</script>
+<script>
+    function toCelsius(f) {
+        return (5 / 9) * (f - 32);
+    }
+    document.getElementById("contoh6").innerHTML = toCelsius(77);
+</script>
+    </body>
+</html>
