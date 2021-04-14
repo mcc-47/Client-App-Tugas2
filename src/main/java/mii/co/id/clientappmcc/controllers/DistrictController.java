@@ -30,7 +30,8 @@ public class DistrictController {
     
     @GetMapping
     public String getAll(Model model) {
-        
+//        District district = new District();
+//        model.addAttribute("district", district);
          Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username",authentication.getPrincipal().toString());
         model.addAttribute("district", districtService.getAll());//list dari getall
