@@ -24,7 +24,8 @@ hr {
 .content{
     float: next; 
     padding-top: 5rem; 
-    padding-left: 280px;  
+    padding-left: 300px;
+    padding-right: 20px;
     padding-bottom: 1rem;
     background-color: #e9f5db;
 }
@@ -338,4 +339,8 @@ nav.menu ul a:hover {
 	.conteudo img {
 		margin:-5% 0 25px -5%;
 	}			
+}
+
+.paragraf{
+    
 }
