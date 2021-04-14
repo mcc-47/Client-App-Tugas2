@@ -8,7 +8,6 @@ mii\co\id\clientappmcc\services\PostService.class
 mii\co\id\clientappmcc\services\ContactService.class
 mii\co\id\clientappmcc\models\AuthResponse.class
 mii\co\id\clientappmcc\services\PostService$1.class
-mii\co\id\clientappmcc\controllers\PostController.class
 mii\co\id\clientappmcc\config\RestTemplateConfig.class
 mii\co\id\clientappmcc\controllers\ContactController.class
 mii\co\id\clientappmcc\config\RequestFormat.class
