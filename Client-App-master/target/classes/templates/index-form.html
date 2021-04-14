@@ -6,28 +6,28 @@
             <div th:replace="fragments/left :: left"></div>
             <div id='right'>
                 <div class="container d-flex justify-content-center align-items-center flex-column" style="height: 100%">
-                    <div class="align-items-center" style="background-color: white; width: 40%; padding: 30px;">
+                    <div class="container d-flex justify-content-center align-items-center flex-column" style="background-color: white; width: 35%; height: 80%">
                         <img src="/css/metrodata.png" style="width: 30%">
                         <h1 th:text="${id} ? 'Contact Edit Form' : 'Contact Add Form'"></h1>
-                        <form th:action="${id} ? @{/contact/update/{id} (id = ${id})} : @{/contact/new}" method="post" th:object="${contact}"class="needs-validation" novalidate>
+                        <form th:action="${id} ? @{/contacts/update/{id} (id = ${id})} : @{/contacts/new}" method="post" th:object="${contact}"class="needs-validation" novalidate>
                             <div class="form-group">
                                 <label for="phone">Phone</label>
-                                <input type="tel" th:field="*{phone}" class="form-control" required>
-                                <div class="invalid-feedback" style="font-size: 20">
-                                    Please input your phone number
+                                <input type="tel" th:field="*{phone}" class="form-control mb-4" required>
+                                <div class="valid-feedback">
+                                    Valid
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="linkedin">LinkedIn</label>
-                                <input type="text" th:field="*{linkedin}" class="form-control" required>
-                                <div class="invalid-feedback" style="font-size: 20">
-                                    Please input your LinkedIn
+                                <label for="linkedin">Linkedin</label>
+                                <input type="text" th:field="*{linkedin}" class="form-control mb-4" required>
+                                <div class="valid-feedback">
+                                    Valid
                                 </div>
                             </div>
 
-                            <button id="inputForm" type="submit" class="btn btn-info">Save</button>
-                            <a th:href="@{/contact}" class="btn btn-primary">Back</a>
+                            <button type="submit" class="btn btn-info">Save</button>
+                            <a th:href="@{/contacts}" class="btn btn-primary">Back</a>
                         </form>
                     </div>
                 </div>
@@ -35,14 +35,6 @@
         </div>
         <div th:replace="fragments/footer :: footer"></div>
 
-        <script>
-//            $(document).ready(function () {
-//                $("#inputForm").click(function () { // hides all element H1
-//                    $(this).hide(); // hides the current element
-//                });
-//            });
-        </script>
-        
         <div th:replace="fragments/script :: script"></div>
     </body>
 </html>

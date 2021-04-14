@@ -1,8 +1,10 @@
 <div id='left' th:fragment="left">
-    <a th:class="${#strings.equals(#httpServletRequest.requestURI, '/dashboard')} ? 'dropdown-item active' : 'dropdown-item'" style="font-size: 20; padding: 10px 30px;" th:href="@{/dashboard}">
+    <a th:class="${#strings.equals(#httpServletRequest.requestURI, '/dashboard')} ? 'dropdown-item active' : 'dropdown-item'" style="font-size: 20" th:href="@{/dashboard}">
         <i class="fa fa-home"></i>
         Home</a>
-    <a th:class="${#strings.equals(#httpServletRequest.requestURI, '/contact')} ? 'dropdown-item active' : 'dropdown-item'" style="font-size: 20; padding: 10px 30px;" th:href="@{/contact}">
+    <a th:class="${#strings.equals(#httpServletRequest.requestURI, '/contacts')} ? 'dropdown-item active' : 'dropdown-item'" style="font-size: 20" th:href="@{/contacts}">
         <i class="fa fa-users"></i>
         List Contact</a>
+    <!--    <a th:class="${#strings.equals(#httpServletRequest.requestURI, '/contacts/new')} ? 'dropdown-item active' : 'dropdown-item'" sec:authorize="hasRole('ADMIN')" th:href="@{/contacts/new}">Add Contact</a>
+        <a th:class="${#strings.equals(#httpServletRequest.requestURI, '/contacts')} ? 'dropdown-item active' : 'dropdown-item'" th:href="@{/contacts}">List Contact</a>    -->
 </div>
