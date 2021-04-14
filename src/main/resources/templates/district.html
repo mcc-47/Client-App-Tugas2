@@ -93,8 +93,8 @@ and open the template in the editor.
                                 <label for="exampleFormControlInput1">Nama Provinsi</label>
                                 <select class="form-control" id="exampleFormControlInput1" th:field="*{provinceId.provinceId}"  required>
                                     <option value="" selected>--Pilih Provinsi--</option>
-                                    <!--<option th:each="id:${provinces}" th:value="${id.provinceId}" th:text="${id.provinceName}"></option>-->
-                                    <option value="1" >Banten</option>
+                                    <option th:each="id:${provinces}" th:value="${id.provinceId}" th:text="${id.provinceName}"></option>
+<!--                                    <option value="1" >Banten</option>
                                     <option value="2">DIY</option>
                                     <option value="3">DKI Jakarta</option>
                                     <option value="4">Jawa Barat</option>
@@ -127,7 +127,7 @@ and open the template in the editor.
                                     <option value="31">Papua Barat</option>
                                     <option value="32">Papua</option>
                                     <option value="33">Sulawesi Tengah</option>
-                                    <option value="34">Sulawesi Selatan</option>
+                                    <option value="34">Sulawesi Selatan</option>-->
                                 </select>
                                 <div class="invalid-feedback">
                                     Mohon Pilih Nama Provinsi!
@@ -176,7 +176,8 @@ and open the template in the editor.
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Nama Provinsi</label>
                                 <select class="form-control" id="exampleFormControlInput1" th:field="*{provinceId.provinceId}" required>
-                                    <option value="1">Banten</option>
+                                    <option th:each="id:${provinces}" th:value="${id.provinceId}" th:text="${id.provinceName}"></option>
+<!--                                    <option value="1">Banten</option>
                                     <option value="2">DIY</option>
                                     <option value="3">DKI Jakarta</option>
                                     <option value="4">Jawa Barat</option>
@@ -209,7 +210,7 @@ and open the template in the editor.
                                     <option value="31">Papua Barat</option>
                                     <option value="32">Papua</option>
                                     <option value="33">Sulawesi Tengah</option>
-                                    <option value="34">Sulawesi Selatan</option>
+                                    <option value="34">Sulawesi Selatan</option>-->
                                 </select>
                             </div>
                             <div class="modal-footer">

@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>mii.co.id</groupId>
-    <artifactId>client-app-mcc</artifactId>
+    <artifactId>client-app-mcc-kelompok</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>client-app-mcc</name>
+    <name>client-app-mcc-kelompok</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>

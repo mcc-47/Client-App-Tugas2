@@ -7,6 +7,7 @@ package mii.co.id.clientappmcc.controllers;
 
 import mii.co.id.clientappmcc.models.District;
 import mii.co.id.clientappmcc.services.DistrictService;
+import mii.co.id.clientappmcc.services.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,12 +29,15 @@ public class DistrictController {
     
     @Autowired
     private DistrictService districtService;
+    @Autowired
+    private ProvinceService provinceService;
     
     @GetMapping
     public String getAll(Model model) {
         District district = new District();
         model.addAttribute("district", district);
         model.addAttribute("districts", districtService.getAll());
+        model.addAttribute("provinces", provinceService.getAll());
         Authentication authenticated = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username", authenticated.getPrincipal());
         return "district";

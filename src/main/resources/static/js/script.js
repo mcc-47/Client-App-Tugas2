@@ -29,7 +29,7 @@ const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
-    timer: 3000,
+    timer: 1500,
     timerProgressBar: true,
     didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -72,7 +72,83 @@ function insertAlert() {
 }
 
 
+
+
 //Modal
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
 })
+
+
+//ALERT GENERAL CONFIRM
+function alertConfirm(titleText, bodyText, iconType, confirmText, iconIfConfirm, titleIfConfirm, hrefIfConfirm) {
+    event.preventDefault();
+    Swal.fire({
+        title: titleText,
+        text: bodyText,
+        icon: iconType,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: confirmText
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Toast.fire({
+                icon: iconIfConfirm,
+                title: titleIfConfirm
+
+            })
+            setTimeout(function (hrefIfConfirm) {
+                window.location.href = hrefIfConfirm;
+            }, 1500);
+        }
+    })
+}
+
+//ALERT GENERAL
+function alertSmall(iconType, titleText) {
+    Toast.fire({
+                icon: iconType,
+                title: titleText
+            })
+    setTimeout(function () {
+                
+            }, 1500);
+}
+
+//ALERT GENERAL SUBMIT SMALL
+function alertSubmitSmall(iconType, titleText, buttonId) {
+//    event.preventDefault();
+    Toast.fire({
+                icon: iconType,
+                title: titleText
+            });
+//    let buttonId = buttonId;
+    setTimeout(function (buttonId) {
+                document.getElementById(buttonId).submit();
+            }, 2000);
+}
+
+//ALERT GENERAL BUTTON SMALL
+function alertConfirm(titleText, bodyText, iconType, confirmText, iconIfConfirm, titleIfConfirm, hrefIfConfirm) {
+    event.preventDefault();
+    Swal.fire({
+        title: titleText,
+        text: bodyText,
+        icon: iconType,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: confirmText
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Toast.fire({
+                icon: iconIfConfirm,
+                title: titleIfConfirm
+            })
+            setTimeout(function (hrefIfConfirm) {
+                window.location.href = hrefIfConfirm;
+            }, 1500);
+        }
+    })
+}
