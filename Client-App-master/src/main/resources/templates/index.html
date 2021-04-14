@@ -19,29 +19,60 @@
                                 <th sec:authorize="hasRole('ADMIN')">Actions</th>
                             </tr>
                         </thead>
-
                         <tbody>
-                            <tr lass="text-center" th:each="contact : ${contacts}">
-                                <td th:text="${contact.contactId}"></td>
-                                <td th:text="${contact.phone}"></td>
-                                <td th:text="${contact.linkedin}"></td>
-                                <td sec:authorize="hasRole('ADMIN')">
-
-
-                                    <div th:replace="fragments/update_modal :: update_modal"></div>
-
-                                    <button type ="submit" class="btn btn-outline-danger mt-2 mb-2" th:onclick="deleteData()">
-                                        <i class="fa fa-1x fa-trash"></i>
-                                    </button> 
-
-
-                                </td>
-                            </tr>
+                            <!--                            <tr lass="text-center" th:each="contact : ${contacts}">
+                                                            <td th:text="${contact.contactId}"></td>
+                                                            <td th:text="${contact.phone}"></td>
+                                                            <td th:text="${contact.linkedin}"></td>
+                                                            <td sec:authorize="hasRole('ADMIN')">
+                                                                <div th:replace="fragments/update_modal :: update_modal"></div>
+                                                                <button type ="submit" class="btn btn-outline-danger mt-2 mb-2" th:onclick="deleteData()">
+                                                                    <i class="fa fa-1x fa-trash"></i>
+                                                                </button> 
+                                                            </td>
+                                                        </tr>-->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id='updateForm' action="#" method="post">
+                                    <div class="form-group">
+                                        <label>Contact Id</label>
+                                        <input type="number" id="contactId" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <input type="text" id="phone"class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>LinkedIn</label>
+                                        <input type="text" id="linkedin"class="form-control">
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <!--<div th:replace="fragments/update_modal :: update_modal"></div>-->
+
         <div th:replace="fragments/footer :: footer"></div>
 
         <div th:replace="fragments/script :: script"></div>

@@ -5,6 +5,8 @@
  */
 package mii.co.id.clientappmcc.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import mii.co.id.clientappmcc.models.Contact;
 import mii.co.id.clientappmcc.services.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.thymeleaf.util.StringUtils;
 
 /**
  *
@@ -31,17 +34,40 @@ public class ContactController {
     @Autowired
     ContactService contactService;
 
+//    @GetMapping
+//    public String getAll(Model model) {
+//        List<Contact> contacts = new ArrayList<>();
+//        for (Contact contact : contactService.getAll()) {
+//            contact.setPhone(StringUtils.abbreviate(contact.getPhone(), 50));
+//            contact.setLinkedin(StringUtils.abbreviate(contact.getLinkedin(), 30));
+//            contacts.add(contact);
+//        }
+//        
+//        model.addAttribute("contacts", contacts);
+//        return "contact";
+//    }
+    
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("contacts", contactService.getAll());
         return "index";
     }
-
-    @GetMapping("/{id}")
-    public String getById(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("contact", contactService.getById(id));
-        return "index-form";
+        
+    @GetMapping("/get-all")
+    public @ResponseBody List<Contact> getAllProcess() {
+        return contactService.getAll();
     }
+    
+    @GetMapping("/{id}")
+    public @ResponseBody Contact getById(@PathVariable("id") Integer id) {
+        return contactService.getById(id);
+    }
+    
+//    @GetMapping("/{id}")
+//    public String getById(@PathVariable("id") Integer id, Model model) {
+//        model.addAttribute("contact", contactService.getById(id));
+//        return "index-form";
+//    }
 
 //    @GetMapping("/{id}")
 //    public @ResponseBody Contact getById(@PathVariable("id") Integer id) {
@@ -77,7 +103,7 @@ public class ContactController {
     }
 
     @PostMapping("/update/{id}")
-    public String update(@PathVariable("id") Integer id, @ModelAttribute("post") Contact contact) {
+    public String update(@PathVariable("id") Integer id, @ModelAttribute("contact") Contact contact) {
         contactService.updateById(id, contact);
         return "redirect:/contact";
     }
