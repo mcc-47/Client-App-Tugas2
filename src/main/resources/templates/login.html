@@ -34,7 +34,7 @@ and open the template in the editor.
                                 Please input your password.
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary" onclick="loginAlert()">Login</button>
                         <p th:text="${param.error} ? 'Username or password incorrect' : ''" class="text-danger mt-3 text-center font-weight-bold"></p>
                         <p th:text="${param.logout} ? 'You have been logged out' : ''" class="text-danger mt-3 text-center font-weight-bold"></p>
                     </form>
@@ -43,32 +43,6 @@ and open the template in the editor.
         </div>
 
 
-
-
-
-
-
-
-
-        <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-            }, false);
-            });
-            }, false);
-            })();
-        </script>
+        <div th:replace="layout/scriptJs.html :: scriptJs"></div>
     </body>
 </html>

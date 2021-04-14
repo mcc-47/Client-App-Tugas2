@@ -20,7 +20,7 @@ and open the template in the editor.
                     Edit District
                 </div>
 
-                <form th:action=" @{/district/insert}" method="post" th:object="${district}" class="needs-validation m-4" novalidate>
+                <form th:action="@{/district/insert}" method="post" th:object="${district}" class="needs-validation m-4" novalidate>
                     <input type="hidden" class="form-control" id="exampleFormControlInput1" th:field="*{districtId}">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Pilih Kabupaten/Kota : </label>
@@ -82,55 +82,9 @@ and open the template in the editor.
                         <a class="btn btn-warning" th:href="@{/district}">Back</a>
                     </div>
                 </form>
-                <!--                <form th:action="@{/district/update/{id} (id = ${district.districtId})}" method="post" th:object="${district}" class="m-4">
-                                    <input type="hidden" class="form-control" id="disabledTextInput" th:field="*{districtId}">
-                                    <div class="form-group">
-                                        <label for="exampleFormControlInput1">Kota/Kab</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan kota / kabupaten" th:field="*{kab}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleFormControlInput1">Nama Distrik</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="cth : Bandung" th:field="*{districtName}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleFormControlInput1">ID Provinsi</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" th:field="*{provinceId.provinceId}">
-                                    </div>
-                                    <fieldset disabled>
-                                        <div class="form-group">
-                                            <label for="disabledTextInput">Nama Provinsi</label>
-                                            <input type="text" class="form-control" id="disabledTextInput" placeholder="Jawa Barat" th:field="*{provinceId.provinceName}">
-                                        </div>
-                                    </fieldset>
-                                    <div class="d-flex justify-content-between">
-                                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                        <a class="btn btn-warning" th:href="@{/district}">Back</a>
-                                    </div>
-                                </form>-->
             </div>
 
         </div>
-        <script>
-            (function () {
-
-            'use strict'
-
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-            if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-            }
-
-            form.classList.add('was-validated')
-            }, false)
-            })
-            })()
-        </script>
+        <div th:replace="layout/scriptJs.html :: scriptJs"></div>
     </body>
 </html>
