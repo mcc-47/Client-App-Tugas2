@@ -1,51 +1,149 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html lang="en-US" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Contacts</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    </head>
+    <head th:replace="fragments/header_link :: header_link">
     <body>
-        <div class="container my-2">
-        <h1>Contacts</h1>
-        <a th:href="@{contacts/new}" class="btn btn-info btn-sm mb-3">Add Contact</a>
-        <table border="1" class="table table-striped table-responsive-md">
-            <thead>
-                <tr>
-                    <td>Contact Id</td>
-                    <td>Phone </td>
-                    <td>LinkedIn</td>
-                    <!--                    <td>Employee Id</td>
-                                        <td>Employee Name</td>
-                                        <td>birthDate</td>
-                                        <td>Gender</td>
-                                        <td>Email</td>-->
-                    <td>Actions</td>
-                </tr>
-            </thead>
+        <div th:replace="fragments/header :: header"></div>
+        <div id='main'>
+            <div th:replace="fragments/left :: left"></div>
+            <div id='right'>
+                <div class="container d-flex justify-content-center align-items-center flex-column">
+                    <br><h1 style="color: #F9F5F4">EMPLOYEE'S CONTACTS</h1><br>
 
-            <tbody>
-                <tr th:each="contact : ${contacts}">
-                    <td th:text="${contact.contactId}"></td>
-                    <td th:text="${contact.phone}"></td>
-                    <td th:text="${contact.linkedin}"></td>
-                    <!--<td th:text="${data.employee.employeeId}"></td>-->
-                    <!--<td th:text="${data.employee.employeeName}"></td>-->
-                    <!--<td th:text="${data.employee.birthDate}"></td>-->
-                    <!--<td th:text="${data.employee.gender}"></td>-->
-                    <!--<td th:text="${data.employee.email}"></td>-->
-                    <td>
-                        <a th:href="@{/contacts/{id} (id = ${contact.contactId})}" class="btn btn-primary">Edit</a>
-                        <a th:href="@{/contacts/delete/{id} (id = ${contact.contactId})}" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-            </tbody>
+                    <a th:href="@{/contact/new}" sec:authorize="hasRole('ADMIN')" class="btn btn-primary" style="margin: 0px;">Add New Contact</a><br>
+
+                    <div class="container d-flex justify-content-center align-items-center">
+                        <button type="button" sec:authorize="hasRole('ADMIN')" class="btn btn-danger" data-toggle="modal" data-target="#form">
+                            Add New Contact
+                        </button>
+                    </div>
+
+                    <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header border-bottom-0">
+                                    <h5 class="modal-title" id="exampleModalLabel">Create Contacts</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id ="addForm" th:action="@{/contact/new}" method="post" class="needs-validation" novalidate>
+                                        <div class="form-group">
+                                            <label for="phone">Phone</label>
+                                            <input type="tel" name="phone" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter your phone number" required>
+                                            <small id="phoneHelp" class="form-text text-muted">Your information is safe with us.</small>
+                                            <div class="invalid-feedback" style="font-size: 12">
+                                                Please input your phone number
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="linkedin">LinkedIn</label>
+                                            <input type="text" name="linkedin" class="form-control" id="linkedin" placeholder="Enter your LinkedIn" required>
+                                            <div class="invalid-feedback" style="font-size: 12">
+                                                Please input your LinkedIn
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer border-top-0 d-flex justify-content-center">
+                                            <button type="submit" class="btn btn-success">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<a th:href="@{/contacts/new}" sec:authorize="hasRole('ADMIN')" class="btn btn-primary" style="margin: 0px;">Add New Contact</a><br>-->
+
+                    <table id="table_id" style="width: 100%; margin: 0;" border="4" class="display">
+                        <thead class="thead-dark">
+                            <tr class="text-center">
+                                <th>Contact Id</th>
+                                <th>Phone </th>
+                                <th>LinkedIn</th>
+                                <th sec:authorize="hasRole('ADMIN')">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr lass="text-center" th:each="contact : ${contacts}">
+                                <td th:text="${contact.contactId}"></td>
+                                <td th:text="${contact.phone}"></td>
+                                <td th:text="${contact.linkedin}"></td>
+                                <td sec:authorize="hasRole('ADMIN')">
+
+                                    <button th:href="@{/contact/{id} (id = ${contact.contactId})}" type="button" class="btn btn-danger" data-toggle="modal" data-target="#form2">Update</button>  
+
+                                    <div class="modal fade" id="form2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header border-bottom-0">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Create Contacts</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id ="addForm" th:action="@{/contact/new}" method="post" class="needs-validation" novalidate>
+                                                        <div class="form-group">
+                                                            <label for="phone">Phone</label>
+                                                            <input type="tel" name="phone" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter your phone number" required>
+                                                            <small id="phoneHelp" class="form-text text-muted">Your information is safe with us.</small>
+                                                            <div class="invalid-feedback" style="font-size: 12">
+                                                                Please input your phone number
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="linkedin">LinkedIn</label>
+                                                            <input type="text" name="linkedin" class="form-control" id="linkedin" placeholder="Enter your LinkedIn" required>
+                                                            <div class="invalid-feedback" style="font-size: 12">
+                                                                Please input your LinkedIn
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer border-top-0 d-flex justify-content-center">
+                                                            <button type="submit" class="btn btn-success">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--<a th:href="@{/contacts/{id} (id = ${contact.contactId})}" class="btn btn-primary">Edit</a>-->
+                                    <button type ="submit" class="btn btn-outline-danger mt-2 mb-2" th:onclick="cobadelete()">Delete Button</button>
+                                    
+                                    <!--<button id="deleteButton" th:onclick="delete()" href="#" type="submit" class="btn btn-danger">Delete</button>-->
+                                    <!--<a th:href="@{/contacts/delete/{id} (id = ${contact.contactId})}" class="btn btn-danger">Delete</a>-->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+        <div th:replace="fragments/footer :: footer"></div>
+
+        <div th:replace="fragments/script :: script"></div>
+        <script>
+//            $(document).ready(function () {
+//                $("#deleteButton").click(function () {
+//                    Swal.fire({
+//                        title: 'Are you sure?',
+//                        text: "You won't be able to revert this!",
+//                        icon: 'warning',
+//                        showCancelButton: true,
+//                        confirmButtonColor: '#3085d6',
+//                        cancelButtonColor: '#d33',
+//                        confirmButtonText: 'Yes, delete it!'
+//                    }).then((result) => {
+//                        if (result.isConfirmed) {
+//                            Swal.fire(
+//                                    'Deleted!',
+//                                    'Your file has been deleted.',
+//                                    'success'
+//                                    )
+//                        }
+//                    })
+//                });
+//            });
+        </script>
     </body>
 </html>

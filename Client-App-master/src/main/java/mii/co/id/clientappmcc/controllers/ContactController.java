@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Fadel
  */
 @Controller
-@RequestMapping("/contacts")
+@RequestMapping("/contact")
 public class ContactController {
 
     @Autowired
@@ -49,13 +49,13 @@ public class ContactController {
     @PostMapping("/new")
     public String add(@ModelAttribute("contact") Contact contact) {
         contactService.create(contact);
-        return "redirect:/contacts";
+        return "redirect:/contact";
     }
 
     @PostMapping("/update/{id}")
     public String update(@PathVariable("id") Integer id, @ModelAttribute("post") Contact contact) {
         contactService.updateById(id, contact);
-        return "redirect:/contacts";
+        return "redirect:/contact";
     }
 
 }

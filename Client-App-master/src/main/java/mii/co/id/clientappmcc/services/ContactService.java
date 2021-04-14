@@ -6,6 +6,7 @@
 package mii.co.id.clientappmcc.services;
 
 import java.util.List;
+import mii.co.id.clientappmcc.config.RequestFormat;
 import mii.co.id.clientappmcc.models.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,9 +31,18 @@ public class ContactService {
     private String url;
 
     //Read all table
+//    public List<Contact> getAll() {
+//        ResponseEntity<List<Contact>> response = restTemplate
+//                .exchange(url, HttpMethod.GET, null,
+//                        new ParameterizedTypeReference<List<Contact>>() {
+//                });
+//
+//        return response.getBody();
+//    }
+    
     public List<Contact> getAll() {
         ResponseEntity<List<Contact>> response = restTemplate
-                .exchange(url, HttpMethod.GET, null,
+                .exchange(url, HttpMethod.GET, new HttpEntity<>(RequestFormat.createHeaders()),
                         new ParameterizedTypeReference<List<Contact>>() {
                 });
 
@@ -44,12 +54,16 @@ public class ContactService {
     }
 
     public void updateById(Integer id, Contact contact) {
-        HttpEntity entity = new HttpEntity(contact);
+        HttpEntity entity = new HttpEntity(contact, RequestFormat.createHeaders());
         ResponseEntity<Contact> res = restTemplate.exchange(url + "/" + id, HttpMethod.PUT, entity, Contact.class);
     }
 
+//    public void updateById(Integer id, Contact contact) {
+//        HttpEntity entity = new HttpEntity(contact);
+//        ResponseEntity<Contact> res = restTemplate.exchange(url + "/" + id, HttpMethod.PUT, entity, Contact.class);
+//    }
     public void create(Contact contact) {
-        HttpEntity entity = new HttpEntity(contact);
+        HttpEntity entity = new HttpEntity(contact,RequestFormat.createHeaders());
         ResponseEntity<Contact> res = restTemplate.exchange(url, HttpMethod.POST, entity, Contact.class);
     }
 }

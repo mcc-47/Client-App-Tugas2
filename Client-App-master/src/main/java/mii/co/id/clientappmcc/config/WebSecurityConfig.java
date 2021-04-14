@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 package mii.co.id.clientappmcc.config;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
  *
- * @author Fadel
+ * @author William Yangjaya
  */
 @Configuration
 @EnableWebSecurity
@@ -19,16 +20,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
+        http.
+                csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/dashboard", "contacts").authenticated()
+                .antMatchers("/login","/static/**").permitAll()
+                .antMatchers("/contact","/contact/**").hasRole("ADMIN")
+                //                .anyRequest().authenticated()
+                .antMatchers("/dashboard", "/contact").authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").loginProcessingUrl("login")
+                .loginPage("/login").loginProcessingUrl("/login")
                 .failureForwardUrl("/login?error")
                 .successForwardUrl("/dashboard")
                 .permitAll();
+
     }
-    
 }

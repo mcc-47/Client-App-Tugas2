@@ -9,11 +9,10 @@ import lombok.Data;
 
 /**
  *
- * @author Fadel
+ * @author William Yangjaya
  */
 @Data
 public class AuthRequest {
-    
     private String username;
     private String password;
 
@@ -24,6 +23,4 @@ public class AuthRequest {
 
     public AuthRequest() {
     }
-    
-    
 }

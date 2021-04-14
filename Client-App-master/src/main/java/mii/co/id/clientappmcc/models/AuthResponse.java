@@ -10,11 +10,11 @@ import lombok.Data;
 
 /**
  *
- * @author Fadel
+ * @author William Yangjaya
  */
 @Data
 public class AuthResponse {
-    
+
     private Integer userId;
     private List<String> authorities;
 
@@ -25,7 +25,4 @@ public class AuthResponse {
 
     public AuthResponse() {
     }
-    
-    
-    
 }

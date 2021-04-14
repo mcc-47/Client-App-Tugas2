@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import mii.co.id.clientappmcc.models.AuthRequest;
 import mii.co.id.clientappmcc.models.AuthResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -24,26 +25,30 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  *
- * @author Fadel
+ * @author William Yangjaya
  */
 @Service
 public class AuthService {
-    
     @Autowired
     private RestTemplate restTemplate;
+
+    @Value("${api.url}/api/login")
+    private String url;
     
-    private final String URL = "http://localhost:8082/login";
-    
+//    private final String URL = "http://localhost:8081/api/login";
+
     public boolean loginProcess(AuthRequest request) {
         boolean isLoginSuccess = false;
-        
+        /* use try catch for error handling */
         try {
             HttpEntity entity = new HttpEntity(request);
             ResponseEntity<AuthResponse> response = restTemplate
-                    .exchange(URL, HttpMethod.POST, entity, 
+                    .exchange(url, HttpMethod.POST, entity,
                             new ParameterizedTypeReference<AuthResponse>() {
-        });
-            setAuthorization(request.getUsername(), request.getPassword(),
+                    });
+            
+            /* call method for set session */
+            setAuthorization(request.getUsername(), request.getPassword(), 
                     response.getBody().getAuthorities());
             
             isLoginSuccess = true;
@@ -54,15 +59,16 @@ public class AuthService {
         return isLoginSuccess;
     }
     
+    /* Set spring security session */
     private void setAuthorization(String username, String password, List<String> authorities) {
         UsernamePasswordAuthenticationToken authToken = 
-                new UsernamePasswordAuthenticationToken(username, password, getListAthorities(authorities));
+                new UsernamePasswordAuthenticationToken(username, password, getListAuthorities(authorities));
         
         SecurityContextHolder.getContext().setAuthentication(authToken);
     }
     
-    //List of Authorities
-    private List<GrantedAuthority> getListAthorities(List<String> authorities) {
+    /* Set list of authothorities */
+    private List<GrantedAuthority> getListAuthorities(List<String> authorities) {
         return authorities.stream()
                 .map(auth -> new SimpleGrantedAuthority(auth))
                 .collect(Collectors.toList());
