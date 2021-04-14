@@ -50,13 +50,13 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#logoutButton").on("click", function () {
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Are you sure to logout?',
+            text: "You have to log in again!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Yes, I am sure!'
         }).then((result) => {
             if (result.value === true) {
                 $('#logoutform').submit()
@@ -65,9 +65,30 @@ $(document).ready(function () {
     });
 });
 
+//insert
+$(document).ready(function () {
+    $("#insertForm").click(function () { // hides all element H1
+        var phone = $(".phone").val();
+        var linkedin = $(".linkedin").val();
+
+        if (phone == '' || linkedin == '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'All data must be filled!',
+            })
+        } else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Okay',
+                text: 'Create Data Success',
+            })
+        }
+    });
+});
 
 //delete di index.html
-function cobadelete() {
+function deleteData() {
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -86,40 +107,3 @@ function cobadelete() {
         }
     })
 }
-
-//$("#addForm").on("submit", function(e) {
-//  e.preventDefault(); // cancel submission
-//  window.location.replace("http://localhost:8080/contacts");
-////  alert("this could redirect to login.php"); 
-//});
-
-
-////$(document).ready(function () {
-//    $("#inputForm").click(function(){ // hides all element H1
-//        $(this).hide(); // hides the current element
-//    });
-//});
-
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-
-//$(document).ready(function () {
-//    $("#loginForm").click(function () {
-//        var username = $("#username").val();
-//        var password = $("#password").val();
-//
-//        if (username == '' || password == '') {
-//            swal({
-//                title: "Fields Empty!!",
-//                text: "Please check the missing field!!",
-//                icon: "warning",
-//                button: "Ok",
-//            });
-//        } else {
-//
-//        }
-//    });
-//});
-
-
-
-
