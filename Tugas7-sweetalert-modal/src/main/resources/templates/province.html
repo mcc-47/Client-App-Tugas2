@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Client-App Province</title>
+    <div th:replace="layout/headerlink:: headerlink"></div>
+</head>
+<body>
+    <!--sidebar-->
+    <div th:replace="layout/sidebar :: sidebar"></div>
+    <!--end sidebar-->
+
+    <div class="content-container">
+        <!--header-->
+        <div th:replace="layout/header :: header"></div>
+        <!--header-->
+
+        <!--    menu province-->
+        <div class="container my-3">
+
+            <h3>Data Province</h3>
+            <br>
+<!--            <form th:action="@{/province/add}" method="post" th:object="${province}">-->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-province">Add Province</button>
+            <br>
+            <br>
+
+            <table id="provinceTable" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Province Id</th>
+                        <th>Province Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!--iterator(satuan) : list<satuan>(tergantung model yg diberikan nama pada controller)-->
+                    <tr th:each="p : ${provinces}">
+                        <td th:text="${p.provinceId}"></td>
+                        <td th:text="${p.provinceName}"></td>
+                        <td>
+                            <button type="button" class="btn btn-primary"data-toggle="modal" data-target="#edit-province">Edit</button>
+
+<!--                            <button id='delete' class='btn btn-danger delete_product' data-id='"${p.provinceId}"'>Delete</button>-->
+                            
+                             <button id='delete' class='btn btn-sm btn-danger delete_product' data-id='"${p.provinceId}"'>Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+         </form>
+        </div>
+    </div>
+    <!--end menu province-->
+
+    <!--footer-->
+    <div th:replace="layout/footer :: footer"></div>                
+    <!--footer-->
+    <script th:src="@{/js/del-province.js}"></script>
+    <script th:src="@{/js/sweetalert.js}"></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#provinceTable').DataTable();
+        });
+    </script>
+
+    <!------------------------------------------------------------------------------------------------>
+    <!--ADD PROVINCE-->
+    <!------------------------------------------------------------------------------------------------>
+
+    <div class="modal fade" id="add-province" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Province</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="provinceId">Province Id</label>
+                            
+                            <input type="number" th:field="*{provinceId}" class="form-control" placeholder="Province Id"> 
+                        </div>
+
+                        <div class="form-group">
+                            <label for="provinceName">Province Name</label>
+                            <input type="text" th:field="*{provinceName}" class="form-control" placeholder="Province Name"> 
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top-0 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button th:href="@{/province}" class="btn btn-danger col-2">Back</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!------------------------------------------------------------------------------------------------>
+    <!--EDIT PROVINCE-->
+    <!------------------------------------------------------------------------------------------------>
+
+    <div class="modal fade" id="edit-province" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Province</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="provinceId">Province Id</label>
+                            <input type="number" class="form-control" placeholder="Province Id"> 
+                        </div>
+
+                        <div class="form-group">
+                            <label for="provinceName">Province Name</label>
+                            <input type="text" class="form-control" placeholder="Province Name"> 
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top-0 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button th:href="@{/province}" class="btn btn-danger col-2">Back</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
