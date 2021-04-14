@@ -15,7 +15,28 @@ function getAll() {
         type: "GET",
         success: (res) => {
             let element = "";
+//            Array.prototype.forEach.call(res, data => {
+//                element = element + `<tr>
+//                    <td>${data.contactId}</td>
+//                    <td>${data.phone}</td>
+//                    <td>${data.linkedin}</td>
+//                    <td>
+//                        <button 
+//                            class='btn btn-sm btn-primary'
+//                            data-bs-toggle="modal" 
+//                            data-bs-target="#postModal"
+//                            onclick="getById('${data.contactid}')"
+//                        >
+//                            <i class='fa fa-2x fa-pencil'></i>
+//                        </button>
+//                        <button class='btn btn-sm btn-danger'>
+//                            <i class='fa fa-2x fa-trash'></i>
+//                        </button>
+//                    `;
+//            })
+
             res.forEach(data => {
+                console.log(data.contactId);
                 element = element + `<tr>
                     <td>${data.contactId}</td>
                     <td>${data.phone}</td>
