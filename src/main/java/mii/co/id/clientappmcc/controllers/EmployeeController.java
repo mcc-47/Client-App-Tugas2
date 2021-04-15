@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -54,13 +55,13 @@ public class EmployeeController {
     }
     
     @PostMapping("/create")
-    public String create(@ModelAttribute("employees") Employee employee){
+    public Employee create(@RequestBody Employee employee){
         employeeContactService.create(employee);
-        return "redirect:/employee";
+        return employee;
     }
     
     @PutMapping("/update/{id}")
-    public String update(@PathVariable("id") Integer id, @ModelAttribute("employees") Employee employee) {
+    public String update(@PathVariable("id") Integer id, @RequestBody Employee employee) {
         employeeContactService.update(id, employee);
         return "redirect:/employee";
     }

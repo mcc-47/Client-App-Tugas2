@@ -9,6 +9,7 @@ $(document).ready(() => {
 //    });
 });
 
+//GET ALL DATA
 function getAll() {
     $.ajax({
         url: "/employee/get-all",
@@ -61,12 +62,62 @@ function getById(id) {
 }
 
 function setForm(emp) {
-    $("#employeeId").val(emp.employeeId);
-    $("#employeeName").val(emp.employeeName);
-    $("#birthDate").val(emp.birthDate);
-    $("#email").val(emp.email);
+    $("#employeeIdUpt").val(emp.employeeId);
+    $("#employeeNameUpt").val(emp.employeeName);
+    $("#birthDateUpt").val(emp.birthDate);
+    $("#genderUpt").val(emp.gender);
+    $("#emailUpt").val(emp.email);
 }
 
+//CREATE EMPLOYEE
+function createEmployee() {
+    employee = {
+        employeeId: $("#employeeId").val(),
+        employeeName: $("#employeeName").val(),
+        birthDate: $("#birthDate").val(),
+        gender: $("#gender").val(),
+        email: $("#email").val()
+    };
+    console.log(employee);
+    
+    $.ajax({
+        url: `/employee/create`,
+        type: 'POST',
+        data: JSON.stringify(employee),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: (res) => {
+            console.log("Success");
+            alert('In Ajax');
+        }
+    });
+}
+
+//UPDATE EMPLOYEE
+function updateEmployee(){
+    employee = {
+        employeeId: $("#employeeIdUpt").val(),
+        employeeName: $("#employeeNameUpt").val(),
+        birthDate: $("#birthDateUpt").val(),
+        gender: $("#genderUpt").val(),
+        email: $("#emailUpt").val()
+    };
+    console.log(employee);
+    
+    $.ajax({
+        url: `/employee/update/${employee.employeeId}`,
+        type: 'PUT',
+        data: JSON.stringify(employee),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: (res) => {
+            console.log("Success");
+            alert('In Ajax');
+        }
+    });
+}
+
+//DELETE EMPLOYEE
 function deleteEmployee(id) {
     console.log(id);
     $.ajax({
@@ -74,7 +125,7 @@ function deleteEmployee(id) {
         type: 'DELETE',
         success: () => {
             console.log(id);
-            $(parent).remove();
+            $(id).remove();
         }
     });
 }

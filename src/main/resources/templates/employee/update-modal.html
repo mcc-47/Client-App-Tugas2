@@ -16,7 +16,7 @@
                             <tr>
                                 <div class="form-group">
                                     <td><label>Employee Id</label></td>
-                                    <td><input type="number" id="employeeId" readonly="readonly"
+                                    <td><input type="number" id="employeeIdUpt" readonly="readonly"
                                                class="form-control" required>
                                     <div class="invalid-feedback">
                                         This field is required.
@@ -26,7 +26,7 @@
                             <tr>
                                 <div class="form-group">
                                     <td><label>Employee Name</label></td>
-                                    <td><input type="text" id="employeeName" 
+                                    <td><input type="text" id="employeeNameUpt" 
                                                class="form-control" required>
                                     <div class="invalid-feedback">
                                         This field is required.
@@ -37,7 +37,7 @@
                                 <div class="form-group">
                                     <td><label>Birth Date</label></td>
                                     <td><input type="date" class="form-control" 
-                                               id="birthDate" required>
+                                               id="birthDateUpt" required>
                                     <div class="invalid-feedback">
                                         This field is required.
                                     </div></td>
@@ -47,6 +47,14 @@
                                 <div class="form-group">
                                     <td><label>Gender</label></td>
                                     <td>
+                                        <select class="form-control" id="genderUpt" name="gender" >
+                                            <option value="Laki-laki">Laki-laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            This field is required.
+                                        </div>
+<!--                                        
                                         <input type="radio" id="laki-laki" 
                                                name="gender" value="laki-laki" required>
                                         <label for="laki-laki">Laki-laki</label>
@@ -55,14 +63,14 @@
                                         <label for="perempuan">Perempuan</label>
                                         <div class="invalid-feedback">
                                             This field is required.
-                                        </div>
+                                        </div>-->
                                     </td>
                                 </div>
                             </tr>
                             <tr>
                                 <div class="form-group">
                                     <td><label>Email</label></td>
-                                    <td><input type="text" id="email" 
+                                    <td><input type="text" id="emailUpt" 
                                                class="form-control" required>
                                         <div class="invalid-feedback">
                                             This field is required.

@@ -9,14 +9,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form th:action="@{/employee/create}" method="POST" id="createForm" 
-                          th:object="${employees}" class="needs-validation" novalidate>           
+                    <form action="#" method="POST" id="createForm" 
+                          class="needs-validation" novalidate>           
                         <table>
                             <tr>
                                 <div class="form-group">
                                     <td><label>Employee Id</label></td>
                                     <td><input type="number" name="employeeId" 
-                                               class="form-control" required>
+                                               class="form-control" required
+                                               id="employeeId">
                                     <div class="invalid-feedback">
                                         This field is required.
                                     </div></td>
@@ -26,7 +27,8 @@
                                 <div class="form-group">
                                     <td><label>Employee Name</label></td>
                                     <td><input type="text" name="employeeName" 
-                                               class="form-control" required>
+                                               class="form-control" required
+                                               id="employeeName" >
                                     <div class="invalid-feedback">
                                         This field is required.
                                     </div></td>
@@ -47,7 +49,15 @@
                                 <div class="form-group">
                                     <td><label>Gender</label></td>
                                     <td>
-                                        <input type="radio" id="laki-laki" 
+                                        <select class="form-control" id="gender" name="gender" >
+                                            <option value="laki-laki">Laki-laki</option>
+                                            <option value="perempuan">Perempuan</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            This field is required.
+                                        </div>
+                                        
+<!--                                        <input type="radio" id="laki-laki" 
                                                name="gender" value="laki-laki" required>
                                         <label for="laki-laki">Laki-laki</label>
                                         <input type="radio" id="perempuan" 
@@ -55,14 +65,14 @@
                                         <label for="perempuan">Perempuan</label>
                                         <div class="invalid-feedback">
                                             This field is required.
-                                        </div>
+                                        </div>-->
                                     </td>
                                 </div>
                             </tr>
                             <tr>
                                 <div class="form-group">
                                     <td><label>Email</label></td>
-                                    <td><input type="text" name="email" 
+                                    <td><input type="text" name="email" id="email" 
                                                class="form-control" required>
                                     <div class="invalid-feedback">
                                         This field is required.

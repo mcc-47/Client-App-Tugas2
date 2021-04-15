@@ -43,10 +43,8 @@ function onClickDelete(id){
 }
 
 function onClickCreate(){
-    
     event.preventDefault();
-    let form = $('#createForm');
-    console.log(form);
+    
     Swal.fire({
         title: 'Are you sure?',
         icon: 'warning',
@@ -56,17 +54,30 @@ function onClickCreate(){
         confirmButtonText:'Yes, Submit!'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    'Updated!',
-                    'Your file has been submitted.',
-                    {timer: 2000}
-                );
-                form.submit();
+                const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+                Toast.fire({
+                    icon: 'success',
+                    title: 'created'
+                })
+                
+                createEmployee();
             }
         });
 }
 
 function onClickChange(){
+    event.preventDefault();
+    
     Swal.fire({
         position: 'top-end',
         icon: 'success',
@@ -74,6 +85,8 @@ function onClickChange(){
         showConfirmButton: false,
         timer: 1500
     });
+    
+    updateEmployee();
 }
 
 function onClickSimpleCreate(){
