@@ -20,17 +20,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!--                            <tr lass="text-center" th:each="contact : ${contacts}">
-                                                            <td th:text="${contact.contactId}"></td>
-                                                            <td th:text="${contact.phone}"></td>
-                                                            <td th:text="${contact.linkedin}"></td>
-                                                            <td sec:authorize="hasRole('ADMIN')">
-                                                                <div th:replace="fragments/update_modal :: update_modal"></div>
-                                                                <button type ="submit" class="btn btn-outline-danger mt-2 mb-2" th:onclick="deleteData()">
-                                                                    <i class="fa fa-1x fa-trash"></i>
-                                                                </button> 
-                                                            </td>
-                                                        </tr>-->
+                            
                         </tbody>
                     </table>
                 </div>
@@ -49,7 +39,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id='updateForm' action="#" method="post" class="needs-validation" novalidate>
+                        <form id='updateForm' th:action="@{/contact/update/{id} (id = ${id})}" method="post" class="needs-validation" novalidate>
                             <div class="form-group">
                                 <label for="phone">Phone</label>
                                 <input type="tel" id="phone" name="phone" class="form-control" aria-describedby="phoneHelp" placeholder="Enter your phone number" required>
@@ -62,7 +52,7 @@
                                 <div class="invalid-feedback" style="font-size: 12">Please input your LinkedIn</div>
                             </div>
                             <div class="modal-footer border-top-0 d-flex justify-content-center">
-                                <button type="submit" class="btn btn-success" id="submitUpdate">Submit</button>
+                                <button type="submit" class="btn btn-success" id="updateButton">Submit</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </form>
@@ -71,7 +61,7 @@
             </div>
         </div>
 
-        <!--<div th:replace="fragments/update_modal :: update_modal"></div>-->
+        
 
         <div th:replace="fragments/footer :: footer"></div>
 

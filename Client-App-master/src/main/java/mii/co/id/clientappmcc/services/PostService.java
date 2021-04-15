@@ -26,7 +26,6 @@ public class PostService {
     @Autowired
     private RestTemplate restTemplate;
     
-//    @Value("${api.url}/posts")
     @Value("https://jsonplaceholder.typicode.com/posts")
     private String url;
     

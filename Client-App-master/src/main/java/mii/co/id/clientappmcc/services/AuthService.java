@@ -34,8 +34,6 @@ public class AuthService {
 
     @Value("${api.url}/api/login")
     private String url;
-    
-//    private final String URL = "http://localhost:8081/api/login";
 
     public boolean loginProcess(AuthRequest request) {
         boolean isLoginSuccess = false;
