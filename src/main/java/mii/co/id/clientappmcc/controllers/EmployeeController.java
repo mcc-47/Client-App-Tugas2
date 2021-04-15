@@ -38,11 +38,6 @@ public class EmployeeController {
         return "employee/employee";
     }
     
-//    @GetMapping("/new")
-//    public String form(){
-//        return "employee-create";
-//    }
-    
     @GetMapping("/get-all")
     public @ResponseBody List<Employee> getAllProcess() {
         return employeeContactService.getAll();
@@ -50,20 +45,19 @@ public class EmployeeController {
     
     @GetMapping("/{id}")
     public @ResponseBody Employee getById(@PathVariable("id") Integer id) {
-//        model.addAttribute("employees", employeeContactService.getById(id));
         return employeeContactService.getById(id);
     }
     
     @PostMapping("/create")
-    public Employee create(@RequestBody Employee employee){
+    public @ResponseBody Employee create(@RequestBody Employee employee){
         employeeContactService.create(employee);
         return employee;
     }
     
     @PutMapping("/update/{id}")
-    public String update(@PathVariable("id") Integer id, @RequestBody Employee employee) {
+    public @ResponseBody Employee update(@PathVariable("id") Integer id, @RequestBody Employee employee) {
         employeeContactService.update(id, employee);
-        return "redirect:/employee";
+        return employee;
     }
     
     @DeleteMapping("/{id}")

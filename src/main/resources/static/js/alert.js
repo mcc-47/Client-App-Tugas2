@@ -42,6 +42,7 @@ function onClickDelete(id){
         });
 }
 
+//CREATE BUTTON
 function onClickCreate(){
     event.preventDefault();
     
@@ -75,6 +76,7 @@ function onClickCreate(){
         });
 }
 
+//UPDATE BUTTON
 function onClickChange(){
     event.preventDefault();
     

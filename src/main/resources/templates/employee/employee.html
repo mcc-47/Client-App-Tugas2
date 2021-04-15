@@ -31,7 +31,7 @@ and open the template in the editor.
                 
                 <!--CREATE BUTTON-->
                 <div class="d-flex justify-content-center">
-                    <button type="button" 
+                    <button type="button"  sec:authorize="hasAuthority('CREATE')"
                             class="btn btn-primary" 
                             data-toggle="modal" 
                             data-target="#exampleModalLong">
@@ -42,7 +42,8 @@ and open the template in the editor.
                 <div th:replace="employee/create-modal :: create"></div>
 
                 <!--TABLE OF DATA-->
-                <table border="0" class="table table-striped" id="table_id">
+                <table border="0" class="table table-striped" id="table_id"
+                       sec:authorize="hasAuthority('READ')">
                     <thead>
                         <tr style="text-align: center">
                             <th>ID</th>
@@ -56,32 +57,6 @@ and open the template in the editor.
                     
                     <tbody id="tbodyGais">
                         
-<!--                        <tr th:each="emp : ${employees}"> emp is Objct, employees is source
-                            <td style="text-align: center" th:text="${emp.employeeId}" id="empId"></td>
-                            <td th:text="${emp.employeeName}"></td>
-                            <td style="text-align: center" th:text="${emp.birthDate}"></td>
-                            <td style="text-align: center" th:text="${emp.gender}"></td>
-                            <td th:text="${emp.email}"></td>
-                            <td style="text-align: center">
-                                EDIT BUTTON
-                                <button type="button" id="upd"
-                                        class="btn btn-primary" 
-                                        data-toggle="modal" 
-                                        data-target="#exampleModalLongUpdate" 
-                                        th:onclick="getById('${emp.employeeId}')"> 
-                                    Update
-                                </button>
-                                MODAL FORM EDIT
-                                <div th:replace="employee/update-modal :: update"></div>
-                                
-                                DELETE BUTTON
-                                <a th:href="@{/employee/delete/{id} (id = ${emp.employeeId})}" 
-                                   sec:authorize="hasAuthority('DELETE')" 
-                                   onclick='onClickDelete()' id="del">
-                                   <i class="fa fa-trash" style="color: #3f4238"></i>
-                                </a>
-                            </td>
-                        </tr>-->
                     </tbody>
                 </table> 
                 

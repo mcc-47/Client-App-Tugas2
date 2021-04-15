@@ -3,10 +3,6 @@ let employee = new Object();
 $(document).ready(() => {
     getAll();
 
-//    $("form").submit(e => {
-//        e.preventDefault();
-//        create();
-//    });
 });
 
 //GET ALL DATA
@@ -24,7 +20,7 @@ function getAll() {
                     <td>${data.gender}</td>
                     <td>${data.email}</td>
                     <td>
-                        <button 
+                        <button sec:authorize="hasAuthority('UPDATE')"
                             class='btn btn-sm btn-primary'
                             data-toggle="modal" 
                             data-target="#exampleModalLongUpdate"
@@ -33,8 +29,8 @@ function getAll() {
                         </button>
                         <div th:replace="employee/update-modal :: update"></div>
                         
-                        <button 
-                            class='btn btn-sm btn-danger'
+                        <button sec:authorize="hasAuthority('DELETE')"
+                            class='btn btn-sm btn-danger' 
                             onclick="onClickDelete('${data.employeeId}')">
                             <i class='fa fa-trash'></i>
                         </button>
@@ -86,9 +82,12 @@ function createEmployee() {
         data: JSON.stringify(employee),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
+        error: function (errrrrr) {
+            setInterval('location.reload()', 1000);
+        },
         success: (res) => {
             console.log("Success");
-            alert('In Ajax');
+            setInterval('location.reload()', 1000);
         }
     });
 }
@@ -112,7 +111,7 @@ function updateEmployee(){
         dataType: "json",
         success: (res) => {
             console.log("Success");
-            alert('In Ajax');
+            setInterval('location.reload()', 1000);
         }
     });
 }
@@ -123,9 +122,9 @@ function deleteEmployee(id) {
     $.ajax({
         url: `/employee/${id}`,
         type: 'DELETE',
-        success: () => {
+        error: () => {
             console.log(id);
-            $(id).remove();
+            setInterval('location.reload()', 1000);
         }
     });
 }
