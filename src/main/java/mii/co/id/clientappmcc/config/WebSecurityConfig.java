@@ -5,11 +5,13 @@
  */
 package mii.co.id.clientappmcc.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 /**
  *
@@ -24,11 +26,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-//                .antMatchers("/employee/new").hasAnyRole("ADMIN","TRAINEE")
                 .antMatchers(HttpMethod.GET,"/employee/{id}").hasAnyRole("ADMIN","TRAINEE")
-                .antMatchers(HttpMethod.PUT,"/employee/update/{id}").hasAnyRole("ADMIN","TRAINEE")
+                .antMatchers(HttpMethod.PUT,"/employee/{id}").hasAnyRole("ADMIN","TRAINEE")
                 .antMatchers(HttpMethod.DELETE,"/employee/{id}").hasAnyRole("ADMIN")
-                .antMatchers("/employee/create").hasAnyRole("ADMIN","TRAINER","TRAINEE")
+                .antMatchers(HttpMethod.POST,"/employee").hasAnyRole("ADMIN","TRAINER","TRAINEE")
                 .antMatchers("/css/**","/js/**").permitAll()
                 .antMatchers("/dashboard","/employee/**").authenticated()
                 .and()
@@ -37,14 +38,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureForwardUrl("/login?error")
                 .successForwardUrl("/dashboard")
                 .permitAll();
-//                .and()
-//                .logout().disable()
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                .logoutSuccessUrl("/login")
-//                .invalidateHttpSession(true)
-//                .deleteCookies("JSESSIONID")
-//                .and()
-//                .exceptionHandling()
-//                .accessDeniedPage("/403");
+    }
+    
+    @Bean
+    public SpringSecurityDialect securityDialect() {
+        return new SpringSecurityDialect();
     }
 }

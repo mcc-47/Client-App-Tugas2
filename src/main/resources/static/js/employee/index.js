@@ -77,7 +77,7 @@ function createEmployee() {
     console.log(employee);
     
     $.ajax({
-        url: `/employee/create`,
+        url: `/employee`,
         type: 'POST',
         data: JSON.stringify(employee),
         contentType: "application/json; charset=utf-8",
@@ -104,7 +104,7 @@ function updateEmployee(){
     console.log(employee);
     
     $.ajax({
-        url: `/employee/update/${employee.employeeId}`,
+        url: `/employee/${employee.employeeId}`,
         type: 'PUT',
         data: JSON.stringify(employee),
         contentType: "application/json; charset=utf-8",
@@ -122,7 +122,7 @@ function deleteEmployee(id) {
     $.ajax({
         url: `/employee/${id}`,
         type: 'DELETE',
-        error: () => {
+        success: (res) => {
             console.log(id);
             setInterval('location.reload()', 1000);
         }

@@ -48,22 +48,22 @@ public class EmployeeController {
         return employeeContactService.getById(id);
     }
     
-    @PostMapping("/create")
+    @PostMapping
     public @ResponseBody Employee create(@RequestBody Employee employee){
         employeeContactService.create(employee);
         return employee;
     }
     
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public @ResponseBody Employee update(@PathVariable("id") Integer id, @RequestBody Employee employee) {
         employeeContactService.update(id, employee);
         return employee;
     }
     
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") Integer id){
+    public @ResponseBody Integer delete(@PathVariable("id") Integer id){
         employeeContactService.delete(id);
-        return "redirect:/employee";
+        return id;
     }
     
 }
