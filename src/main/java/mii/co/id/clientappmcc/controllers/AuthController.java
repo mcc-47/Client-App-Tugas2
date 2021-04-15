@@ -88,4 +88,8 @@ public class AuthController {
   public String percobaan2(){
       return "percobaan2";
   }
+  @GetMapping("/percobaan-modal")
+  public String percobaanmodal(){
+      return "percobaan-modal";
+  }
 }

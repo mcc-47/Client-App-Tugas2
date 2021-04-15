@@ -6,113 +6,49 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Dashboard Menu</title>
+        <title>District</title>
+        <!--IMPORTING-->
         <link th:href="@{/css/style2.css}" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" 
+              integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" 
+              rel="stylesheet" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+              rel="stylesheet" >
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
     </head>
 <body>
-    <!-- bagian header template -->
+    <!--HEADER/NAVBAR-->
     <header> 
         <div th:replace="layout/navbar :: header-app"></div>
     </header>
     
+    <!--BODY-->
     <main>
+        <!--SIDEBAR-->
         <div th:replace="layout/sidebar :: sidebar-app"></div>
-        <div class="d-flex flex-column content" id="aaa">
-            <div>
-                <h1>Belajar JS</h1>
-                <!--no1-->
-                <p id="ex1">Perubahan konten</p>
-                <button type="button" onclick='onClickChange()'>Ubah!</button>
-                <!--no2-->
-                <p onclick="this.innerHTML='Ooops!'">Perubahan konten kedua</p>
-                <!--no3-->
-                <h1 id="sentence">
-                    Belajar Javascript bersama Jaka Zaki
-                </h1>
-                <!--no4-->
-                <p class="paragraf">Paragraf 1</p>
-                <p class="paragraf">Paragraf 2</p>
-                <p class="paragraf">Paragraf 3</p>
-                <!--no5-->
-                <!--no6-->
-                <h3 id="juduldelete">Ini adalah judul yang di delete</h3>
-                <!--no7-->
-                <!--no8-->
-                
-            </div>
-   
-    
-    <script >
-        //no2
-        function onClickChange(){
-            document.getElementById("ex1").innerHTML = "Konten berubah";
-        }
         
-        //no3
-        var sentenceNode = document.getElementById("sentence")
-        var sentence = sentenceNode.innerText
-        console.log(sentence);
-        
-        //no4
-        var paragrafku = document.getElementsByClassName("paragraf");
-        console.log(paragrafku);
-        setInterval(function () {
-            paragrafku[0].style.color = "red";
-            paragrafku[1].style.color = "green";
-            paragrafku[2].style.color = "blue";
-
-            setTimeout(function () {
-                paragrafku[0].style.color = "black";
-                paragrafku[1].style.color = "black";
-                paragrafku[2].style.color = "black";
-            }, 500)
-        }, 1000);
-        
-        //no5
-        var judul = document.createElement("h1");
-        judul.textContent = "Yuk belajar javascript";
-        document.getElementById("aaa").append(judul);
-        
-        //no6
-        var h3 = document.getElementById('juduldelete');
-        h3.remove();
-        console.log("Elemen sudah dihapus");
-        console.log(h3);
-        
-        //no7
-        //falsy dianggap false
-        //false = false, 0 -0 = false, "" '' `` = false
-        //null = false, undefined = false, NaN = false
-        //truthy dianggap true, kebalikan falsy
-        //" ", "ada", [], {}, null, 0
-        let stringing = 0; 
-        if (stringing) {
-            document.writeln("ini true");
-        } else {
-            document.writeln("ini false");
-        }
-        
-        //no8
-        let manusia = {
-            nama : "wakwaw",
-            umur : 99,
-            
-            mandi: function(){
-            }
-        }
-        console.log(manusia);
-        
-        
-        
-    </script>
-        <div th:replace="layout/footer :: footer-app"></div>
+        <!--CONTENT-->
+        <div class="d-flex flex-column content">
+           <img src="https://images.glints.com/unsafe/glints-dashboard.s3.amazonaws.com/company-logo/cf7b623f8414e3edc674eacbe49160c8.png">
+           
+           <!--FOOTER-->
+           <div th:replace="layout/footer :: footer-app"></div>
         </div>
     </main>
     
-    </body>
+    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf">
+    </script>
+    <script type="text/javascript">
+        const currentLocation = location.href;
+        const menuItem = document.querySelectorAll('a');
+        const menuLength = menuItem.length
+        for (Let i=0; i<menuLength; i++){
+            if(menuItem[i].href === currentLocation){
+            menuItem[i].className = "active"
+            }  
+        }
+    </script>
+</body>
 </html>

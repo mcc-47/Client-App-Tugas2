@@ -6,38 +6,28 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Dashboard Menu</title>
+        <title>Dashboard</title>
         <link th:href="@{/css/style2.css}" rel="stylesheet">
         <div th:replace="layout/headerlink :: head-link"></div>
     </head>
 <body>
-    <!-- bagian header template -->
+    <!--HEADER NAVBAR-->
     <header> 
         <div th:replace="layout/navbar :: header-app"></div>
     </header>
     
+    <!--BODY SIDE-->
     <main>
+        <!--SIDEBAR-->
         <div th:replace="layout/sidebar :: sidebar-app"></div>
+        
+        <!--CONTENT-->
         <div class="d-flex flex-column content">
             <img src="https://images.glints.com/unsafe/glints-dashboard.s3.amazonaws.com/company-logo/cf7b623f8414e3edc674eacbe49160c8.png">
-    
-        <div th:replace="layout/footer :: footer-app"></div>
+            
+            <!--FOOTER-->
+            <div th:replace="layout/footer :: footer-app"></div>
         </div>
     </main>
-    
-    
 </body>
 </html>
-
-<!--<body class="html">
-        <div class="wrapper fadeInDown">
-            <div id="formContent">
-            <h2>WELCOME TO OUR DASHBOARD</h2>
-             <form>
-                <a href="/logout" >logout</a><br>
-                <a href="/employee">employee</a>
-                <input type="submit" class="fadeIn fourth" value="Employee" >
-              </form>
-            </div>
-        </div>
-    </body>-->

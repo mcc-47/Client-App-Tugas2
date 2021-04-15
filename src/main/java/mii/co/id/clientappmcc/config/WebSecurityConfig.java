@@ -6,6 +6,7 @@
 package mii.co.id.clientappmcc.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -23,10 +24,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/employee/new").hasAnyRole("ADMIN","TRAINEE")
-                .antMatchers("/employee/{id}").hasAnyRole("ADMIN","TRAINEE")
-                .antMatchers("/employee/update/{id}").hasAnyRole("ADMIN","TRAINEE")
-                .antMatchers("/employee/delete/{id}").hasAnyRole("ADMIN")
+//                .antMatchers("/employee/new").hasAnyRole("ADMIN","TRAINEE")
+                .antMatchers(HttpMethod.GET,"/employee/{id}").hasAnyRole("ADMIN","TRAINEE")
+                .antMatchers(HttpMethod.PUT,"/employee/update/{id}").hasAnyRole("ADMIN","TRAINEE")
+                .antMatchers(HttpMethod.DELETE,"/employee/{id}").hasAnyRole("ADMIN")
                 .antMatchers("/employee/create").hasAnyRole("ADMIN","TRAINER","TRAINEE")
                 .antMatchers("/css/**","/js/**").permitAll()
                 .antMatchers("/dashboard","/employee/**").authenticated()

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <!--TITLE-->
+        <title>List of Employee</title>
+        <!--IMPORTING CSS, JS, JQUERY, SWEETALERT-->
+        <link th:href="@{/css/style2.css}" rel="stylesheet">
+        <div th:replace="layout/headerlink :: head-link"></div>
+    </head>
+    <body>
+        <!--HEADER/NAVBAR-->
+        <header> 
+            <div th:replace="layout/navbar :: header-app"></div>
+        </header>
+        
+        <!--MAIN BODY SIDE-->
+        <main>
+            <!--SIDEBAR-->
+            <div th:replace="layout/sidebar :: sidebar-app"></div>
+            
+            <!--CONTENT!!!-->
+            <div class="d-flex flex-column content">
+                <h1 class="d-flex justify-content-center">
+                    List Employee<pre> </pre>
+                </h1>
+                
+                <!--CREATE BUTTON-->
+                <div class="d-flex justify-content-center">
+                    <button type="button" 
+                            class="btn btn-primary" 
+                            data-toggle="modal" 
+                            data-target="#exampleModalLong">
+                        New Employee
+                    </button>
+                </div>
+                <!--MODAL FORM CREATE-->
+                <div th:replace="employee/create-modal :: create"></div>
+
+                <!--TABLE OF DATA-->
+                <table border="0" class="table table-striped" id="table_id">
+                    <thead>
+                        <tr style="text-align: center">
+                            <th>ID</th>
+                            <th>Employee Name</th>
+                            <th>Birth Date</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th sec:authorize="hasAnyAuthority('UPDATE','DELETE')">Action</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody id="tbodyGais">
+                        
+<!--                        <tr th:each="emp : ${employees}"> emp is Objct, employees is source
+                            <td style="text-align: center" th:text="${emp.employeeId}" id="empId"></td>
+                            <td th:text="${emp.employeeName}"></td>
+                            <td style="text-align: center" th:text="${emp.birthDate}"></td>
+                            <td style="text-align: center" th:text="${emp.gender}"></td>
+                            <td th:text="${emp.email}"></td>
+                            <td style="text-align: center">
+                                EDIT BUTTON
+                                <button type="button" id="upd"
+                                        class="btn btn-primary" 
+                                        data-toggle="modal" 
+                                        data-target="#exampleModalLongUpdate" 
+                                        th:onclick="getById('${emp.employeeId}')"> 
+                                    Update
+                                </button>
+                                MODAL FORM EDIT
+                                <div th:replace="employee/update-modal :: update"></div>
+                                
+                                DELETE BUTTON
+                                <a th:href="@{/employee/delete/{id} (id = ${emp.employeeId})}" 
+                                   sec:authorize="hasAuthority('DELETE')" 
+                                   onclick='onClickDelete()' id="del">
+                                   <i class="fa fa-trash" style="color: #3f4238"></i>
+                                </a>
+                            </td>
+                        </tr>-->
+                    </tbody>
+                </table> 
+                
+                <div th:replace="employee/update-modal :: update"></div>
+                <!--FOOTER-->
+                <div th:replace="layout/footer :: footer-app"></div>
+            </div>
+        </main>
+
+        <!--ADDING JS FOR ....-->
+        <script>
+            $(document).ready(function () {
+                $('ul.navbar-nav > li')
+                        .click(function (e) {
+                    $('ul.navbar-nav > li')
+                        .removeClass('active');
+                    $(this).addClass('active');
+                });
+            });
+        </script>
+        
+    </body>
+</html>
+

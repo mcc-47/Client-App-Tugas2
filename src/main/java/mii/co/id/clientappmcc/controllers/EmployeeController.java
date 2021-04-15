@@ -5,6 +5,7 @@
  */
 package mii.co.id.clientappmcc.controllers;
 
+import java.util.List;
 import mii.co.id.clientappmcc.models.Employee;
 import mii.co.id.clientappmcc.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -31,30 +34,23 @@ public class EmployeeController {
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("employees", employeeContactService.getAll());
-        return "employee";
+        return "employee/employee";
     }
     
-    @GetMapping("/new")
-    public String form(){
-        return "employee-create";
+//    @GetMapping("/new")
+//    public String form(){
+//        return "employee-create";
+//    }
+    
+    @GetMapping("/get-all")
+    public @ResponseBody List<Employee> getAllProcess() {
+        return employeeContactService.getAll();
     }
     
     @GetMapping("/{id}")
-    public String getById(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("employees", employeeContactService.getById(id));
-        return "employee-update";
-    }
-    
-    @PostMapping("/update/{id}")
-    public String update(@PathVariable("id") Integer id, @ModelAttribute("employees") Employee employee) {
-        employeeContactService.update(id, employee);
-        return "redirect:/employee";
-    }
-    
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id){
-        employeeContactService.delete(id);
-        return "redirect:/employee";
+    public @ResponseBody Employee getById(@PathVariable("id") Integer id) {
+//        model.addAttribute("employees", employeeContactService.getById(id));
+        return employeeContactService.getById(id);
     }
     
     @PostMapping("/create")
@@ -62,4 +58,17 @@ public class EmployeeController {
         employeeContactService.create(employee);
         return "redirect:/employee";
     }
+    
+    @PutMapping("/update/{id}")
+    public String update(@PathVariable("id") Integer id, @ModelAttribute("employees") Employee employee) {
+        employeeContactService.update(id, employee);
+        return "redirect:/employee";
+    }
+    
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") Integer id){
+        employeeContactService.delete(id);
+        return "redirect:/employee";
+    }
+    
 }
