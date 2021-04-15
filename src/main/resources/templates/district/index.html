@@ -34,17 +34,6 @@ and open the template in the editor.
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="district : ${districts}">
-                        <td class="counterCell"></td>
-                        <td th:text="${district.kab}"></td>
-                        <td th:text="${district.districtName}"></td>
-                        <td th:text="${district.provinceId.provinceName}"></td>
-                        <td sec:authorize="hasRole('TRAINER')">
-                            <a class="btn btn-warning fas fa-edit mr-2 p-2" th:href="@{/district/{id} (id = ${district.districtId})}"></a>
-                            <button type="button" class="btn btn-warning fas fa-edit mr-2 p-2" data-toggle="modal" data-target="#edit-district">Modal</button>
-                            <a class="btn btn-danger fas fa-trash-alt mr-2 p-2" th:href="@{/district/delete/{id} (id = ${district.districtId})}"></a>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -66,14 +55,14 @@ and open the template in the editor.
                     </div>
                     <div class="modal-body">
 
-                        <form th:action=" @{/district/insert}" method="post" th:object="${district}" class="needs-validation m-4" novalidate>
-                            <input type="hidden" class="form-control" id="exampleFormControlInput1" th:field="*{districtId}">
+                        <form class="needs-validation m-4" novalidate>
+                            <input type="hidden" class="form-control" id="districtIdInsert" value="">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Pilih Kabupaten/Kota : </label>
 
-                                <select class="form-control" id="exampleFormControlInput1" th:field="*{kab}" required>
+                                <select class="form-control" id="kabInsert" required>
 
-                                    <option value="" selected >--Pilih Kota/Kab--</option>
+                                    <option selected>--Pilih Kota/Kab--</option>
                                     <option value="Kab">Kabupaten</option>
                                     <option value="Kota">Kota</option>
                                 </select>
@@ -83,15 +72,15 @@ and open the template in the editor.
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Nama Distrik</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="cth : Bandung"
-                                       th:field="*{districtName}" required>
+                                <input type="text" class="form-control" id="districtNameInsert" placeholder="cth : Bandung"
+                                       required>
                                 <div class="invalid-feedback">
                                     Mohon Isi Nama Distrik!
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Nama Provinsi</label>
-                                <select class="form-control" id="exampleFormControlInput1" th:field="*{provinceId.provinceId}"  required>
+                                <select class="form-control" id="provinceIdInsert" required>
                                     <option value="" selected>--Pilih Provinsi--</option>
                                     <option th:each="id:${provinces}" th:value="${id.provinceId}" th:text="${id.provinceName}"></option>
 <!--                                    <option value="1" >Banten</option>
@@ -135,7 +124,7 @@ and open the template in the editor.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" onclick="insertAlert()">Submit</button>
+                                <button type="submit" class="btn btn-primary" onclick="insert()">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -155,27 +144,28 @@ and open the template in the editor.
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form th:action=" @{/district/insert}" method="post" th:object="${district}" class="needs-validation m-4" novalidate>
-                            <input type="hidden" class="form-control" id="exampleFormControlInput1" th:field="*{districtId}">
+                        <!--<form th:action=" @{/district/insert}" method="post" th:object="${district}" class="needs-validation m-4" novalidate>-->
+                        <form class="needs-validation m-4" novalidate>
+                            <input type="hidden" class="form-control" id="districtIdUpdate">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Pilih Kabupaten/Kota : </label>
 
-                                <select class="form-control" id="exampleFormControlInput1" th:field="*{kab}" required>
+                                <select class="form-control" id="kabUpdate" required>
                                     <option value="Kab">Kabupaten</option>
                                     <option value="Kota">Kota</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Nama Distrik</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="cth : Bandung"
-                                       th:field="*{districtName}" required>
+                                <input type="text" class="form-control" id="districtNameUpdate" placeholder="cth : Bandung"
+                                      required>
                                 <div class="invalid-feedback">
                                     Mohon Isi Nama Distrik!
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Nama Provinsi</label>
-                                <select class="form-control" id="exampleFormControlInput1" th:field="*{provinceId.provinceId}" required>
+                                <label for="exampleFormControlInput1" >Nama Provinsi</label>
+                                <select class="form-control" id="provinceIdUpdate" required>
                                     <option th:each="id:${provinces}" th:value="${id.provinceId}" th:text="${id.provinceName}"></option>
 <!--                                    <option value="1">Banten</option>
                                     <option value="2">DIY</option>
@@ -215,7 +205,7 @@ and open the template in the editor.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary ms-3">Submit</button>
+                                <button type="submit" class="btn btn-primary ms-3" onclick="update()">Submit</button>
                             </div>
                         </form>
                     </div>

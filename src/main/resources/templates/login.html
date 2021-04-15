@@ -36,7 +36,7 @@ and open the template in the editor.
                                 Please input your password.
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="login" th:onclick="alertSubmitSmall('success','Login Successfully', 'login')">Login</button>
+                        <button type="submit" class="btn btn-primary" id="login" onclick="login()">Login</button>
                         <p th:text="${param.error} ? 'Username or password incorrect' : ''" class="text-danger mt-3 text-center font-weight-bold"></p>
                         <p th:text="${param.logout} ? 'You have been logged out' : ''" class="text-danger mt-3 text-center font-weight-bold"></p>
                     </form>

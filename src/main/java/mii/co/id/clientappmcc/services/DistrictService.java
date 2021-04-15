@@ -45,23 +45,26 @@ public class DistrictService {
     }
     
     
-    public void update(Integer id, District district) {
+    public District update(Integer id, District district) {
         HttpEntity entity = new HttpEntity(district, RequestFormat.createHeader());
         ResponseEntity<District> response = restTemplate
                 .exchange(url + "/" + id, HttpMethod.PUT, entity, 
                         District.class);
+        return response.getBody();
     }
     
-    public void insert(District district) {
+    public District insert(District district) {
         HttpEntity entity = new HttpEntity(district, RequestFormat.createHeader());
         ResponseEntity<District> response = restTemplate
                 .exchange(url, HttpMethod.POST, entity, 
-                        District.class); 
+                        District.class);
+        return response.getBody();
     }
     
-    public void delete(Integer id) {
-        ResponseEntity<String> response = restTemplate
+    public boolean delete(Integer id) {
+        ResponseEntity<Boolean> response = restTemplate
                 .exchange(url+"/"+id, HttpMethod.DELETE, new HttpEntity(RequestFormat.createHeader()), 
-                        new ParameterizedTypeReference<String>() {});
+                        new ParameterizedTypeReference<Boolean>() {});
+        return response.getBody();
     }
 }

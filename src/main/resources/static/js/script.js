@@ -19,12 +19,6 @@
             })
 })()
 
-//SCRIPT DATATABLES
-$(document).ready(function () {
-    $('#myTable').DataTable();
-});
-
-
 const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -67,12 +61,8 @@ function insertAlert() {
     Toast.fire({
                 icon: 'success',
                 title: 'Insert District Success!'
-
             })
 }
-
-
-
 
 //Modal
 $('#myModal').on('shown.bs.modal', function () {
@@ -81,8 +71,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
 
 //ALERT GENERAL CONFIRM
-function alertConfirm(titleText, bodyText, iconType, confirmText, iconIfConfirm, titleIfConfirm, hrefIfConfirm) {
-    event.preventDefault();
+function alertConfirm(titleText, bodyText, iconType, confirmText, iconIfConfirm, titleIfConfirm, actionIfConfirm) {
     Swal.fire({
         title: titleText,
         text: bodyText,
@@ -96,11 +85,8 @@ function alertConfirm(titleText, bodyText, iconType, confirmText, iconIfConfirm,
             Toast.fire({
                 icon: iconIfConfirm,
                 title: titleIfConfirm
-
             })
-            setTimeout(function (hrefIfConfirm) {
-                window.location.href = hrefIfConfirm;
-            }, 1500);
+        actionIfConfirm();
         }
     })
 }
@@ -111,44 +97,4 @@ function alertSmall(iconType, titleText) {
                 icon: iconType,
                 title: titleText
             })
-    setTimeout(function () {
-                
-            }, 1500);
-}
-
-//ALERT GENERAL SUBMIT SMALL
-function alertSubmitSmall(iconType, titleText, buttonId) {
-//    event.preventDefault();
-    Toast.fire({
-                icon: iconType,
-                title: titleText
-            });
-//    let buttonId = buttonId;
-    setTimeout(function (buttonId) {
-                document.getElementById(buttonId).submit();
-            }, 2000);
-}
-
-//ALERT GENERAL BUTTON SMALL
-function alertConfirm(titleText, bodyText, iconType, confirmText, iconIfConfirm, titleIfConfirm, hrefIfConfirm) {
-    event.preventDefault();
-    Swal.fire({
-        title: titleText,
-        text: bodyText,
-        icon: iconType,
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: confirmText
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Toast.fire({
-                icon: iconIfConfirm,
-                title: titleIfConfirm
-            })
-            setTimeout(function (hrefIfConfirm) {
-                window.location.href = hrefIfConfirm;
-            }, 1500);
-        }
-    })
 }
