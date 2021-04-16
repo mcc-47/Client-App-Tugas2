@@ -35,44 +35,25 @@ and open the template in the editor.
                     class="fadeIn first" style="color: red"></p>
                 <p th:text="${param.logout} ? 'logged out from this site':''"
                     class="fadeIn first" style="color: gray"></p>
-                <form th:action="@{/login}" method="post" th:object="${auth}"
+                <form action="#" method="post" id="loginForm"
                     class="needs-validation" novalidate>
                     <div>
-                        <input type="text" th:field="*{userName}" 
+                        <input type="text"  id="userName"
                            placeholder="username" class="fadeIn second form-control" required>
                         <div class="invalid-feedback" >
                             please insert username...
                         </div>
                     </div>
                     <div>
-                        <input type="password" th:field="*{userPassword}" 
+                        <input type="password"  id="userPassword"
                            placeholder="password" class="fadeIn third form-control" required>
                         <div class="invalid-feedback" >
                             please insert password...
                         </div>
                     </div>
-                    <input type="submit" class="fadeIn fourth" value="LOG IN" onclick="login()">
+                    <input type="submit" class="fadeIn fourth" value="LOG IN">
                 </form>
             </div>
         </div>
-        <script>
-            (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-           
-            var forms = document.getElementsByClassName('needs-validation');
-            
-            var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-            }, false);
-            });
-            }, false);
-            })();
-        </script>
     </body>
 </html>

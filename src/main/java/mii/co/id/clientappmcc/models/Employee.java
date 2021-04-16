@@ -19,7 +19,7 @@ public class Employee {
     private final String prefix = "MCC";
     private Integer employeeId;
     private String employeeName;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date birthDate;
     private String gender;
     private String email;

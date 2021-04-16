@@ -35,12 +35,13 @@ public class EmployeeService {
         ResponseEntity<List<Employee>> response =  restTemplate
                 .exchange(url+"/list-all", HttpMethod.GET, new HttpEntity(RequestFormat.createHeader()), 
                 new ParameterizedTypeReference<List<Employee>>(){});
-        
         return response.getBody();
     }
     
     public Employee getById(Integer id) {
-        return restTemplate.getForEntity(url + "/get-one/" + id, Employee.class).getBody();
+        Employee employee = restTemplate.getForEntity(url + "/get-one/" + id, Employee.class).getBody();
+        System.out.println(employee.getBirthDate());
+        return employee;
     }
     
     public void update(Integer id, Employee employee) {

@@ -7,8 +7,6 @@ function cekId(){
 
 //DELETE BUTTON
 function onClickDelete(id){
-//    event.preventDefault();
-    
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -19,43 +17,14 @@ function onClickDelete(id){
         confirmButtonText:'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                
-                const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-                })
-                Toast.fire({
-                    icon: 'success',
-                    title: 'deleted'
-                })
-                
                 deleteEmployee(id);
-                
                 }
         });
 }
 
-//CREATE BUTTON
-function onClickCreate(){
-    event.preventDefault();
-    
-    Swal.fire({
-        title: 'Are you sure?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText:'Yes, Submit!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const Toast = Swal.mixin({
+//DELETE SUCCESS
+function deleteSuccessAlert(){
+    const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
@@ -66,39 +35,67 @@ function onClickCreate(){
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
                 })
-                Toast.fire({
-                    icon: 'success',
-                    title: 'created'
+    Toast.fire({
+        icon: 'success',
+        title: 'deleted'
+    })
+}
+
+//CREATE SUCCESS
+function createSuccessAlert(){
+    const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
                 })
-                
-                createEmployee();
-            }
-        });
+    Toast.fire({
+        icon: 'success',
+        title: 'created'
+    })
 }
 
-//UPDATE BUTTON
-function onClickChange(){
-    event.preventDefault();
-    
-    Swal.fire({
-        position: 'top-end',
+//UPDATE SUCCESS
+function updateSuccessAlert(){
+    const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+    Toast.fire({
         icon: 'success',
-        title: 'Your work has been saved',
-        showConfirmButton: false,
-        timer: 1500
-    });
-    
-    updateEmployee();
+        title: 'updated'
+    })
 }
 
-function onClickSimpleCreate(){
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Your work has been saved',
-        showConfirmButton: false,
-        timer: 2000
-    });
+// ERROR
+function errorAlert(){
+    const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+    Toast.fire({
+        icon: 'error',
+        title: 'failed'
+    })
 }
 
 //LOGOUT BUTTON
@@ -140,7 +137,7 @@ function logout(){
 }
 
 //LOGIN BUTTON
-function login(){
+function loginSuccess(){
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',

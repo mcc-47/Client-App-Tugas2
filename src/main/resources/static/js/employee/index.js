@@ -1,45 +1,75 @@
 let employee = new Object();
+let table = null;
 
 $(document).ready(() => {
+    $("#loginForm").submit(e => {
+        e.preventDefault();
+        validationForm(login);
+//        login();
+    });
+    
     getAll();
-
+    
+    $("#createForm").submit(e => {
+        e.preventDefault();
+        validationForm(createEmployee);
+//        createEmployee();
+    });
+    
+    $("#update").submit(e => {
+        e.preventDefault();
+        validationForm(updateEmployee);
+//        updateEmployee();
+    });
+    
 });
 
 //GET ALL DATA
 function getAll() {
-    $.ajax({
-        url: "/employee/get-all",
-        type: "GET",
-        success: (employees) => {
-            let element = "";
-            employees.forEach(data => {
-                element = element + `<tr>
-                    <td>${data.employeeId}</td>
-                    <td>${data.employeeName}</td>
-                    <td>${data.birthDate}</td>
-                    <td>${data.gender}</td>
-                    <td>${data.email}</td>
-                    <td>
+    table = $('#tableId').DataTable({
+        filter: true,
+        orderMulti: true,
+        ajax: {
+            url: "/employee/get-all",
+            datatype: "json",
+            dataSrc: ""
+        },
+        columns: [
+            {
+                data: "employeeId", name: "ID", autoWidth: true
+            },
+            {
+                data: "employeeName", name: "Employee Name", autoWidth: true
+            },
+            {
+                data: "birthDate", name: "Birth Date", autoWidth: true
+            },
+            {
+                data: "gender", name: "Gender", autoWidth: true
+            },
+            {
+                data: "email", name: "Email", autoWidth: true
+            },
+            {
+                render: (data, type, row, meta) => {
+                    return `
                         <button sec:authorize="hasAuthority('UPDATE')"
                             class='btn btn-sm btn-primary'
                             data-toggle="modal" 
                             data-target="#exampleModalLongUpdate"
-                            onclick="getById('${data.employeeId}')">
+                            onclick="getById('${row.employeeId}')">
                             <i class='fa fa-pencil'></i>
                         </button>
-                        <div th:replace="employee/update-modal :: update"></div>
-                        
                         <button sec:authorize="hasAuthority('DELETE')"
                             class='btn btn-sm btn-danger' 
-                            onclick="onClickDelete('${data.employeeId}')">
+                            onclick="onClickDelete('${row.employeeId}')">
                             <i class='fa fa-trash'></i>
                         </button>
+                        <div th:replace="employee/update-modal :: update"></div>
                     `;
-            });
-
-            $("#tbodyGais").append(element);
-            $('#table_id').DataTable();
-        }
+                }
+            }
+        ]
     });
 }
 
@@ -52,6 +82,8 @@ function getById(id) {
         type: 'GET',
         success: (res) => {
             console.log(res);
+            console.log(res.employeeName);
+            console.log(res.birthDate);
             setForm(res);
         }
     });
@@ -60,7 +92,7 @@ function getById(id) {
 function setForm(emp) {
     $("#employeeIdUpt").val(emp.employeeId);
     $("#employeeNameUpt").val(emp.employeeName);
-    $("#birthDateUpt").val(emp.birthDate);
+    $("#birthDateUpt").val(moment(emp.birthDate).format('YYYY[-]MM[-]DD'));
     $("#genderUpt").val(emp.gender);
     $("#emailUpt").val(emp.email);
 }
@@ -82,12 +114,15 @@ function createEmployee() {
         data: JSON.stringify(employee),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        error: function (errrrrr) {
-            setInterval('location.reload()', 1000);
-        },
         success: (res) => {
+            createSuccessAlert();
             console.log("Success");
-            setInterval('location.reload()', 1000);
+            table.ajax.reload();
+            $("#exampleModalLong").modal("hide");
+            document.getElementById("createForm").reset();
+        },
+        error: function (err) {
+            errorAlert();
         }
     });
 }
@@ -111,20 +146,67 @@ function updateEmployee(){
         dataType: "json",
         success: (res) => {
             console.log("Success");
-            setInterval('location.reload()', 1000);
+            table.ajax.reload();
+            updateSuccessAlert();
+            $("#exampleModalLongUpdate").modal("hide");
+        },
+        error: function (err) {
+            errorAlert();
         }
     });
 }
 
 //DELETE EMPLOYEE
 function deleteEmployee(id) {
-    console.log(id);
     $.ajax({
         url: `/employee/${id}`,
         type: 'DELETE',
         success: (res) => {
-            console.log(id);
-            setInterval('location.reload()', 1000);
+            table.ajax.reload();
+            deleteSuccessAlert();
         }
+    });
+}
+
+//LOGIN BUTTON
+function login() {
+    auth = {
+        userName: $("#userName").val(),
+        userPassword: $("#userPassword").val()
+    };
+    console.log(auth);
+    
+    $.ajax({
+        url: `/login`,
+        type: 'POST',
+        data: JSON.stringify(auth),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: (res) => {
+            console.log(res);
+            if (res===true) {
+            loginSuccess();
+            console.log("Success");
+            window.location.replace("/dashboard");
+            } else {
+            errorAlert();
+            window.location.replace("/login?error");
+            }
+        },
+        error: function (err) {
+            errorAlert();
+            window.location.replace("/login?error");
+        }
+    });
+}
+
+//FORM VALIDATION
+function validationForm(action) {
+    var forms = document.getElementsByClassName('needs-validation');
+    var validation = Array.prototype.filter.call(forms, function (form) {
+        if (form.checkValidity()) {
+            action();
+        }
+        form.classList.add('was-validated');
     });
 }
