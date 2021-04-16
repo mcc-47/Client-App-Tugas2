@@ -1,32 +1,15 @@
 let contact = new Object();
 let table = null;
-
-$(document).ready(function () {
-    'use strict';
-    window.addEventListener('load', function () {
-// Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-// Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function (form) {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
-});
+let id = 0;
 
 $(document).ready(() => {
     getAll();
-
-    $("form").submit(e => {
+    $("#formModal").submit((e) => {
         e.preventDefault();
-        create();
+        formValidation(this.id ? update : create);
     });
 });
+
 
 function getAll() {
     table = $('#contactTable').DataTable({
@@ -69,6 +52,7 @@ function getAll() {
 }
 
 function getById(id) {
+    this.id = id;
     $.ajax({
         url: `/contact/${id}`,
         type: 'GET',
@@ -84,22 +68,21 @@ function create() {
         phone: $("#phone").val(),
         linkedin: $("#linkedin").val()
     };
-    console.log("ini create")
 
-//    $.ajax({
-//        url: "/contact",
-//        type: 'POST',
-//        contentType: 'application/json',
-//        data: JSON.stringify(contact),
-//        success: (res) => {
-//            table.ajax.reload();
-//            successAlert("Contact Created");
-//            $("#contactModal").modal("hide");
-//        },
-//        error: (err) => {
-//            errorAlert("Contact Failed Created");
-//        }
-//    });
+    $.ajax({
+        url: "/contact",
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(contact),
+        success: (res) => {
+            table.ajax.reload();
+            successAlert("Contact Created");
+            $("#contactModal").modal("hide");
+        },
+        error: (err) => {
+            errorAlert("Contact Failed Created");
+        }
+    });
 }
 
 function update(id) {
@@ -110,7 +93,7 @@ function update(id) {
     };
 
     $.ajax({
-        url: `/contact/${id}`,
+        url: `/contact/${this.id}`,
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify(contact),
@@ -128,7 +111,7 @@ function update(id) {
 function deleteById(id) {
     questionAlert("Are you sure?", "Do you want to delete this data?", () => {
         $.ajax({
-            url: `/contact/${id}`,
+            url: `/contact/${this.id}`,
             type: 'DELETE',
             success: (res) => {
                 successAlert("Contact Deleted");
@@ -143,7 +126,12 @@ function setForm(data) {
     $("#linkedin").val(data.linkedin);
 }
 
-
+function clearForm() {
+    idContact = 0;
+    $("#contactId").val("");
+    $("#phone").val("");
+    $("#linkedin").val("");
+}
 
 $(document).ready(function () {
     $("#loginForm").click(function () { // hides all element H1
