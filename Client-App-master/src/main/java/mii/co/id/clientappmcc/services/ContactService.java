@@ -29,7 +29,7 @@ public class ContactService {
 
     @Value("${api.url}/api/contacts")
     private String url;
-    
+
     public List<Contact> getAll() {
         ResponseEntity<List<Contact>> response = restTemplate
                 .exchange(url, HttpMethod.GET, new HttpEntity<>(RequestFormat.createHeaders()),
@@ -43,13 +43,22 @@ public class ContactService {
         return restTemplate.getForEntity(url + "/" + id, Contact.class).getBody();
     }
 
-    public void updateById(Integer id, Contact contact) {
+    public Contact create(Contact contact) {
         HttpEntity entity = new HttpEntity(contact, RequestFormat.createHeaders());
-        ResponseEntity<Contact> res = restTemplate.exchange(url + "/" + id, HttpMethod.PUT, entity, Contact.class);
+        ResponseEntity<Contact> res = restTemplate.exchange(url, HttpMethod.POST, entity, Contact.class);
+
+        return res.getBody();
     }
 
-    public void create(Contact contact) {
-        HttpEntity entity = new HttpEntity(contact,RequestFormat.createHeaders());
-        ResponseEntity<Contact> res = restTemplate.exchange(url, HttpMethod.POST, entity, Contact.class);
+    public Contact updateById(Integer id, Contact contact) {
+        HttpEntity entity = new HttpEntity(contact, RequestFormat.createHeaders());
+        ResponseEntity<Contact> res = restTemplate.exchange(url + "/" + id, HttpMethod.PUT, entity, Contact.class);
+        
+        return res.getBody();
+    }
+
+    public Contact delete(Integer id) {
+        ResponseEntity<Contact> res = restTemplate.exchange(url + "/" + id, HttpMethod.DELETE, null, Contact.class);
+        return res.getBody();
     }
 }

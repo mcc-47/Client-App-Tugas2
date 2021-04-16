@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  *
- * @author WAHYUK
+ * @author William Yangjaya
  */
 @Configuration
 public class RestTemplateConfig {

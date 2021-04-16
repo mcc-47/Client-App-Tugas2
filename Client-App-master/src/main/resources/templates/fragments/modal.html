@@ -1,12 +1,5 @@
-<div th:fragment="create_modal">
-    <div class="container d-flex justify-content-center align-items-center">
-
-        <button type="button" sec:authorize="hasRole('ADMIN')" class="btn btn-primary" data-toggle="modal" data-target="#form">
-            <i class="fa fa-3x fa-plus-circle"></i>
-        </button>
-    </div>
-
-    <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div th:fragment="modal">
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header border-bottom-0">
@@ -16,10 +9,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form th:action="@{/contact/new}" method="post" class="needs-validation" novalidate>
+                    <form id="formModal" action="#" method="post" class="needs-validation" novalidate>
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="tel" name="phone" class="form-control phone" aria-describedby="phoneHelp" placeholder="Enter your phone number" required>
+                            <input type="tel" id="phone" class="form-control" aria-describedby="phoneHelp" placeholder="Enter your phone number" required>
                             <small id="phoneHelp" class="form-text text-muted">Your information is safe with us.</small>
                             <div class="invalid-feedback" style="font-size: 12">
                                 Please input your phone number
@@ -27,13 +20,13 @@
                         </div>
                         <div class="form-group">
                             <label for="linkedin">LinkedIn</label>
-                            <input type="text" name="linkedin" class="form-control linkedin" placeholder="Enter your LinkedIn" required>
+                            <input type="text" id="linkedin" class="form-control" placeholder="Enter your LinkedIn" required>
                             <div class="invalid-feedback" style="font-size: 12">
                                 Please input your LinkedIn
                             </div>
                         </div>
                         <div class="modal-footer border-top-0 d-flex justify-content-center">
-                            <button id='insertForm' type="submit" class="btn btn-success">Submit</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </form>
                 </div>

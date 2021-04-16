@@ -11,10 +11,12 @@ import mii.co.id.clientappmcc.services.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,45 +25,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Fadel
  */
 @Controller
-@RequestMapping("/contact")
+@RequestMapping("contact")
 public class ContactController {
 
     @Autowired
     ContactService contactService;
-    
+
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("contacts", contactService.getAll());
         return "index";
     }
-        
+
     @GetMapping("/get-all")
-    public @ResponseBody List<Contact> getAllProcess() {
+    public @ResponseBody
+    List<Contact> getAllProcess() {
         return contactService.getAll();
     }
-    
+
     @GetMapping("/{id}")
-    public @ResponseBody Contact getById(@PathVariable("id") Integer id) {
+    public @ResponseBody
+    Contact getById(@PathVariable("id") Integer id) {
         return contactService.getById(id);
     }
 
-    @GetMapping("/new")
-    public String addForm(Model model) {
-        Contact contact = new Contact();
-        model.addAttribute("contact", contact);
-        return "index-form";
+    @PostMapping
+    public @ResponseBody
+    Contact create(@RequestBody Contact contact) {
+        return contactService.create(contact);
     }
 
-    @PostMapping("/new")
-    public String add(@ModelAttribute("contact") Contact contact) {
-        contactService.create(contact);
-        return "redirect:/contact";
+    @PutMapping("/{id}")
+    public @ResponseBody
+    Contact update(@PathVariable("id") Integer id, @RequestBody Contact contact) {
+        return contactService.updateById(id, contact);
     }
 
-    @PostMapping("/update/{id}")
-    public String update(@PathVariable("id") Integer id, @ModelAttribute("contact") Contact contact) {
-        contactService.updateById(id, contact);
-        return "redirect:/contact";
+    @DeleteMapping("/{id}")
+    public Contact delete(@PathVariable("id") Integer id) {
+        return contactService.delete(id);
     }
 
 }
