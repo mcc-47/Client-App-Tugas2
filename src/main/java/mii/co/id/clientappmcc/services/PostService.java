@@ -43,9 +43,10 @@ public class PostService {
         return restTemplate.getForEntity(url + "/" + id, Post.class).getBody();
     }
     
-    public void update(Integer id, Post post) {
+    public Post update(Integer id, Post post) {
         HttpEntity entity = new HttpEntity(post, RequestFormat.createHeader());
         ResponseEntity<Post> res = restTemplate.exchange(url + "/" + id, HttpMethod.PUT, entity, Post.class);
+        return res.getBody();
     }
     
     public Post create(Post post) {

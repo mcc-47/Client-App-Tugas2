@@ -1,12 +1,13 @@
 let post = new Object();
 let table = null;
+let id = 0;
 
 $(document).ready(() => {
     getAll();
-
-    $("form").submit(e => {
+    
+    $("#postForm").submit((e) => {
         e.preventDefault();
-        create();
+        formValidation(this.id ? update : create);
     });
 });
 
@@ -51,6 +52,7 @@ function getAll() {
 }
 
 function getById(id) {
+    this.id = id;
     $.ajax({
         url: `/post/${id}`,
         type: 'GET',
@@ -83,7 +85,7 @@ function create() {
     });
 }
 
-function update(id) {
+function update() {
     post = {
         title: $("#title").val(),
         userId: $("#userId").val(),
@@ -91,17 +93,17 @@ function update(id) {
     };
 
     $.ajax({
-        url: `/post/${id}`,
-        type: 'POST',
+        url: `/post/${this.id}`,
+        type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify(post),
         success: (res) => {
             table.ajax.reload();
-            successAlert("Employee Created");
+            successAlert("Employee updated");
             $("#postModal").modal("hide");
         },
         error: (err) => {
-            errorAlert("Employee failed created");
+            errorAlert("Employee failed updated");
         }
     });
 }
@@ -113,6 +115,9 @@ function deleteById(id) {
             type: 'DELETE',
             success: (res) => {
                 successAlert("Post deleted");
+            },
+            error: (err) => {
+                errorAlert("Employee failed deleted");
             }
         });
     });
@@ -122,4 +127,11 @@ function setForm(data) {
     $("#userId").val(data.userId);
     $("#title").val(data.title);
     $("#body").val(data.body);
+}
+
+function resetForm() {
+    this.id = 0;
+    $("#userId").val("");
+    $("#title").val("");
+    $("#body").val("");
 }
