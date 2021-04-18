@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import mii.co.id.clientappmcc.models.AuthRequest;
 import mii.co.id.clientappmcc.models.AuthResponse;
-import mii.co.id.clientappmcc.models.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -47,13 +46,10 @@ public class AuthService {
                             new ParameterizedTypeReference<AuthResponse>() {
                     });
             setAuthorization(req.getUserName(), req.getPassword(), res.getBody().getAuthorities());
-//            this.empName = res.getBody().getEmployeeName();
             isLoginSuccess = true;
         } catch (RestClientException e) {
             e.printStackTrace();
         }
-        
-
         return isLoginSuccess;
     }
 

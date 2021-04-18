@@ -25,7 +25,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                 .antMatchers("/dashboard").authenticated()
                 .antMatchers("/district", "/district/**").hasAnyRole("TRAINEE","TRAINER")
-//                .antMatchers("/district/**").hasRole("TRAINER")
                 .and()
                 .formLogin()
                 .loginPage("/login").loginProcessingUrl("/login")

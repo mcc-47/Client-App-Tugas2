@@ -8,7 +8,6 @@ package mii.co.id.clientappmcc.services;
 import java.util.List;
 import mii.co.id.clientappmcc.config.RequestFormat;
 import mii.co.id.clientappmcc.models.District;
-import mii.co.id.clientappmcc.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;

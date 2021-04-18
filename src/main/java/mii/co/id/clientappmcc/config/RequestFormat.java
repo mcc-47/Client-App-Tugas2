@@ -34,20 +34,4 @@ public class RequestFormat {
             }
         };
     }
-
-//    public static HttpHeaders createHeaders() {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//
-//        return new HttpHeaders() {
-//            {
-//                String auth = authentication.getName() + ":" + authentication.getCredentials().toString();
-//                byte[] encodeAuth = Base64.encodeBase64(
-//                        auth.getBytes(Charset.forName("US-ASCII")));
-//
-//                String authHeader = "Basic " + new String(encodeAuth);
-//                set("Authorization", authHeader);
-//
-//            }
-//        };
-//    }
 }

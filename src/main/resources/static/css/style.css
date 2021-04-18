@@ -26,7 +26,6 @@
 }
 
 .sidenav a:hover {
-    /*color: #f1f1f1;*/
     color: #edf6f9;
     background-color: #264653;
     transition: 0.3s ease;
@@ -103,7 +102,6 @@ hr {
 
 table {
     counter-reset: tableCount;     
-    /*border: 2px solid #264653;*/
 }
 .counterCell::after {              
     content: counter(tableCount); 

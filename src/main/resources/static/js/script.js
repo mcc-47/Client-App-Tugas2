@@ -1,12 +1,25 @@
-//LOGIN
-//$(document).ready(() => {
-//    $("#loginForm").submit(e => {
-//        e.preventDefault();
-//        validationForm(login);
-//    })
-//})
+//VALIDATION FOR LOGIN
+(function () {
+  'use strict'
 
-//VALIDATING FORM
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.form-signin')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+//VALIDATING FORM TEMPLATE
 function validationForm(action) {
     var forms = document.querySelectorAll('.needs-validation');
 
@@ -20,24 +33,29 @@ function validationForm(action) {
                 });
 }
 
-//Modal
+//MODAL
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus');
 });
 
-//ALERT
-function login() {
-    $.ajax({
-        url:`/login`,
-        type: "GET",
-        success:(res) => {
-            alertSmall('success', 'Login Success');
+//ALERT TEMPLATE CONFIRM
+function alertConfirm(titleText, bodyText, iconType, confirmText, actionIfConfirm) {
+    Swal.fire({
+        title: titleText,
+        text: bodyText,
+        icon: iconType,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: confirmText
+    }).then((result) => {
+        if (result.isConfirmed) {
+            actionIfConfirm();
         }
-        
     });
-//    console.log('login')
 }
 
+//FOR ALERT
 const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -50,64 +68,26 @@ const Toast = Swal.mixin({
     }
 });
 
-
-//ALERT LOGOUT
-function alertLogout() {
-    event.preventDefault();
-    Swal.fire({
-        title: 'Apakah Anda yakin untuk Logout ?',
-        text: "Anda Harus login Kembali untuk Melihat User Managament nantinya",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Logout'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Toast.fire({
-                icon: 'success',
-                title: 'Logout Success'
-
-            });
-            setTimeout(function () {
-                window.location.href = "/logout";
-            }, 1500);
-        }
-    });
-}
-//
-//function insertAlert() {
-//    Toast.fire({
-//                icon: 'success',
-//                title: 'Insert District Success!'
-//            })
-//}
-
-//ALERT TEMPLATE CONFIRM
-function alertConfirm(titleText, bodyText, iconType, confirmText, iconIfConfirm, titleIfConfirm, actionIfConfirm) {
-    Swal.fire({
-        title: titleText,
-        text: bodyText,
-        icon: iconType,
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: confirmText
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Toast.fire({
-                icon: iconIfConfirm,
-                title: titleIfConfirm
-            });
-        actionIfConfirm();
-        }
-    });
-}
-
 //ALERT TEMPLATE SMALL ALERT
 function alertSmall(iconType, titleText) {
     Toast.fire({
                 icon: iconType,
                 title: titleText
             });
+}
+
+//LOGOUT
+function logout() {
+    alertConfirm("Are You Sure Want to Logout?", "", "warning", "Yes", () => {
+        $.ajax({
+            url: `/logout`,
+            type: 'GET',
+            success: () => {
+                alertSmall("success", "Logout Success");
+                setTimeout(function () {
+                    window.location.href = "/logout";
+                }, 1500);
+            }
+        });
+    });
 }

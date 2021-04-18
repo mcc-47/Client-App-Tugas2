@@ -53,6 +53,12 @@ function getAll() {
             }
         ]
     });
+    
+    table.on( 'order.dt search.dt', function () {
+        table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
 }
 
 function getById(id) {
@@ -65,29 +71,21 @@ function getById(id) {
     });
 }
 
-function setForm(data) {
-    $('#districtIdUpdate').val(data.districtId);
-    $('#kabUpdate').val(data.kab);
-    $('#districtNameUpdate').val(data.districtName);
-    $('#provinceNameUpdate').val(data.provinceId.provinceName);
-}
-
 function insert() {
     $.ajax({
         url:'/district/insert',
         type: "POST",
         data: JSON.stringify({districtId: $('#districtIdInsert').val(), kab: $('#kabInsert').val(), 
-            districtName: $('#districtNameInsert').val(), provinceId: {provinceId: $('#provinceIdInsert').val()
+            districtName: $('#districtNameInsert').val(), provinceId: {provinceId: $('#provinceNameInsert').val()
         }}),
         contentType: 'application/json; charset=UTF-8',
-        success: (res) => {
-            console.log(res);
+        success: () => {
             table.ajax.reload();
             alertSmall('success', 'Insert Success');
             $('#inputModal').modal('hide');
+            resetForm();
         },
-        error: (err) => {
-            console.log(err);
+        error: () => {
             alertSmall('error', 'Insert Failed');
         }
     });
@@ -100,65 +98,53 @@ function update() {
         data: JSON.stringify({districtId: $('#districtIdUpdate').val(), kab: $('#kabUpdate').val(), districtName: $('#districtNameUpdate').val(), provinceId: {provinceId: $('#provinceNameUpdate').val()
         }}),
         contentType: 'application/json; charset=UTF-8',
-        success: (res) => {
-            console.log(res);
+        success: () => {
             table.ajax.reload();
             alertSmall('success', 'Edit Success');
             $('#editModal').modal('hide');
+            toggleValidation();
         },
-        error: (err) => {
-            console.log(err);
+        error: () => {
             alertSmall('error', 'Edit Failed');
         }
     });
 }
 
 function del(id) {
-    alertConfirm('Are you sure want to delete this?', '', 'warning', 'Yes, delete it', 'success', 'Delete Success',
+    alertConfirm('Are you sure want to delete this?', '', 'warning', 'Yes, delete it', 
         function() {$.ajax({
         url:`/district/delete/${id}`,
         type: "DELETE",
-        success: (res) => {
-            console.log(res);
+        success: () => {
             table.ajax.reload();
             alertSmall('success', 'Delete Success');
         },
-        error: (err) => {
-            console.log(err);
+        error: () => {
             alertSmall('error', 'Delete Failed');
         }
     });
     });
 }
 
-//
-//function get() {
-//    $.ajax({
-//        url: "/district/get-all",
-//        type:"GET",
-//        success:(res) => {
-//            let element='';
-//            res.forEach(data => {
-//                element = element + `<tr>
-//                    <td class="counterCell"></td>
-//                    <td>${data.kab}</td>
-//                    <td>${data.districtName}</td>
-//                    <td>${data.provinceId.provinceName}</td>
-//                    <td sec:authorize="hasRole('TRAINER')">
-//                        <button type="button" class="btn btn-warning fas fa-edit mr-2 p-2" 
-//                                    data-toggle="modal" data-target="#edit-district"
-//                                    onclick="getById('${data.districtId}')"
-//                                    >Modal</button>
-//                        <button class='btn btn-sm btn-danger'>
-//                            <i class='fas fa-sm fa-trash'></i>
-//                        </button>
-//                        <button type="button" class="btn btn-danger fas fa-trash-alt mr-2 p-2" 
-//                                    onclick="del('${data.districtId}')"></button>
-//                    </td>
-//                    `;
-//            });
-//            $("table tbody").append(element);
-//            $('#myTable').DataTable();
-//        }
-//    });
-//}
+function setForm(data) {
+    $('#districtIdUpdate').val(data.districtId);
+    $('#kabUpdate').val(data.kab);
+    $('#districtNameUpdate').val(data.districtName);
+    $('#provinceNameUpdate').val(data.provinceId.provinceId);
+}
+
+function resetForm() {
+    $('#districtIdInsert').val("");
+    $('#kabInsert').val("");
+    $('#districtNameInsert').val("");
+    $('#provinceNameInsert').val("");
+}
+
+//FUNCTION TO CLEAR VALIDATION AFTER CLOSING MODAL
+function toggleValidation() {
+    var element = document.querySelector(".was-validated");
+    
+    if(element!==null){
+        element.classList.toggle("was-validated");
+    }
+}

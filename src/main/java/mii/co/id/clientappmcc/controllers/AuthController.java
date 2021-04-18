@@ -16,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -27,13 +26,7 @@ public class AuthController {
 
     @Autowired
     AuthService authService;
-
-//    @GetMapping("/login")
-//    public String loginPage(Model model) {
-//        AuthRequest auth = new AuthRequest();
-//        model.addAttribute("auth", auth);
-//        return "login";
-//    }
+    
     @GetMapping("/login")
     public String loginPage(Model model) {
         Authentication authenticated = SecurityContextHolder.getContext().getAuthentication();

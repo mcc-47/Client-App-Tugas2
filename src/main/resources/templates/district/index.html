@@ -47,12 +47,9 @@ and open the template in the editor.
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Insert New District</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body">
-                            <form class="needs-validation m-4" id="inputForm" novalidate>
+                            <form class="needs-validation m-4 districtForm" id="inputForm" novalidate>
                                 <input type="hidden" class="form-control" id="districtIdInsert" value="">
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Pilih Kabupaten/Kota : </label>
@@ -75,7 +72,7 @@ and open the template in the editor.
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Nama Provinsi</label>
-                                    <select class="form-control" id="provinceIdInsert" required>
+                                    <select class="form-control" id="provinceNameInsert" required>
                                         <option value="" selected>--Pilih Provinsi--</option>
                                         <option th:each="id:${provinces}" th:value="${id.provinceId}" th:text="${id.provinceName}"></option>
                                     </select>
@@ -84,7 +81,7 @@ and open the template in the editor.
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="resetForm(); toggleValidation()">Close</button>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
@@ -99,12 +96,9 @@ and open the template in the editor.
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body">
-                            <form class="needs-validation m-4" id="editForm" novalidate>
+                            <form class="needs-validation m-4 districtForm" id="editForm" novalidate>
                                 <input type="hidden" class="form-control" id="districtIdUpdate">
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Pilih Kabupaten/Kota : </label>
