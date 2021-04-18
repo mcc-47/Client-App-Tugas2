@@ -5,7 +5,6 @@ $(document).ready(() => {
     $("#loginForm").submit(e => {
         e.preventDefault();
         validationForm(login);
-//        login();
     });
     
     getAll();
@@ -13,13 +12,11 @@ $(document).ready(() => {
     $("#createForm").submit(e => {
         e.preventDefault();
         validationForm(createEmployee);
-//        createEmployee();
     });
     
     $("#update").submit(e => {
         e.preventDefault();
         validationForm(updateEmployee);
-//        updateEmployee();
     });
     
 });
@@ -165,48 +162,5 @@ function deleteEmployee(id) {
             table.ajax.reload();
             deleteSuccessAlert();
         }
-    });
-}
-
-//LOGIN BUTTON
-function login() {
-    auth = {
-        userName: $("#userName").val(),
-        userPassword: $("#userPassword").val()
-    };
-    console.log(auth);
-    
-    $.ajax({
-        url: `/login`,
-        type: 'POST',
-        data: JSON.stringify(auth),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: (res) => {
-            console.log(res);
-            if (res===true) {
-            loginSuccess();
-            console.log("Success");
-            window.location.replace("/dashboard");
-            } else {
-            errorAlert();
-            window.location.replace("/login?error");
-            }
-        },
-        error: function (err) {
-            errorAlert();
-            window.location.replace("/login?error");
-        }
-    });
-}
-
-//FORM VALIDATION
-function validationForm(action) {
-    var forms = document.getElementsByClassName('needs-validation');
-    var validation = Array.prototype.filter.call(forms, function (form) {
-        if (form.checkValidity()) {
-            action();
-        }
-        form.classList.add('was-validated');
     });
 }
