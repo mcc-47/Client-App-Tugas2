@@ -1,23 +1,9 @@
- <div class="sidenav  " style="font-family: Grava" th:fragment="sidebar">
-            
-           
-            <div th:class="${#strings.contains(#httpServletRequest.requestURI,'/district')} ? 'active' :''" sec:authorize="hasRole('ADMIN')">
-                <a th:href="@{/district}" class="menu-link">District</a>
-            </div>
-             <div  th:class="${#strings.contains(#httpServletRequest.requestURI,'/province')} ? 'active' :''">
-                <a th:href="@{/province}" >Provinces</a>
-            </div>
-            
-<!--     <div class="dropdown">
-         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             Dropdown button
-         </button>
-         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-             <a class="dropdown-item" href="#">Action</a>
-             <a class="dropdown-item" href="#">Another action</a>
-             <a class="dropdown-item" href="#">Something else here</a>
-         </div>
-     </div>-->
-           
+<div class="sidenav  " style="font-family: Grava" th:fragment="sidebar">
 
-        </div>
+    <div th:class="${#strings.contains(#httpServletRequest.requestURI,'/district')} ? 'active' :''" sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{/district}" class="menu-link"><i class="fas fa-city mr-2"></i><span style="padding-left: 2px;float: right">Districts</span></a>
+    </div>
+    <div  th:class="${#strings.contains(#httpServletRequest.requestURI,'/province')} ? 'active' :''">
+        <a th:href="@{/province}" ><i class="fas fa-monument"></i><span style="padding-left: 8px">Provinces</span></a>
+    </div>
+</div>

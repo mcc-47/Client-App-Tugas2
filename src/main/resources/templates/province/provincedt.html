@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Provinces</title>
+    <div th:replace="layout/linkrel" :: linkrel></div>
+
+</head>
+<body>
+    <div class="content-wrapper">
+        <!-----------------------------------sidebar-->
+        <div th:replace="layout/sidebar" :: sidebar></div>
+        <!-----------------------------------header-->
+        <div th:replace="layout/header" :: header></div>
+        <!-----------------------------------main-->
+        <div class="main ">
+            <button type ="submit" class="btn btn-outline-primary mt-2 mb-2 " data-toggle="modal" data-target="#tambah1"><i class="fas fa-plus mr-2"></i>Add Data </button>
+            <!-------------------------------------------------------------------MODAL TAMBAH 1 FOR INSERT-->
+            <div id="tambah1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-dark text-white">
+                            <h5 class="modal-title" id="exampleModalLabel">Province Insert Form</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <form id="insertprovince" class="needs-validation" novalidate>
+
+                                <div class="form-group" >
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">Province ID </span>
+                                        </div>
+                                        <input type="number"  placeholder=" " id="provinceId1" name="provinceId1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"required>
+                                        <div class="invalid-feedback">
+                                            Please insert Province ID.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">Province Name </span>
+                                        </div>
+                                        <input type="text" placeholder=" " id="provinceName1" name="provinceName1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                        <div class="invalid-feedback">
+                                            Please insert Province Name.
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <button class="btn btn-primary" type="submit"><i class="fas fa-plus mr-2"></i>Submit</button>
+                                <a class="btn btn-warning" th:href="@{/province}" ><i class="fas fa-chevron-left mr-2"></i>Back</a>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <!-------------------------------------------------------------------END MODAL 1-->
+
+            <!-------------------------------------------------------------------MODAL TAMBAH 2 FOR EDIT-->
+            <div id="tambah2" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-dark text-white">
+                            <h5 class="modal-title" id="exampleModalLabel">Province Edit Form</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <form id="updateprovince" class="needs-validation" novalidate>
+                                <div class="form-group" >
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">Province ID </span>
+                                        </div>
+                                        <input type="number" placeholder=" " id="provinceId" name="districtId" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required >
+                                        <div class="invalid-feedback">
+                                            Please insert Province ID.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">Province Name </span>
+                                        </div>
+                                        <input type="text" placeholder=" " id="provinceName"  name="districtName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                        <div class="invalid-feedback">
+                                            Please insert Province Name.
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary" >Submit</button>
+                                <!--                                <button class="btn btn-primary" th:onclick="sukses()" type="submit"><i class="fas fa-plus mr-2"></i>Submit</button>-->
+                                <a class="btn btn-warning" th:href="@{/province}" ><i class="fas fa-chevron-left mr-2"></i>Back</a>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <!-------------------------------------------------------------------END MODAL 2-->
+
+            <table id="myTable" class="display mt-2">
+                <thead>
+                    <tr>
+
+                        <th scope="col">Province ID</th>
+                        <th scope="col">Province Name</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </div>
+        <!-----------------------------------footer-->
+        <div th:replace="layout/footer" :: footer></div>
+        <!-----------------------------------wrapper-->
+    </div>
+
+    <script type="text/javascript" charset="utf8" src="/js/js.js"></script>
+    <script th:src="@{/js/alert/index.js}"></script>
+    <script th:src="@{/js/province/index.js}"></script>
+
+</body>
+</html>

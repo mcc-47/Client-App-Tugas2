@@ -10,203 +10,58 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-       <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
     </head>
     <style>
         .body{
-            background-image: url("https://i.pinimg.com/originals/01/40/0d/01400d5bd1e834e0263e22396c10620f.jpg");
+            background-image: url("https://wallpaperaccess.com/full/658838.jpg");
             background-size : cover;
+            margin-top: 90px;
         }
-        
+
         .list{
-     
+
             height: 450px;
             background-color: transparent;     
             outline-style: solid;
-            outline-color: white;
-        }
-    </style>
+            outline-color: #ffffff;
+        }</style>
     <body class="body" >
         <div class="d-flex flex-wrap justify-content-center align-self-center ">
-        <div class="container col-2 mt-5 list">
-            <br>
-            
-            
-            <h1 class="text-center" style="color: white">Login Form</h1>
-            <small id="emailHelp" class="form-text  text-md" style="color: white">MCC-47</small>
-            <form th:action="@{/login}"  id="test" method="post" th:object="${auth}"  class="needs-validation " novalidate>
-                <div class="form-group">
-                    <p th:text="${param.error} ? 'Username or password incorrect !' : '' " class="text-danger" role="alert"></p>
-                    <p th:text="${param.logout} ? 'You have been logged out' : ''" class="text-warning" role="alert"></p>
-                    
-                    <label for="exampleInputEmail1 " style="color: white">Username</label>
-                    <input type="text" class="form-control " id="validationCustom01" placeholder="Username" aria-describedby="emailHelp"  th:field="*{userName}"  required >
-                    <div class="invalid-feedback" style="color: white" >
-                        <b>Please input a username.</b>
+            <div class="container col-2 mt-5 list">
+                <br>
+
+
+                <h1 class="text-center" style="color: #ffffff">LOGIN FORM</h1>
+                <small id="emailHelp" class="form-text  text-md" style="color:  #ffffff">MCC-47</small>
+                <form th:action="@{/login}"method="post" th:object="${auth}"  class="needs-validation " novalidate>
+                    <div class="form-group">
+                        <br>
+                        <p th:text="${param.error} ? 'Username or password incorrect !' : '' " class="text-warning" role="alert"></p>
+                        <p th:text="${param.logout} ? 'You have been logged out !' : ''" class="text-warning" role="alert"></p>
+
+                        <label for="exampleInputEmail1 " style="color:  #ffffff">Username</label>
+                        <input type="text" class="form-control " id="username" placeholder="Username" aria-describedby="emailHelp"  th:field="*{userName}"  required >
+                        <div class="invalid-feedback" style="color: white" >
+                            <b>Please input a username.</b>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1" style="color: white">Password</label>
-                    <input type="password" class="form-control"   placeholder="Password" id="validationCustom02" th:field="*{userPassword}" required >
-                    <div class="invalid-feedback" style="color: white">
-                        <b>Please input a password.</b>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1" style="color:  #ffffff">Password</label>
+                        <input type="password" class="form-control"   placeholder="Password" id="password" th:field="*{userPassword}"  required >
+                        <div class="invalid-feedback" style="color: white">
+                            <b>Please input a password.</b>
+                        </div>
                     </div>
-                </div>
-                
-                <button type="submit" id="submit" class="btn btn-info container " >Submit</button>
-            </form>
+
+                    <button type="submit"  id="loginForm" class="btn btn-info container " >Submit</button>
+                </form>
             </div>
         </div>
-        </div>
-<!--        <h1>Login Form</h1>-->
+    </div>
+    <script type="text/javascript" charset="utf8" src="/js/login.js"></script>
+</body>
 
-        <!--        <p th:text="${param.error} ? 'Username or password incorrect' : ''"></p>
-                <p th:text="${param.logout} ? 'You have been logged out' : ''"></p>
-                <form th:action="@{/login}" method="post" th:object="${auth}">
-                    <label>Username</label>
-                    <input type="text" th:field="*{userName}"/><br>
-
-                    <label>Password</label>
-                    <input type="password" th:field="*{userPassword}"/><br>
-                    <button type="submit">Login</button>
-                </form>-->
-        
-        
-        <script>
-            (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-           
-            var forms = document.getElementsByClassName('needs-validation');
-            
-            var validation = Array.prototype.filter.call(forms, function(form) {
-           form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false ) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                   const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                  })
-
-                  Toast.fire({
-                    icon: 'error',
-                    title: 'Signed in unsuccessfully'
-                  })
-             }else {
-                 
-                form.classList.add('was-validated');
-                   const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 8000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                  })
-
-                  Toast.fire({
-                    icon: 'success',
-                    title: 'Signed in successfully'
-                  })
-                  
-            }}, false);
-            });
-            }, false);
-            })();
-            //////////////
-//            function testsign(){
-//                (function() {
-//            'use strict';
-//            window.addEventListener('load', function() {
-//           
-//            var forms = document.getElementsByClassName('needs-validation');
-//            
-//            var validation = Array.prototype.filter.call(forms, function(form) {
-//           form.addEventListener('submit', function (event) {
-//                if (form.checkValidity() === false ) {
-//                    event.preventDefault();
-//                    event.stopPropagation();
-//                   const Toast = Swal.mixin({
-//                    toast: true,
-//                    position: 'top-end',
-//                    showConfirmButton: false,
-//                    timer: 3000,
-//                    timerProgressBar: true,
-//                    didOpen: (toast) => {
-//                      toast.addEventListener('mouseenter', Swal.stopTimer)
-//                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-//                    }
-//                  })
-//
-//                  Toast.fire({
-//                    icon: 'error',
-//                    title: 'Signed in unsuccessfully'
-//                  })
-//             }else {
-//                 
-//                form.classList.add('was-validated');
-//                   const Toast = Swal.mixin({
-//                    toast: true,
-//                    position: 'top-end',
-//                    showConfirmButton: false,
-//                    timer: 8000,
-//                    timerProgressBar: true,
-//                    didOpen: (toast) => {
-//                      toast.addEventListener('mouseenter', Swal.stopTimer)
-//                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-//                    }
-//                  })
-//
-//                  Toast.fire({
-//                    icon: 'success',
-//                    title: 'Signed in successfully'
-//                  })
-//                  
-//            }}, false);
-//            });
-//            }, false);
-//            })();
-//            }
-            //////////
-//           function sign(){
-//               const Toast = Swal.mixin({
-//                toast: true,
-//                position: 'top-end',
-//                showConfirmButton: false,
-//                timer: 80000,
-//                timerProgressBar: true,
-//                didOpen: (toast) => {
-//                  toast.addEventListener('mouseenter', Swal.stopTimer)
-//                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-//                }
-//              })
-//
-//              Toast.fire({
-//                icon: 'success',
-//                title: 'Signed in successfully'
-//              })
-//           }
-           ///////////////
-           
-       
-            
-           
-            
-            
-            
-           
-        </script>
-    </body>
-    
 </html>

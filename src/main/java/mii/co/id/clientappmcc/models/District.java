@@ -14,6 +14,7 @@ import lombok.Data;
  */
 @Data
 public class District {
+
     private Integer districtId;
     private String kab;
     private String districtName;
@@ -28,9 +29,5 @@ public class District {
         this.districtName = district.getDistrictName();
         this.provinceId = district.getProvinceId();
     }
-    
-    
-    
-    
-    
+
 }

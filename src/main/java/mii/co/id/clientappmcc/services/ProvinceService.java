@@ -29,16 +29,7 @@ public class ProvinceService {
     
     @Value("${api.url}/province")
     private String url;
-    
-    
-//    public List<Province> getAll() {
-//        ResponseEntity<List<Province>> response = restTemplate
-//                .exchange(url, HttpMethod.GET, null,
-//                        new ParameterizedTypeReference<List<Province>>() {
-//                });
-//
-//        return response.getBody();
-//    }
+   
     
    public List<Province> getAll() {
         ResponseEntity<List<Province>> response = restTemplate
@@ -49,25 +40,28 @@ public class ProvinceService {
         return response.getBody();
     }
     
+    public Province getById(Integer id) {
+        return restTemplate.getForEntity(url + "/" + id, Province.class).getBody();
+    }
+    
     public void create(Province province) {
         HttpEntity entity = new HttpEntity(province);
         ResponseEntity<String> res = restTemplate.exchange(url+ "/insert", HttpMethod.POST, entity,
                 new ParameterizedTypeReference<String>(){});
     }
     
-    public void delete(Integer id) {
-//        ResponseEntity<District> res = restTemplate.exchange(url + "/delete/" + id, HttpMethod.DELETE, null, District.class);
-        restTemplate.delete(url+"/delete/"+id,Province.class);
-    }
-    
-     public Province getById(Integer id) {
-        return restTemplate.getForEntity(url + "/" + id, Province.class).getBody();
-    }
-     
-       public void update(Integer id, Province province) {
+     public void update(Integer id, Province province) {
         HttpEntity entity = new HttpEntity(province);
         ResponseEntity<String> res = restTemplate.exchange(url + "/update/" +id, HttpMethod.PUT,
                 entity,new ParameterizedTypeReference<String>() {
-});
+        });
     }
+    
+    public void delete(Integer id) {
+        restTemplate.delete(url+"/delete/"+id,Province.class);
+    }
+    
+    
+     
+      
 }

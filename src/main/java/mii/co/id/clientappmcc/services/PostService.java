@@ -22,25 +22,26 @@ import org.springframework.web.client.RestTemplate;
  */
 @Service
 public class PostService {
-    
+
     @Autowired
     private RestTemplate restTemplate;
-    
+
     @Value("${api.url}/posts")
     private String url;
-    
+
     public List<Post> getAll() {
-        ResponseEntity<List<Post>> response =  restTemplate
-                .exchange(url, HttpMethod.GET, null, 
-                new ParameterizedTypeReference<List<Post>>() {});
-        
+        ResponseEntity<List<Post>> response = restTemplate
+                .exchange(url, HttpMethod.GET, null,
+                        new ParameterizedTypeReference<List<Post>>() {
+                });
+
         return response.getBody();
     }
-    
+
     public Post getById(Integer id) {
         return restTemplate.getForEntity(url + "/" + id, Post.class).getBody();
     }
-    
+
     public void update(Integer id, Post post) {
         HttpEntity entity = new HttpEntity(post);
         ResponseEntity<Post> res = restTemplate.exchange(url + "/" + id, HttpMethod.PUT, entity, Post.class);

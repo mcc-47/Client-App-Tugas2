@@ -5,6 +5,7 @@
  */
 package mii.co.id.clientappmcc.controllers;
 
+import java.util.List;
 import mii.co.id.clientappmcc.models.District;
 import mii.co.id.clientappmcc.services.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -25,63 +30,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("district")
 public class DistrictController {
-     @Autowired
+     
+    @Autowired
      private DistrictService districtService;
-    
+    /*----------------------------TEMPLATE-----------------------------------------------*/
     @GetMapping
     public String getAll(Model model) {
-//        District district = new District();
-//        model.addAttribute("district", district);
-         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username",authentication.getPrincipal().toString());
         model.addAttribute("district", districtService.getAll());//list dari getall
-        return "districtdt";//ke html
+        return "district/districtdt";//ke html
     }
     
-    @GetMapping("/nyoba")
-    public String nyobaJs(Model model) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username", authentication.getPrincipal().toString());
-
-        return "nyobajs";//ke html
+    /*----------------------------PROSES-----------------------------------------------*/  
+    @GetMapping("/get-all")
+    public @ResponseBody List<District> getAllProcess() {
+        return districtService.getAll();
     }
     
     @GetMapping("/{id}")
-    public String getById(@PathVariable("id") Integer id, Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username",authentication.getPrincipal().toString());
-        model.addAttribute("district", districtService.getById(id));
-        return "district-edit-new-2";
+    public @ResponseBody District getById(@PathVariable("id") Integer id) {
+        return districtService.getById(id);
     }
     
-    @PostMapping("/update/{id}")
-    public String update(@PathVariable("id") Integer id, @ModelAttribute("district") District district) {
+    @PostMapping("/add")
+    public @ResponseBody District create(@RequestBody District district) {
+        districtService.create(district);
+        return district;
+    }
+    
+    @PutMapping("/{id}")
+    public @ResponseBody District update (@PathVariable("id") Integer id,@RequestBody District district){
+        System.out.println(district);
         districtService.update(id, district);
-        return "redirect:/district";
+        return district;
     }
     
-    
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id) {
+    @DeleteMapping("/{id}")
+    public @ResponseBody String delete(@PathVariable("id") Integer id) {
         districtService.delete(id);
          return "redirect:/district";
     }
     
-    @GetMapping("/add")
-    public String addForm(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username", authentication.getPrincipal().toString());
-        District district = new District();
-        model.addAttribute("district", district);
-        return "district-insert-new-2";
-    }
+     /*----------------------------BATAS-----------------------------------------------*/
+
     
-    @PostMapping("/add")
-    public String create(@ModelAttribute("district") District district) {
-        districtService.create(district);
-        return "redirect:/district";
-    }
+    
     
     
 }

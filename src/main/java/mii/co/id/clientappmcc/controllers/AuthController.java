@@ -23,9 +23,10 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class AuthController {
+
     @Autowired
     AuthService authService;
-    
+
     @GetMapping("/login")
     public String loginPage(Model model) {
         Authentication authenticated = SecurityContextHolder.getContext().getAuthentication();
@@ -33,13 +34,19 @@ public class AuthController {
             /* The user is logged in :) */
             return "redirect:/dashboard";
         }
-        
+
         AuthRequest auth = new AuthRequest();
         model.addAttribute("auth", auth);
         return "login";
     }
-   
-    
+
+    @GetMapping("/dashboard")
+    public String dashborad(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username", authentication.getPrincipal().toString());
+        return "dashboard";
+    }
+
     @PostMapping("/login")
     public String loginProcess(@ModelAttribute("auth") AuthRequest auth) {
         String redirectUrl = "";
@@ -53,11 +60,4 @@ public class AuthController {
         return redirectUrl;
     }
 
-    @GetMapping("/dashboard")
-    public String dashborad( Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username",authentication.getPrincipal().toString());
-        return "dashboard";
-    }
 }
-

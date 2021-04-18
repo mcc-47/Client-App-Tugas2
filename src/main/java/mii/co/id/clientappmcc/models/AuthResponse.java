@@ -14,6 +14,7 @@ import lombok.Data;
  */
 @Data
 public class AuthResponse {
+
     private String userName;
     private List<String> authorities;
 
@@ -22,10 +23,7 @@ public class AuthResponse {
         this.authorities = authorities;
     }
 
-  
     public AuthResponse() {
     }
-    
-    
-   
+
 }

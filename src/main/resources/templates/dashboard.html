@@ -7,18 +7,18 @@ and open the template in the editor.
 <html>
     <head>
         <title>Dashboard</title>
-        <div th:replace="layout/linkrel" :: linkrel></div>
-                
-    </head>
-    <body>
-        <div class="content-wrapper">
-            <!-----------------------------------sidebar-->
-             <div th:replace="layout/sidebar" :: sidebar></div>
-            <!-----------------------------------header-->
-            <div th:replace="layout/header" :: header></div>
+    <div th:replace="layout/linkrel" :: linkrel></div>
+
+</head>
+<body>
+    <div class="content-wrapper">
+        <!-----------------------------------sidebar-->
+        <div th:replace="layout/sidebar" :: sidebar></div>
+        <!-----------------------------------header-->
+        <div th:replace="layout/header" :: header></div>
         <!-----------------------------------main-->
         <div class="main ">            
-            
+
             <div class="jumbotron">
                 <h1 class="display-4">Hello, <span  th:text="*{username}"></span></h1>
                 <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
@@ -28,41 +28,13 @@ and open the template in the editor.
                 <p class="lead">
                     <a class="btn btn-info btn-lg" href="#" role="button">Halo</a>
                 </p>
-                
+
             </div>
 
         </div>
         <!-----------------------------------footer-->
-            <div th:replace="layout/footer" :: footer></div>
+        <div th:replace="layout/footer" :: footer></div>
         <!-----------------------------------wrapper-->
-    </div>
-   
-<!--    <div id="_domSample">
-        <input type="text" id="sampleInput">
-    </div>
-        
-        <button id="addClassButton">Add Class</button>
-        <button id="removeClass">Remove Class</button>-->
-        
+    </div>      
 </body>
-<!--<script>
-    const element = document.getElementById("_domSample");
-    const button = document.getElementById("addClassButton");
-    const remove = document.getElementById("removeClass");
-    const input = document.getElementById("sampleInput");
-    
-    button.addEventListener("click", ()=> {
-        element.classList.add("tambah class");
-    });
-    
-    remove.addEventListener("click", ()=> {
-        element.classList.remove("tambah class");
-    });
-    
-    input.addEventListener("keypress", (event)=> {
-        console.log(");
-    });
-    
-    
-</script>-->
 </html>

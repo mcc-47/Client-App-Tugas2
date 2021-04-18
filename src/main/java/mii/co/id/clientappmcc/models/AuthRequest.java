@@ -13,6 +13,7 @@ import lombok.Data;
  */
 @Data
 public class AuthRequest {
+
     private String userName;
     private String userPassword;
 
@@ -24,11 +25,4 @@ public class AuthRequest {
         this.userPassword = userPassword;
     }
 
-//    public AuthRequest(String username, String password) {
-//        this.username = username;
-//        this.password = password;
-//    }
-
-    
-    
 }

@@ -8,23 +8,19 @@ and open the template in the editor.
     <head>
         <title>District</title>
     <div th:replace="layout/linkrel" :: linkrel></div>
-    
-    </head>
-    
-    
-    
-    <body>
-        <div class="content-wrapper">
-            <!-----------------------------------sidebar-->
-             <div th:replace="layout/sidebar" :: sidebar></div>
-            <!-----------------------------------header-->
-            <div th:replace="layout/header" :: header></div>
+</head>
+<body>
+    <div class="content-wrapper">
+        <!-----------------------------------sidebar-->
+        <div th:replace="layout/sidebar" :: sidebar></div>
+        <!-----------------------------------header-->
+        <div th:replace="layout/header" :: header></div>
         <!-----------------------------------main-->
+
+
         <div class="main ">
-            <a th:href="@{/district/add}" class="btn btn-outline-primary mt-2 mb-2" sec:authorize="hasAuthority('CREATE')"><i class="fas fa-plus mr-2"></i>Add Data</a>
-            <button type ="submit" class="btn btn-outline-primary mt-2 mb-2 " data-toggle="modal" data-target="#tambah1">Add Data</button>
-            
-            <!-------------------------------------------------------------------MODALINSERT-->
+            <button type ="submit" class="btn btn-outline-primary mt-2 mb-2 " data-toggle="modal" data-target="#tambah1"><i class="fas fa-plus mr-2"></i>Add Data</button>
+            <!-------------------------------------------------------------------MODAL TAMBAH 1 FOR INSERT-->
             <div id="tambah1" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -34,51 +30,47 @@ and open the template in the editor.
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                 
+
                         <div class="modal-body">
-                            <form th:action="@{/district/add}" method="post" th:object="${district}"  class="needs-validation" novalidate>
-                                
+                            <form  id="insertdistrict"  class="needs-validation" novalidate>
+
                                 <div class="form-group" >
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">District ID </span>
                                         </div>
-                                        <input type="number"  placeholder=" " name="districtId" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"required>
-                                    <div class="invalid-feedback">
-                                        Please insert District ID.
+                                        <input type="number"  placeholder=" "  id="districtId1" name="districtId" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"required>
+                                        <div class="invalid-feedback">
+                                            Please insert District ID.
+                                        </div>
                                     </div>
-                                    </div>
-                                    
                                 </div>
-                                
+
                                 <div class="form-group" >
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">District Name </span>
                                         </div>
-                                        <input type="text" placeholder=" " name="districtName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                                    <div class="invalid-feedback">
-                                        Please insert District Name.
+                                        <input type="text" placeholder=" " id="districtName1" name="districtName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                        <div class="invalid-feedback">
+                                            Please insert District Name.
+                                        </div>
                                     </div>
-                                    </div>
-                                    
                                 </div>
-                                
+
                                 <div class="form-group" >
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default" required>Kota / Kabupaten </span>
                                         </div>
-                                        <select class="form-control" id="kab" name="kab" >
+                                        <select class="form-control" id="kab1" name="kab" >
                                             <option value="Kota">Kota</option>
                                             <option value="Kab">Kab</option>
-
                                         </select>
-                                         <div class="invalid-feedback">
-                                        Please insert Kota Kab ID.
+                                        <div class="invalid-feedback">
+                                            Please insert Kota Kab ID.
+                                        </div>
                                     </div>
-                                    </div>
-                                   
                                 </div>
 
                                 <div class="form-group" >
@@ -86,26 +78,25 @@ and open the template in the editor.
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default" >Province ID </span>
                                         </div>
-                                        <input type="number" placeholder="Province ID" name="provinceId" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"required>
-                                    <div class="invalid-feedback">
-                                        Please insert Province ID.
+                                        <input type="number" id="provinceId1" placeholder="Province ID" name="provinceId" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                        <div class="invalid-feedback">  
+                                            Please insert Province ID.
+                                        </div>
                                     </div>
-                                    </div>
-                                    
                                 </div>
-                              
 
-                                <button class="btn btn-primary" th:onclick="insertalert()" type="submit"><i class="fas fa-plus mr-2"></i>Submit</button>
+                                <button class="btn btn-primary"  type="submit"><i class="fas fa-plus mr-2"></i>Submit</button>
                                 <a class="btn btn-warning" th:href="@{/district}" ><i class="fas fa-chevron-left mr-2"></i>Back</a>
 
                             </form>
-                            
+
                         </div>
                     </div>
                 </div>  
             </div>
-            <!-------------------------------------------------------------------ENDMODALINSERT-->
-            <!-------------------------------------------------------------------MODALINSERT2-->
+            <!-------------------------------------------------------------------END MODAL 1-->
+
+            <!-------------------------------------------------------------------MODAL TAMBAH 2 FOR EDIT-->
             <div id="tambah2" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -117,14 +108,16 @@ and open the template in the editor.
                         </div>
 
                         <div class="modal-body">
-                            <form   th:action="@{/district/add}" method="post" th:object="${district}"  class="needs-validation" novalidate>
-
+                            <form id="updatedistrict"  class="needs-validation" novalidate>
                                 <div class="form-group" >
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">District ID </span>
                                         </div>
-                                        <input type="number" placeholder=" " name="districtId" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"required >
+                                        <input type="number" placeholder=" " id="districtId" name="districtId" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"required >
+                                        <div class="invalid-feedback">  
+                                            Please insert Province ID.
+                                        </div>
                                     </div>
                                 </div>
 
@@ -133,7 +126,10 @@ and open the template in the editor.
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">District Name </span>
                                         </div>
-                                        <input type="text" placeholder=" " name="districtName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                        <input type="text" placeholder=" " id="districtName"  name="districtName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                        <div class="invalid-feedback">  
+                                            Please insert District Name.
+                                        </div>
                                     </div>
                                 </div>
 
@@ -145,8 +141,10 @@ and open the template in the editor.
                                         <select class="form-control" id="kab" name="kab" >
                                             <option value="Kota">Kota</option>
                                             <option value="Kab">Kab</option>
-
                                         </select>
+                                        <div class="invalid-feedback">  
+                                            Please insert Kota / Kab.
+                                        </div>
                                     </div>
                                 </div>
 
@@ -155,12 +153,14 @@ and open the template in the editor.
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default" required>Province ID </span>
                                         </div>
-                                        <input type="number" placeholder=" " name="provinceId" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                        <input type="number" placeholder=" " id="provinceId"  name="provinceId" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                        <div class="invalid-feedback">  
+                                            Please insert Province ID.
+                                        </div>
                                     </div>
                                 </div>
 
-
-                                <button class="btn btn-primary" th:onclick="sukses()" type="submit"><i class="fas fa-plus mr-2"></i>Submit</button>
+                                <button type="submit"  class="btn btn-primary">Submit</button>
                                 <a class="btn btn-warning" th:href="@{/district}" ><i class="fas fa-chevron-left mr-2"></i>Back</a>
 
                             </form>
@@ -169,46 +169,31 @@ and open the template in the editor.
                     </div>
                 </div>  
             </div>
-            <!-------------------------------------------------------------------ENDMODALINSERT2-->
+            <!-------------------------------------------------------------------END MODAL 2-->
             <div style="overflow-x:auto;">
-            <table  id="example" class="display mt-5 "  >
-                <thead>
-                    <tr>
+                <table id="myTable" class="display mt-5 "  >
+                    <thead>
+                        <tr>
 
-                        <th scope="col">Distric ID</th>
-                        <th scope="col">Kab</th>
-                        <th scope="col">District Names</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="district : ${district}">
-                        <td th:text="${district.districtId}"></td>
-                        <td th:text="${district.kab}"></td>
-                        <td th:text="${district.districtName}"></td>
-                        <!--                    <td th:text="${district.provinceId}"></td>-->
-                        <!--                    <td th:text="${province.districtList}"></td> key provinceId = value Banten-->
-                        <td>
-<!--                            <button type ="submit" class="btn btn-outline-primary mt-2 mb-2 " data-toggle="modal" data-target="#tambah1">eDIT Data</button>-->
-                             <button type ="submit" th:href="@{district/{id} (id = ${district.districtId})}"  class="btn btn-outline-primary mt-2 mb-2 " data-toggle="modal" data-target="#tambah2">Add Data</button>
-                            <a th:href="@{district/{id} (id = ${district.districtId})}" class="btn btn-primary" sec:authorize="hasAuthority('UPDATE')"  data-toggle="modal" data-target="#tambah2"><i class="far fa-edit"></i>edit</a>
-                            <a th:href="@{district/{id} (id = ${district.districtId})}" class="btn btn-primary" sec:authorize="hasAuthority('UPDATE')"><i class="far fa-edit"></i></a>
-                            <a th:href="@{district/delete/{id} (id = ${district.districtId})}" class="btn btn-danger" id="delete" th:onclick="deletealert()" sec:authorize="hasAuthority('DELETE')"><i class="far fa-trash-alt"></i></a>
-                            <button type ="submit"   class="btn btn-outline-danger mt-2 mb-2 " th:onclick="cobadelete()">Delete Button</button>
-                        </td>
-                    </tr>  
-                </tbody>
-            </table>
+                            <th scope="col">Distric ID</th>
+                            <th scope="col">Kab</th>
+                            <th scope="col">District Names</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
             </div>
         </div>
-        
+
         <!-----------------------------------footer-->
-            <div th:replace="layout/footer" :: footer></div>
+        <div th:replace="layout/footer" :: footer></div>
         <!-----------------------------------wrapper-->
     </div>
-     <script type="text/javascript" charset="utf8" src="/js/js.js"></script>
-     
-     
-     <script></script>
+    <script type="text/javascript" charset="utf8" src="/js/js.js"></script>
+    <script th:src="@{/js/district/index.js}"></script>
+    <script th:src="@{/js/alert/index.js}"></script>
 </body>
 </html>

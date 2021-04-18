@@ -23,60 +23,42 @@ import org.springframework.web.client.RestTemplate;
  */
 @Service
 public class DistrictService {
-    
+
     @Autowired
     private RestTemplate restTemplate;
 
     @Value("${api.url}/district")
     private String url;
-//
-//    public List<District> getAll() {
-//        ResponseEntity<List<District>> response = restTemplate
-//                .exchange(url, HttpMethod.GET, null,
-//                        new ParameterizedTypeReference<List<District>>() {
-//                });
-//
-//        return response.getBody();
-//    }
-    
-    
+
     public List<District> getAll() {
-                ResponseEntity<List<District>> response = restTemplate
-                        .exchange(url, HttpMethod.GET, new HttpEntity(RequestFormat.createHeaders()),
-                                new ParameterizedTypeReference<List<District>>() {
-                        });
- 
-                return response.getBody();
-            }
-        
-    public void create(District district) {
-        HttpEntity entity = new HttpEntity(district);
-        ResponseEntity<String> res = restTemplate.exchange(url+ "/insert", HttpMethod.POST, entity,
-                new ParameterizedTypeReference<String>(){});
+        ResponseEntity<List<District>> response = restTemplate
+                .exchange(url, HttpMethod.GET, new HttpEntity(RequestFormat.createHeaders()),
+                        new ParameterizedTypeReference<List<District>>() {
+                });
+
+        return response.getBody();
     }
-    
+
     public District getById(Integer id) {
         return restTemplate.getForEntity(url + "/" + id, District.class).getBody();
     }
-      
-     public void update(Integer id, District district) {
+
+    public void create(District district) {
         HttpEntity entity = new HttpEntity(district);
-        ResponseEntity<String> res = restTemplate.exchange(url + "/update/" +id, HttpMethod.PUT,
-                entity,new ParameterizedTypeReference<String>() {
-});
+        ResponseEntity<String> res = restTemplate.exchange(url + "/insert", HttpMethod.POST, entity,
+                new ParameterizedTypeReference<String>() {
+        });
     }
-    
-//    public void update(Integer id, District district) {
-//        HttpEntity entity = new HttpEntity(district, RequestFormat.createHeaders());
-//        ResponseEntity<String> res = restTemplate.exchange(url + "/update/" +id, HttpMethod.PUT,
-//                entity,new ParameterizedTypeReference<String>() {
-//});
-//    }
-    
-    
-     
-     public void delete(Integer id) {
-//        ResponseEntity<District> res = restTemplate.exchange(url + "/delete/" + id, HttpMethod.DELETE, null, District.class);
-        restTemplate.delete(url+"/delete/"+id,District.class);
+
+    public void update(Integer id, District district) {
+        HttpEntity entity = new HttpEntity(district);
+        ResponseEntity<String> res = restTemplate.exchange(url + "/update/" + id, HttpMethod.PUT,
+                entity, new ParameterizedTypeReference<String>() {
+        });
+    }
+
+    public void delete(Integer id) {
+        restTemplate.delete(url + "/delete/" + id, District.class);
     }
 }
+

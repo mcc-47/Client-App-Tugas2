@@ -70,5 +70,6 @@ public class AuthService {
         return authorities.stream()
                 .map(auth -> new SimpleGrantedAuthority(auth))
                 .collect(Collectors.toList());
-    
-}}
+
+    }
+}
