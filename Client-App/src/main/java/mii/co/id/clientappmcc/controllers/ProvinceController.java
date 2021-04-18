@@ -42,19 +42,19 @@ public class ProvinceController {
     }
 
     @PostMapping
-    public @ResponseBody Province create(@RequestBody Province province) {
+    public @ResponseBody String create(@RequestBody Province province) {
         return provinceService.create(province);
     }
 
     //UPDATE
     @PutMapping("/{id}")
-    public @ResponseBody Province update(@PathVariable("id") Integer id, @RequestBody Province province) {
+    public @ResponseBody String update(@PathVariable("id") Integer id, @RequestBody Province province) {
         return provinceService.update(id, province);
 
     }
 
     @DeleteMapping("/{id}")
-    public @ResponseBody Province delete(@PathVariable("id") Integer id) {
+    public @ResponseBody String delete(@PathVariable("id") Integer id) {
         return provinceService.delete(id);
     }
 }

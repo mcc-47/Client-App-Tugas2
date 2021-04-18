@@ -1,6 +1,6 @@
 <div class="modal-add" th:fragment="modal-add">
 
-    <div class="modal fade" id="form-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="create-district" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header border-bottom-0">
@@ -9,7 +9,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="needs-validation" novalidate>
+                <form id="DistrictForm" class="needs-validation" novalidate>
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="districtId">District Id</label>
@@ -55,8 +55,8 @@
                         </div>
                     </div>
                     <div class="modal-footer border-top-0 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-success" onclick="create()">Submit</button>
-                        <button th:href="@{/district}" class="btn btn-danger col-2">Back</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button data-dismiss="modal" class="btn btn-danger col-2">Back</button>
                     </div>
                 </form>
             </div>

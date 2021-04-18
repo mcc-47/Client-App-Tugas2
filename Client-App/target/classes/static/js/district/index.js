@@ -1,12 +1,18 @@
 let district = new Object();
 let table = null;
+let id = 0;
 
 $(document).ready(() => {
     getAll();
+
+    $("#DistrictForm").submit((e) => {
+        e.preventDefault();
+        formValidation(this.id ? update : create);
+    });
 });
 
 function getAll() {
-    table = $('#myTable').DataTable({
+    table = $('#DistrictTable').DataTable({
         filter: true,
         orderMulti: true,
         ajax: {
@@ -34,8 +40,8 @@ function getAll() {
                         <button 
                             class='btn btn-sm btn-primary'
                             data-toggle="modal" 
-                            data-target="#form-update"
-                            onclick="getById('${row.districtId}')" sec:authorize="hasRole('ADMIN')">
+                            data-target="#update-district"
+                            onclick="getById('${row.districtId}')">
                             
                             <i class='fas fa-sm fa-pencil-alt'></i> Update
                         </button>
@@ -50,6 +56,7 @@ function getAll() {
 }
 
 function getById(id) {
+    this.districtId = id;
     $.ajax({
         url: `/district/${id}`,
         type: 'GET',
@@ -77,21 +84,12 @@ function create() {
         success: (res) => {
             table.ajax.reload();
             successAlert("District Created");
-            $("#form-add").modal("hide");
+            $("#create-district").modal("hide");
         },
         error: (err) => {
             errorAlert("District failed created");
         }
     });
-}
-
-
-
-function setForm(data) {
-    $("#districtId").val(data.districtId);
-    $("#kotakab").val(data.kotakab);
-    $("#districtName").val(data.districtName);
-    $("#provinceId").val(data.provinceId);
 }
 
 function update() {
@@ -106,7 +104,7 @@ function update() {
 
     let id = $("#districtId").val();
     $.ajax({
-        url: `/district/${id}`,
+        url: `/district/${this.id}`,
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify(district),
@@ -123,18 +121,34 @@ function update() {
 
 function deleteById(id) {
 
-    questionAlert("Are you sure?", "Do you want to delete this data?", function()  {
+    questionAlert("Are you sure?", "Do you want to delete this data?", function () {
         $.ajax({
             url: `/district/${id}`,
             type: 'DELETE',
-            
+
             success: (res) => {
-                errorAlert("District failed deleted");
-            },
-            error: (err) => {
                 table.ajax.reload();
                 successAlert("District sucess deleted");
+            },
+            error: (err) => {
+                errorAlert("District failed deleted");
             }
         });
     });
 }
+
+function setForm(data) {
+    $("#districtId").val(data.districtId);
+    $("#kotakab").val(data.kotakab);
+    $("#districtName").val(data.districtName);
+    $("#provinceId").val(data.provinceId);
+}
+
+function resetForm() {
+    this.id = 0;
+    $("#district-id").val("");
+    $("#kota-kab").val("");
+    $("#district-name").val("");
+    $("#province-id").val("");
+}
+    

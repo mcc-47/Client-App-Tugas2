@@ -37,28 +37,28 @@ public class DistrictService {
     }
 
     //CREATE 
-    public District create(District district) {
+    public String create(District district) {
         HttpEntity entity = new HttpEntity(district, RequestFormat.createHeaders());
-        ResponseEntity<District> res = restTemplate.exchange(url + "/dis-insert", HttpMethod.POST, entity,
-                new ParameterizedTypeReference<District>() {
+        ResponseEntity<String> res = restTemplate.exchange(url + "/dis-insert", HttpMethod.POST, entity,
+                new ParameterizedTypeReference<String>() {
         });
         return res.getBody();
     }
 
     //UPDATE
-    public District update(Integer id, District district) {
+    public String update(Integer id, District district) {
         HttpEntity entity = new HttpEntity(district, RequestFormat.createHeaders());
-        ResponseEntity<District> res = restTemplate.exchange(url + "/dis-update/" + id, HttpMethod.PUT, entity,
-                new ParameterizedTypeReference<District>() {
+        ResponseEntity<String> res = restTemplate.exchange(url + "/dis-update/" + id, HttpMethod.PUT, entity,
+                new ParameterizedTypeReference<String>() {
         });
         return res.getBody();
     }
 
     //DELETE
-    public District delete(Integer id) {
+    public String delete(Integer id) {
         HttpEntity entity = new HttpEntity(id, RequestFormat.createHeaders());
-        ResponseEntity<District> res = restTemplate.exchange(url + "/dis-delete/" + id, HttpMethod.DELETE, entity,
-                new ParameterizedTypeReference<District>() {
+        ResponseEntity<String> res = restTemplate.exchange(url + "/dis-delete/" + id, HttpMethod.DELETE, entity,
+                new ParameterizedTypeReference<String>() {
         });
         return res.getBody();
     }

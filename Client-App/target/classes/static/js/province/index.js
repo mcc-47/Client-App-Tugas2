@@ -1,9 +1,15 @@
 let province = new Object();
 let table = null;
+let id = 0;
 
 $(document).ready(() => {
     getAll();
 
+
+$("#provinceForm").submit((e) => {
+        e.preventDefault();
+        formValidation(this.id ? update : create);
+    });
 });
 
 function getAll() {
@@ -44,6 +50,7 @@ function getAll() {
 }
 
 function getById(id) {
+    this.provinceId = id;
     $.ajax({
         url: `/province/${id}`,
         type: 'GET',
@@ -55,8 +62,8 @@ function getById(id) {
 
 function create() {
     province = {
-        provinceId: $("#province-id").val(),
-        provinceName: $("#province-name").val()
+        provinceId: $("#provinceId").val(),
+        provinceName: $("#provinceName").val()
     };
 
     $.ajax({
@@ -77,13 +84,12 @@ function create() {
 
 function update() {
     province = {
-        provinceId: $("#provinceId").val(),
-        provinceName: $("#provinceName").val()
+        provinceId: $("#province-id").val(),
+        provinceName: $("#province-name").val()
     };
     
-    let id = $("#provinceId").val();
     $.ajax({
-        url: `/province/${id}`,
+        url: `/province/${this.id}`,
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify(province),
@@ -99,12 +105,6 @@ function update() {
 }
 
 
-function setForm(data) {
-    $("#provinceId").val(data.provinceId);
-    $("#provinceName").val(data.provinceName);
-}
-
-
 function deleteById(id) {
     questionAlert("Are you sure?", "Do you want to delete this data?", function()  {
         $.ajax({
@@ -112,12 +112,24 @@ function deleteById(id) {
             type: 'DELETE',
             
             success: (res) => {
-                errorAlert("Province failed deleted");
-            },
-            error: (err) => {
                 table.ajax.reload();
                 successAlert("Province sucess deleted");
+                
+            },
+            error: (err) => {
+                errorAlert("Province failed deleted");
             }
         });
     });
+}
+
+function setForm(data) {
+    $("#province-id").val(data.provinceId);
+    $("#province-name").val(data.provinceName);
+}
+
+function resetForm() {
+    this.id = 0;
+    $("#provinceId").val("");
+    $("#provinceName").val("");
 }

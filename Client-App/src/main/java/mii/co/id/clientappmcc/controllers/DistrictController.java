@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -40,21 +39,21 @@ public class DistrictController {
     }
 
     @PostMapping
-    public @ResponseBody District create(@RequestBody District district) {
+    public @ResponseBody String create(@RequestBody District district) {
         System.out.println(district);
         return districtService.create(district);
     }
 
     //UPDATE
     @PutMapping("/{id}")
-    public @ResponseBody District update(@PathVariable("id") Integer id, @RequestBody District district) {
+    public @ResponseBody String update(@PathVariable("id") Integer id, @RequestBody District district) {
         System.out.println(district);
         return districtService.update(id, district);
 
     }
 
     @DeleteMapping("/{id}")
-    public @ResponseBody District delete(@PathVariable("id") Integer id) {
+    public @ResponseBody String delete(@PathVariable("id") Integer id) {
         System.out.println("district");
         return districtService.delete(id);
     }

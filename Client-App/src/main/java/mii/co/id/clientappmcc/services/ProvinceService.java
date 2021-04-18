@@ -37,29 +37,29 @@ public class ProvinceService {
     }
 
     //CREATE 
-    public Province create(Province province) {
+    public String create(Province province) {
         HttpEntity entity = new HttpEntity(province);
-        ResponseEntity<Province> res = restTemplate.exchange(url + "/insert", HttpMethod.POST, entity,
-                new ParameterizedTypeReference<Province>() {
+        ResponseEntity<String> res = restTemplate.exchange(url + "/insert", HttpMethod.POST, entity,
+                new ParameterizedTypeReference<String>() {
 
         });
         return res.getBody();
     }
 
     //UPDATE
-    public Province update(Integer id, Province province) {
+    public String update(Integer id, Province province) {
         HttpEntity entity = new HttpEntity(province);
-        ResponseEntity<Province> res = restTemplate.exchange(url + "/update/" + id, HttpMethod.PUT, entity,
-                new ParameterizedTypeReference<Province>() {
+        ResponseEntity<String> res = restTemplate.exchange(url + "/update/" + id, HttpMethod.PUT, entity,
+                new ParameterizedTypeReference<String>() {
         });
         return res.getBody();
     }
 
     //DELETE
-    public Province delete(Integer id) {
+    public String delete(Integer id) {
         HttpEntity entity = new HttpEntity(id, RequestFormat.createHeaders());
-        ResponseEntity<Province> res = restTemplate.exchange(url + "/delete/" + id, HttpMethod.DELETE, entity,
-                new ParameterizedTypeReference<Province>() {
+        ResponseEntity<String> res = restTemplate.exchange(url + "/delete/" + id, HttpMethod.DELETE, entity,
+                new ParameterizedTypeReference<String>() {
         });
         return res.getBody();
     }
