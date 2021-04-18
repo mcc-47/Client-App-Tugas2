@@ -3,70 +3,35 @@
 <html>
     <head>
         <title>Metrodata Login Page</title>
-        <!--        <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-                <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>-->
-    <div th:replace="layout/headlink.html :: headlink "></div>
-    <link rel="stylesheet" th:href="@{/css/login.css}">
-
-</head>
-<body>
-    <!--        <h1 class="text-center mt-5 mb-5">Login Form</h1>
-    
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-4">
-                        <form class="needs-validation" novalidate th:action="@{/login}" method="post" th:object="${auth}">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Username</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" th:field="*{userName}" required>
-                                <div class="invalid-feedback">
-                                    Please input your username.
-                                </div>
-                                <small id="emailHelp" class="form-text text-muted">input your username correctly.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" th:field="*{password}" required>
-                                <div class="invalid-feedback">
-                                    Please input your password.
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary" id="login" th:onclick="alertSubmitSmall('success','Login Successfully', 'login')">Login</button>
-                            <p th:text="${param.error} ? 'Username or password incorrect' : ''" class="text-danger mt-3 text-center font-weight-bold"></p>
-                            <p th:text="${param.logout} ? 'You have been logged out' : ''" class="text-danger mt-3 text-center font-weight-bold"></p>
-                        </form>
+        <th:block th:replace="layout/headlink.html :: headlink "></th:block>
+        <link rel="stylesheet" th:href="@{/css/login.css}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="card card-container">
+                <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+                <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                <p id="profile-name" class="profile-name-card mb-3">Metrodata Coding Camp</p>
+                <form class="form-signin needs-validation"  novalidate th:action="@{/login}" method="post" id="loginForm" th:object="${auth}">
+                    <div class="form-group">
+                        <input type="text" id="inputEmail" class="form-control" placeholder="Username" th:field="*{userName}" required autofocus>
+                        <div class="invalid-feedback">
+                            Please input your username.
+                        </div>
                     </div>
-                </div>
-            </div>-->
-
-    <div class="container">
-        <div class="card card-container">
-            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-            <p id="profile-name" class="profile-name-card mb-3">Metrodata Coding Camp</p>
-            <form class="form-signin needs-validation"  novalidate th:action="@{/login}" method="post" th:object="${auth}">
-                <div class="form-group">
-                    <input type="text" id="inputEmail" class="form-control" placeholder="Username" th:field="*{userName}" required autofocus>
-                    <div class="invalid-feedback">
-                        Please input your username.
+                    <div class="form-group">
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password"  th:field="*{password}" required>
+                        <div class="invalid-feedback">
+                            Please input your password.
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password"  th:field="*{password}" required>
-                    <div class="invalid-feedback">
-                        Please input your password.
-                    </div>
-                </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-                <p th:text="${param.error} ? 'Username or password incorrect' : ''" class="text-danger mt-3 text-center font-weight-bold"></p>
-                <p th:text="${param.logout} ? 'You have been logged out' : ''" class="text-danger mt-3 text-center font-weight-bold"></p>
-            </form><!-- /form -->
-        </div><!-- /card-container -->
-    </div><!-- /container -->
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+                    <p th:text="${param.error} ? 'Username or password incorrect' : ''" class="text-danger mt-3 text-center font-weight-bold"></p>
+                    <p th:text="${param.logout} ? 'You have been logged out' : ''" class="text-danger mt-3 text-center font-weight-bold"></p>
+                </form><!-- /form -->
+            </div><!-- /card-container -->
+        </div><!-- /container -->
 
-    <div th:replace="layout/scriptJs.html :: scriptJs"></div>
-</body>
+        <div th:replace="layout/scriptJs.html :: scriptJs"></div>
+    </body>
 </html>

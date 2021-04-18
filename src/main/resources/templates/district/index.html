@@ -7,218 +7,142 @@ and open the template in the editor.
 <html>
     <head>
         <title>User Management | District</title>
-    <div th:replace="layout/headlink.html :: headlink "></div>
-</head>
-<body>
+        <th:block th:replace="layout/headlink.html :: headlink "></th:block>
+    </head>
+    <body>
 
+        <!-- Start Navbar -->
+        <div th:replace="layout/header.html :: header-app"></div>
 
-    <!-- Start Navbar -->
-    <div th:replace="layout/header.html :: header-app"></div>
+        <!--Side bar-->
+        <div th:replace="layout/sidebar.html :: sidebar-app"></div>
 
+        <div class="main p-0">
+            <div class="container">
+                <h1 class="text-center mt-5 mb-5">Data District</h1>
+                
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#inputModal"><i class="fas fa-plus mr-2"></i>
+                    Insert New District
+                </button>
+                
+                <table class="table table-bordered text-center w-100" id="myTable">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Kota/Kab</th>
+                            <th scope="col">Nama Distrik</th>
+                            <th scope="col">Nama Provinsi</th>
+                            <th scope="col" sec:authorize="hasRole('TRAINER')">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
 
-    <!--Side bar-->
-    <div th:replace="layout/sidebar.html :: sidebar-app"></div>
-
-    <div class="main p-0">
-        <div class="container">
-            <h1 class="text-center mt-5 mb-5">Data District</h1>
-            <a th:href="@{/district/insert-form}" sec:authorize="hasRole('TRAINER')" class="btn btn-primary mb-2"><i class="fas fa-plus mr-2"></i>Insert New District</a>
-            <table class="table table-bordered text-center w-100" id="myTable">
-                <thead class="bg-dark text-white">
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Kota/Kab</th>
-                        <th scope="col">Nama Distrik</th>
-                        <th scope="col">Nama Provinsi</th>
-                        <th scope="col" sec:authorize="hasRole('TRAINER')">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputModal">
-            Button Modal Insert District
-        </button>
-
-        <!-- Modal Input District -->
-        <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Insert New District</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <form class="needs-validation m-4" id="inputForm" novalidate>
-                            <input type="hidden" class="form-control" id="districtIdInsert" value="">
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Pilih Kabupaten/Kota : </label>
-
-                                <select class="form-control" id="kabInsert" required>
-
-                                    <option value="" selected>--Pilih Kota/Kab--</option>
-                                    <option value="Kab">Kabupaten</option>
-                                    <option value="Kota">Kota</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Mohon Pilih Kota/Kab!
+            <!-- Modal Input District -->
+            <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Insert New District</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="needs-validation m-4" id="inputForm" novalidate>
+                                <input type="hidden" class="form-control" id="districtIdInsert" value="">
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Pilih Kabupaten/Kota : </label>
+                                    <select class="form-control" id="kabInsert" required>
+                                        <option value="" selected>--Pilih Kota/Kab--</option>
+                                        <option value="Kab">Kabupaten</option>
+                                        <option value="Kota">Kota</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Mohon Pilih Kota/Kab!
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Nama Distrik</label>
-                                <input type="text" class="form-control" id="districtNameInsert" placeholder="cth : Bandung"
-                                       required>
-                                <div class="invalid-feedback">
-                                    Mohon Isi Nama Distrik!
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Nama Distrik</label>
+                                    <input type="text" class="form-control" id="districtNameInsert" placeholder="cth : Bandung"
+                                           required>
+                                    <div class="invalid-feedback">
+                                        Mohon Isi Nama Distrik!
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Nama Provinsi</label>
-                                <select class="form-control" id="provinceIdInsert" required>
-                                    <option value="" selected>--Pilih Provinsi--</option>
-                                    <option th:each="id:${provinces}" th:value="${id.provinceId}" th:text="${id.provinceName}"></option>
-<!--                                    <option value="1" >Banten</option>
-                                    <option value="2">DIY</option>
-                                    <option value="3">DKI Jakarta</option>
-                                    <option value="4">Jawa Barat</option>
-                                    <option value="5">Jawa Tengah</option>
-                                    <option value="6">Riau</option>
-                                    <option value="7">Sumatera Selatan</option>
-                                    <option value="8">Sumatera Barat</option>
-                                    <option value="9">Sumatera Utara</option>
-                                    <option value="10">Nanggroe Aceh Darussalam</option>
-                                    <option value="11">Kep. Riau</option>
-                                    <option value="12">Jambi</option>
-                                    <option value="13">Lampung</option>
-                                    <option value="14">Kep. Bangka Belitung</option>
-                                    <option value="15">Bengkulu</option>
-                                    <option value="16">Jawa Timur</option>
-                                    <option value="17">Bali</option>
-                                    <option value="18">Nusa Tenggara Barat</option>
-                                    <option value="19">Nusa Tenggara Timur</option>
-                                    <option value="20">Kalimantan Barat</option>
-                                    <option value="21">Kalimantan Tengah</option>
-                                    <option value="22">Kalimantan Selatan</option>
-                                    <option value="23">Kalimantan Timur</option>
-                                    <option value="24">Kalimantan Utara</option>
-                                    <option value="25">Sulawesi Utara</option>
-                                    <option value="26">Gorontalo</option>
-                                    <option value="27">Sulawesi Barat</option>
-                                    <option value="28">Sulawesi Tenggara</option>
-                                    <option value="29">Maluku</option>
-                                    <option value="30">Maluku Utara</option>
-                                    <option value="31">Papua Barat</option>
-                                    <option value="32">Papua</option>
-                                    <option value="33">Sulawesi Tengah</option>
-                                    <option value="34">Sulawesi Selatan</option>-->
-                                </select>
-                                <div class="invalid-feedback">
-                                    Mohon Pilih Nama Provinsi!
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Nama Provinsi</label>
+                                    <select class="form-control" id="provinceIdInsert" required>
+                                        <option value="" selected>--Pilih Provinsi--</option>
+                                        <option th:each="id:${provinces}" th:value="${id.provinceId}" th:text="${id.provinceName}"></option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Mohon Pilih Nama Provinsi!
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <!--Modal Edit District-->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="needs-validation m-4" id="editForm" novalidate>
+                                <input type="hidden" class="form-control" id="districtIdUpdate">
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Pilih Kabupaten/Kota : </label>
 
-        <!--Modal Edit District-->
-        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!--<form th:action=" @{/district/insert}" method="post" th:object="${district}" class="needs-validation m-4" novalidate>-->
-                        <form class="needs-validation m-4" id="editForm" novalidate>
-                            <input type="hidden" class="form-control" id="districtIdUpdate">
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Pilih Kabupaten/Kota : </label>
-
-                                <select class="form-control"  id="kabUpdate" required>
-                                    <option value="Kab">Kabupaten</option>
-                                    <option value="Kota">Kota</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Nama Distrik</label>
-                                <input type="text" class="form-control" id="districtNameUpdate" placeholder="cth : Bandung"
-                                      required>
-                                <div class="invalid-feedback">
-                                    Mohon Isi Nama Distrik!
+                                    <select class="form-control"  id="kabUpdate" required>
+                                        <option value="Kab">Kabupaten</option>
+                                        <option value="Kota">Kota</option>
+                                    </select>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1" >Nama Provinsi</label>
-                                <select class="form-control" id="provinceNameUpdate" required>
-                                    <option th:each="id:${provinces}" th:value="${id.provinceId}" th:text="${id.provinceName}"></option>
-<!--                                    <option value="1">Banten</option>
-                                    <option value="2">DIY</option>
-                                    <option value="3">DKI Jakarta</option>
-                                    <option value="4">Jawa Barat</option>
-                                    <option value="5">Jawa Tengah</option>
-                                    <option value="6">Riau</option>
-                                    <option value="7">Sumatera Selatan</option>
-                                    <option value="8">Sumatera Barat</option>
-                                    <option value="9">Sumatera Utara</option>
-                                    <option value="10">Nanggroe Aceh Darussalam</option>
-                                    <option value="11">Kep. Riau</option>
-                                    <option value="12">Jambi</option>
-                                    <option value="13">Lampung</option>
-                                    <option value="14">Kep. Bangka Belitung</option>
-                                    <option value="15">Bengkulu</option>
-                                    <option value="16">Jawa Timur</option>
-                                    <option value="17">Bali</option>
-                                    <option value="18">Nusa Tenggara Barat</option>
-                                    <option value="19">Nusa Tenggara Timur</option>
-                                    <option value="20">Kalimantan Barat</option>
-                                    <option value="21">Kalimantan Tengah</option>
-                                    <option value="22">Kalimantan Selatan</option>
-                                    <option value="23">Kalimantan Timur</option>
-                                    <option value="24">Kalimantan Utara</option>
-                                    <option value="25">Sulawesi Utara</option>
-                                    <option value="26">Gorontalo</option>
-                                    <option value="27">Sulawesi Barat</option>
-                                    <option value="28">Sulawesi Tenggara</option>
-                                    <option value="29">Maluku</option>
-                                    <option value="30">Maluku Utara</option>
-                                    <option value="31">Papua Barat</option>
-                                    <option value="32">Papua</option>
-                                    <option value="33">Sulawesi Tengah</option>
-                                    <option value="34">Sulawesi Selatan</option>-->
-                                </select>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary ms-3">Submit</button>
-                            </div>
-                        </form>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Nama Distrik</label>
+                                    <input type="text" class="form-control" id="districtNameUpdate" placeholder="cth : Bandung"
+                                          required>
+                                    <div class="invalid-feedback">
+                                        Mohon Isi Nama Distrik!
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1" >Nama Provinsi</label>
+                                    <select class="form-control" id="provinceNameUpdate" required>
+                                        <option th:each="id:${provinces}" th:value="${id.provinceId}" th:text="${id.provinceName}"></option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary ms-3">Submit</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div th:replace="layout/footer.html :: footer-app"></div>
+            
         </div>
 
-        <footer>
-            <p class="text-center pt-2 pb-2 mb-0">Copyright by Kelompok 5. Created with Love ❤</p>
-        </footer>
-    </div>
+        <div th:replace="layout/scriptJs.html :: scriptJs"></div>
 
-    <div th:replace="layout/scriptJs.html :: scriptJs"></div>
-
-</body>
+    </body>
 </html>

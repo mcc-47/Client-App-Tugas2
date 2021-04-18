@@ -5,29 +5,28 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-<head>
-    <title>User Management | Dashboard</title>
-    <div th:replace="layout/headlink.html :: headlink "></div>
-</head>
-<body>
-<!--     Start Navbar -->
-    <div th:replace="layout/header.html :: header-app" ></div>
+    <head>
+        <title>User Management | Dashboard</title>
+        <th:block th:replace="layout/headlink.html :: headlink "></th:block>
+    </head>
+    <body>
+        <!--Start Navbar -->
+        <div th:replace="layout/header.html :: header-app" ></div>
 
+        <!--Side bar-->
+        <div th:replace="layout/sidebar.html :: sidebar-app"></div>
 
-    <!--Side bar-->
-    <div th:replace="layout/sidebar.html :: sidebar-app"></div>
-
-    <div class="main p-0">
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">Welcome, <span th:text="${username}"></span>!</h1>
-                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        <div class="main p-0">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Welcome, <span th:text="${username}"></span>!</h1>
+                    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                </div>
+                <div th:replace="layout/footer.html :: footer-app"></div>
             </div>
-            <div th:replace="layout/footer.html :: footer-app"></div>
         </div>
-    </div>
-    
-    
-    <div th:replace="layout/scriptJs.html :: scriptJs"></div>
-</body>
+        
+        <div th:replace="layout/scriptJs.html :: scriptJs"></div>
+        
+    </body>
 </html>

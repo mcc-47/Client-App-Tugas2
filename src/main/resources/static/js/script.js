@@ -1,3 +1,11 @@
+//LOGIN
+//$(document).ready(() => {
+//    $("#loginForm").submit(e => {
+//        e.preventDefault();
+//        validationForm(login);
+//    })
+//})
+
 //VALIDATING FORM
 function validationForm(action) {
     var forms = document.querySelectorAll('.needs-validation');
@@ -23,10 +31,11 @@ function login() {
         url:`/login`,
         type: "GET",
         success:(res) => {
-            setForm(res);
             alertSmall('success', 'Login Success');
         }
+        
     });
+//    console.log('login')
 }
 
 const Toast = Swal.mixin({
