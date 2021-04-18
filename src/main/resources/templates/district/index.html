@@ -23,7 +23,7 @@ and open the template in the editor.
         <div class="container">
             <h1 class="text-center mt-5 mb-5">Data District</h1>
             <a th:href="@{/district/insert-form}" sec:authorize="hasRole('TRAINER')" class="btn btn-primary mb-2"><i class="fas fa-plus mr-2"></i>Insert New District</a>
-            <table class="table table-bordered text-center" id="myTable">
+            <table class="table table-bordered text-center w-100" id="myTable">
                 <thead class="bg-dark text-white">
                     <tr>
                         <th scope="col">No</th>
@@ -39,12 +39,12 @@ and open the template in the editor.
         </div>
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insert-district">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputModal">
             Button Modal Insert District
         </button>
 
         <!-- Modal Input District -->
-        <div class="modal fade" id="insert-district" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -55,14 +55,14 @@ and open the template in the editor.
                     </div>
                     <div class="modal-body">
 
-                        <form class="needs-validation m-4" novalidate>
+                        <form class="needs-validation m-4" id="inputForm" novalidate>
                             <input type="hidden" class="form-control" id="districtIdInsert" value="">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Pilih Kabupaten/Kota : </label>
 
                                 <select class="form-control" id="kabInsert" required>
 
-                                    <option selected>--Pilih Kota/Kab--</option>
+                                    <option value="" selected>--Pilih Kota/Kab--</option>
                                     <option value="Kab">Kabupaten</option>
                                     <option value="Kota">Kota</option>
                                 </select>
@@ -124,7 +124,7 @@ and open the template in the editor.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" onclick="insert()">Submit</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -134,7 +134,7 @@ and open the template in the editor.
 
 
         <!--Modal Edit District-->
-        <div class="modal fade" id="edit-district" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -145,12 +145,12 @@ and open the template in the editor.
                     </div>
                     <div class="modal-body">
                         <!--<form th:action=" @{/district/insert}" method="post" th:object="${district}" class="needs-validation m-4" novalidate>-->
-                        <form class="needs-validation m-4" novalidate>
+                        <form class="needs-validation m-4" id="editForm" novalidate>
                             <input type="hidden" class="form-control" id="districtIdUpdate">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Pilih Kabupaten/Kota : </label>
 
-                                <select class="form-control" id="kabUpdate" required>
+                                <select class="form-control"  id="kabUpdate" required>
                                     <option value="Kab">Kabupaten</option>
                                     <option value="Kota">Kota</option>
                                 </select>
@@ -165,7 +165,7 @@ and open the template in the editor.
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1" >Nama Provinsi</label>
-                                <select class="form-control" id="provinceIdUpdate" required>
+                                <select class="form-control" id="provinceNameUpdate" required>
                                     <option th:each="id:${provinces}" th:value="${id.provinceId}" th:text="${id.provinceName}"></option>
 <!--                                    <option value="1">Banten</option>
                                     <option value="2">DIY</option>
@@ -205,7 +205,7 @@ and open the template in the editor.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary ms-3" onclick="update()">Submit</button>
+                                <button type="submit" class="btn btn-primary ms-3">Submit</button>
                             </div>
                         </form>
                     </div>

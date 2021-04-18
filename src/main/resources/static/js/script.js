@@ -1,23 +1,33 @@
-(function () {
-
-    'use strict'
-
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
+//VALIDATING FORM
+function validationForm(action) {
+    var forms = document.querySelectorAll('.needs-validation');
 
     // Loop over them and prevent submission
     Array.prototype.slice.call(forms)
             .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
+                    if (form.checkValidity()) {
+                        action();
+                    };
+                    form.classList.add('was-validated');
+                });
+}
 
-                    form.classList.add('was-validated')
-                }, false)
-            })
-})()
+//Modal
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus');
+});
+
+//ALERT
+function login() {
+    $.ajax({
+        url:`/login`,
+        type: "GET",
+        success:(res) => {
+            setForm(res);
+            alertSmall('success', 'Login Success');
+        }
+    });
+}
 
 const Toast = Swal.mixin({
     toast: true,
@@ -29,7 +39,7 @@ const Toast = Swal.mixin({
         toast.addEventListener('mouseenter', Swal.stopTimer)
         toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-})
+});
 
 
 //ALERT LOGOUT
@@ -49,28 +59,22 @@ function alertLogout() {
                 icon: 'success',
                 title: 'Logout Success'
 
-            })
+            });
             setTimeout(function () {
                 window.location.href = "/logout";
             }, 1500);
         }
-    })
+    });
 }
+//
+//function insertAlert() {
+//    Toast.fire({
+//                icon: 'success',
+//                title: 'Insert District Success!'
+//            })
+//}
 
-function insertAlert() {
-    Toast.fire({
-                icon: 'success',
-                title: 'Insert District Success!'
-            })
-}
-
-//Modal
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
-
-
-//ALERT GENERAL CONFIRM
+//ALERT TEMPLATE CONFIRM
 function alertConfirm(titleText, bodyText, iconType, confirmText, iconIfConfirm, titleIfConfirm, actionIfConfirm) {
     Swal.fire({
         title: titleText,
@@ -85,16 +89,16 @@ function alertConfirm(titleText, bodyText, iconType, confirmText, iconIfConfirm,
             Toast.fire({
                 icon: iconIfConfirm,
                 title: titleIfConfirm
-            })
+            });
         actionIfConfirm();
         }
-    })
+    });
 }
 
-//ALERT GENERAL
+//ALERT TEMPLATE SMALL ALERT
 function alertSmall(iconType, titleText) {
     Toast.fire({
                 icon: iconType,
                 title: titleText
-            })
+            });
 }
