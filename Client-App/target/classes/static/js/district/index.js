@@ -7,7 +7,12 @@ $(document).ready(() => {
 
     $("#DistrictForm").submit((e) => {
         e.preventDefault();
-        formValidation(this.id ? update : create);
+        formValidation(create);
+    });
+    
+    $("#districtUpdate").submit((e) => {
+        e.preventDefault();
+        formValidation(update);
     });
 });
 
@@ -104,7 +109,7 @@ function update() {
 
     let id = $("#districtId").val();
     $.ajax({
-        url: `/district/${this.id}`,
+        url: `/district/${id}`,
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify(district),

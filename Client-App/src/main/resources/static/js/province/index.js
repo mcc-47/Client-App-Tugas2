@@ -6,9 +6,14 @@ $(document).ready(() => {
     getAll();
 
 
-$("#provinceForm").submit((e) => {
+    $("#provinceForm").submit((e) => {
         e.preventDefault();
-        formValidation(this.id ? update : create);
+        formValidation(create);
+    });
+
+    $("#provinceUpdate").submit((e) => {
+        e.preventDefault();
+        formValidation(update);
     });
 });
 
@@ -87,9 +92,10 @@ function update() {
         provinceId: $("#province-id").val(),
         provinceName: $("#province-name").val()
     };
-    
+    let id = $("#province-id").val();
+
     $.ajax({
-        url: `/province/${this.id}`,
+        url: `/province/${id}`,
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify(province),
@@ -106,15 +112,15 @@ function update() {
 
 
 function deleteById(id) {
-    questionAlert("Are you sure?", "Do you want to delete this data?", function()  {
+    questionAlert("Are you sure?", "Do you want to delete this data?", function () {
         $.ajax({
             url: `/province/${id}`,
             type: 'DELETE',
-            
+
             success: (res) => {
                 table.ajax.reload();
                 successAlert("Province sucess deleted");
-                
+
             },
             error: (err) => {
                 errorAlert("Province failed deleted");
